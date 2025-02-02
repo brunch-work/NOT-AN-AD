@@ -1,0 +1,13 @@
+:root {
+  color-scheme: light dark;
+
+  --palette-black: #131313;
+  --palette-slate: #494949;
+  --palette-w95-grey: #d5d5d5;
+  --palette-white: #f0f0e3;
+  --palette-blue: #00f;
+
+  --text: light-dark(var(--palette-black), var(--palette-white));
+  --background: light-dark(var(--palette-white), var(--palette-black));
+  --accent: var(--palette-blue);
+}
