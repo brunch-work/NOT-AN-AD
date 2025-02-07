@@ -1,0 +1,24 @@
+html,
+body {
+  font-family: "IBM Plex Mono", monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  font-size: 62.5%;
+  min-height: 100%;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  background-color: var(--background);
+  color: var(--text);
+
+  &:has(dialog[open]) {
+    overflow: hidden;
+  }
+}
+
+#container {
+  margin: 0 auto;
+  max-width: min(151.2rem, calc(100vw - 5.4rem));
+  padding: 2.4rem;
+}
