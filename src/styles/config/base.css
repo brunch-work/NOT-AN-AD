@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   font-family: "IBM Plex Mono", monospace;
@@ -17,8 +21,124 @@ html {
   }
 }
 
+a {
+  color: var(--accent);
+}
+
+a:hover {
+  color: var(--text);
+}
+
+.button {
+  color: var(--text);
+}
+
 #container {
   margin: 0 auto;
   max-width: min(151.2rem, calc(100vw - 5.4rem));
   padding: 2.4rem;
+  display: grid;
+  grid-template-areas:
+    "nav"
+    "intro"
+    "first-content"
+    "footer"
+    "content";
+  min-height: 100dvh;
+  grid-template-rows: min-content min-content 1fr min-content;
+
+  @media screen and (min-width: 600px) {
+    grid-template-areas:
+      "nav           nav"
+      "intro         content"
+      "first-content content"
+      "footer        content"
+      ".             page-content";
+    grid-template-columns: 35rem auto;
+  }
+}
+
+:root {
+  --header-margin-bottom: 1.2rem;
+  --first-content-grid-area: first-content;
+  --placeholder-height: 90%;
+}
+
+@media screen and (min-width: 600px) {
+  :root {
+    --header-margin-bottom: 2.4rem;
+    --first-content-grid-area: content;
+    --placeholder-height: 80%;
+  }
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--header-margin-bottom);
+  grid-area: nav;
+  grid-column: 1 / -1;
+}
+
+header {
+  grid-area: intro;
+}
+
+footer {
+  grid-area: footer;
+}
+
+.intro {
+  grid-area: intro;
+}
+
+.first-content,
+.content {
+  place-content: center;
+  place-items: center;
+}
+
+.first-content {
+  grid-area: var(--first-content-grid-area);
+}
+
+.content {
+  grid-area: page-content;
+}
+
+.placeholder {
+  border: solid var(--text) 1px;
+  position: relative;
+  height: var(--placeholder-height);
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--text);
+    clip-path: polygon(100% 0, 0% 100%, 0.5% 100%, 100% 0.5%);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--text);
+    clip-path: polygon(0 0, 100% 100%, 99.5% 100%, 0% 0.5%);
+  }
+}
+
+.placeholder-v {
+  aspect-ratio: 9 / 16;
+}
+
+.placeholder-s {
+  aspect-ratio: 1;
 }
