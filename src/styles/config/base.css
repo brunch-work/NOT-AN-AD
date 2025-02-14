@@ -129,6 +129,7 @@ aside {
 
   .first-content {
     display: var(--first-content-mid-display);
+    min-height: 100dvh;
   }
 
   .placeholder {

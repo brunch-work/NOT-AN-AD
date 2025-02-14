@@ -1,6 +1,7 @@
 ---
 import NotAnAdLogo from "../assets/images/svg/NOT_AN_AD_LOGO.svg";
 import IconStrategy from "../assets/images/svg/icon_strategy.svg";
+import CaseStudy from "./CaseStudy.astro";
 ---
 
 <div id="container">
@@ -41,167 +42,164 @@ import IconStrategy from "../assets/images/svg/icon_strategy.svg";
     </figure>
     <ul class="content-grid">
       <li>
-        <figure class="content-slot">
-          <div class="placeholder placeholder-s"></div>
-          <figcaption>
-            <span class="content-title">Paramount</span>
-            <span class="content-category">Social strategy </span>
-            <span class="content-icon">
-              <IconStrategy
-                fill="currentColor"
-                width="15"
-                height="15"
-                role="presentation"
-              />
-            </span>
-            <span class="content-year">2022 </span>
-          </figcaption>
-        </figure>
+        <CaseStudy title="Square" category="Feature" year="2025" shape="s">
+          <IconStrategy
+            slot="icon"
+            fill="currentColor"
+            width="15"
+            height="15"
+            role="presentation"
+          />
+        </CaseStudy>
       </li>
       <li>
-        <figure class="content-slot">
-          <div class="placeholder placeholder-s"></div>
-          <figcaption>
-            <span class="content-title">Paramount</span>
-            <span class="content-category">Social strategy </span>
-            <span class="content-icon">
-              <IconStrategy
-                fill="currentColor"
-                width="15"
-                height="15"
-                role="presentation"
-              />
-            </span>
-            <span class="content-year">2022 </span>
-          </figcaption>
-        </figure>
-      </li>
-      <li>
-        <figure class="content-slot">
-          <div class="placeholder placeholder-v"></div>
-          <figcaption>
-            <span class="content-title">Paramount</span>
-            <span class="content-category">Social strategy </span>
-            <span class="content-icon">
-              <IconStrategy
-                fill="currentColor"
-                width="15"
-                height="15"
-                role="presentation"
-              />
-            </span>
-            <span class="content-year">2022 </span>
-          </figcaption>
-        </figure>
-      </li>
-      <li>
-        <figure class="content-slot">
-          <div class="placeholder placeholder-h"></div>
-          <figcaption>
-            <span class="content-title">Paramount</span>
-            <span class="content-category">Social strategy </span>
-            <span class="content-icon">
-              <IconStrategy
-                fill="currentColor"
-                width="15"
-                height="15"
-                role="presentation"
-              />
-            </span>
-            <span class="content-year">2022 </span>
-            <span class="content-year">2022 </span>
-          </figcaption>
-        </figure>
-      </li>
-      <li>
-        <figure class="content-slot">
-          <div class="placeholder placeholder-v"></div>
-          <figcaption>
-            <span class="content-title">Paramount</span>
-            <span class="content-category">Social strategy </span>
-            <span class="content-icon">
-              <IconStrategy
-                fill="currentColor"
-                width="15"
-                height="15"
-                role="presentation"
-              />
-            </span>
-            <span class="content-year">2022 </span>
-          </figcaption>
-        </figure>
-      </li>
-      <li>
-        <figure class="content-slot">
-          <div class="placeholder placeholder-h"></div>
-          <figcaption>
-            <span class="content-title">Paramount</span>
-            <span class="content-category">Social strategy </span>
-            <span class="content-icon">
-              <IconStrategy
-                fill="currentColor"
-                width="15"
-                height="15"
-                role="presentation"
-              />
-            </span>
-            <span class="content-year">2022 </span>
-          </figcaption>
-        </figure>
-      </li>
-      <li>
-        <figure class="content-slot">
-          <div class="placeholder placeholder-s"></div>
-          <figcaption>
-            <span class="content-title">Paramount</span>
-            <span class="content-category">Social strategy </span>
-            <span class="content-icon">
-              <IconStrategy
-                fill="currentColor"
-                width="15"
-                height="15"
-                role="presentation"
-              />
-            </span>
-            <span class="content-year">2022 </span>
-          </figcaption>
-        </figure>
-      </li>
-      <li>
-        <figure class="content-slot">
-          <div class="placeholder placeholder-h"></div>
-          <figcaption>
-            <span class="content-title">Paramount</span>
-            <span class="content-category">Social strategy </span>
-            <span class="content-icon">
-              <IconStrategy
-                fill="currentColor"
-                width="15"
-                height="15"
-                role="presentation"
-              />
-            </span>
-            <span class="content-year">2022 </span>
-          </figcaption>
-        </figure>
-      </li>
-      <li>
-        <figure class="content-slot">
-          <div class="placeholder placeholder-v"></div>
-          <figcaption>
-            <span class="content-title">Paramount</span>
-            <span class="content-category">Social strategy </span>
-            <span class="content-icon">
-              <IconStrategy
-                fill="currentColor"
-                width="15"
-                height="15"
-                role="presentation"
-              />
-            </span>
-            <span class="content-year">2022 </span>
-          </figcaption>
-        </figure>
+        <CaseStudy title="Landscape" category="Feature" year="2025" shape="h">
+          <IconStrategy
+            slot="icon"
+            fill="currentColor"
+            width="15"
+            height="15"
+            role="presentation"
+          />
+        </CaseStudy>
+        <li>
+          <CaseStudy title="Portrait" category="Feature" year="2025" shape="v">
+            <IconStrategy
+              slot="icon"
+              fill="currentColor"
+              width="15"
+              height="15"
+              role="presentation"
+            />
+          </CaseStudy>
+        </li>
+        <li>
+          <figure class="content-slot">
+            <div class="placeholder placeholder-v"></div>
+            <figcaption>
+              <span class="content-title">Paramount</span>
+              <span class="content-category">Social strategy </span>
+              <span class="content-icon">
+                <IconStrategy
+                  fill="currentColor"
+                  width="15"
+                  height="15"
+                  role="presentation"
+                />
+              </span>
+              <span class="content-year">2022 </span>
+            </figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="content-slot">
+            <div class="placeholder placeholder-h"></div>
+            <figcaption>
+              <span class="content-title">Paramount</span>
+              <span class="content-category">Social strategy </span>
+              <span class="content-icon">
+                <IconStrategy
+                  fill="currentColor"
+                  width="15"
+                  height="15"
+                  role="presentation"
+                />
+              </span>
+              <span class="content-year">2022 </span>
+              <span class="content-year">2022 </span>
+            </figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="content-slot">
+            <div class="placeholder placeholder-v"></div>
+            <figcaption>
+              <span class="content-title">Paramount</span>
+              <span class="content-category">Social strategy </span>
+              <span class="content-icon">
+                <IconStrategy
+                  fill="currentColor"
+                  width="15"
+                  height="15"
+                  role="presentation"
+                />
+              </span>
+              <span class="content-year">2022 </span>
+            </figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="content-slot">
+            <div class="placeholder placeholder-h"></div>
+            <figcaption>
+              <span class="content-title">Paramount</span>
+              <span class="content-category">Social strategy </span>
+              <span class="content-icon">
+                <IconStrategy
+                  fill="currentColor"
+                  width="15"
+                  height="15"
+                  role="presentation"
+                />
+              </span>
+              <span class="content-year">2022 </span>
+            </figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="content-slot">
+            <div class="placeholder placeholder-s"></div>
+            <figcaption>
+              <span class="content-title">Paramount</span>
+              <span class="content-category">Social strategy </span>
+              <span class="content-icon">
+                <IconStrategy
+                  fill="currentColor"
+                  width="15"
+                  height="15"
+                  role="presentation"
+                />
+              </span>
+              <span class="content-year">2022 </span>
+            </figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="content-slot">
+            <div class="placeholder placeholder-h"></div>
+            <figcaption>
+              <span class="content-title">Paramount</span>
+              <span class="content-category">Social strategy </span>
+              <span class="content-icon">
+                <IconStrategy
+                  fill="currentColor"
+                  width="15"
+                  height="15"
+                  role="presentation"
+                />
+              </span>
+              <span class="content-year">2022 </span>
+            </figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="content-slot">
+            <div class="placeholder placeholder-v"></div>
+            <figcaption>
+              <span class="content-title">Paramount</span>
+              <span class="content-category">Social strategy </span>
+              <span class="content-icon">
+                <IconStrategy
+                  fill="currentColor"
+                  width="15"
+                  height="15"
+                  role="presentation"
+                />
+              </span>
+              <span class="content-year">2022 </span>
+            </figcaption>
+          </figure>
+        </li>
       </li>
     </ul>
   </section>

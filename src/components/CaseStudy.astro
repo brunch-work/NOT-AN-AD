@@ -1,0 +1,15 @@
+---
+const { title, category, shape = "s", year } = Astro.props;
+---
+
+<figure class="content-slot">
+  <div class=`placeholder placeholder-${shape}`></div>
+  <figcaption>
+    <span class="content-title">{title}</span>
+    <span class="content-category">{category}</span>
+    <span class="content-icon">
+      <slot name="icon" />
+    </span>
+    <span class="content-year">{year}</span>
+  </figcaption>
+</figure>
