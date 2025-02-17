@@ -11,6 +11,22 @@
   button {
     anchor-name: --filter-menu-button;
     transition: margin 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+
+    svg {
+      margin-right: 0.4rem;
+    }
+
+    &:has(svg) {
+      &::before {
+        content: "[";
+      }
+      &::after {
+        content: "]";
+      }
+    }
 
     @supports (not (container-type: scroll-state)) {
       margin-left: 5.4rem;

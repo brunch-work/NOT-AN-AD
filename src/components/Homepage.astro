@@ -11,14 +11,12 @@ import CaseStudy from "./CaseStudy.astro";
 
 <div id="container">
   <span id="top"></span>
-  <nav>
-    <a href="#top"
-      ><NotAnAdLogo width={24} fill="currentColor" class="nav-logo" /></a
-    >
-    <a class="button" href="#work">Work</a>
-  </nav>
 
+  <a class="button work-link" href="#work">Work</a>
   <aside>
+    <a href="#top" class="logo"
+      ><NotAnAdLogo width={24} fill="currentColor" /></a
+    >
     <header>
       <h1>
         NOT AN AD is a social-media advertising agency based in New York City.
@@ -128,7 +126,7 @@ import CaseStudy from "./CaseStudy.astro";
               type="radio"
               name="content-filter"
               id="earned-media"
-              value="earned-media"
+              value="earned media"
             />
             <IconEarnedMedia
               fill="currentColor"
@@ -290,3 +288,25 @@ import CaseStudy from "./CaseStudy.astro";
     </ul>
   </section>
 </div>
+
+<script>
+  const filterButton = document.getElementById("filter-button");
+  const filterPopover = document.getElementById("filters-popover");
+  const filterRadios = document.querySelectorAll(
+    '#filters-popover input[type="radio"]'
+  );
+
+  filterRadios.forEach((radio) => {
+    radio.addEventListener("change", (event) => {
+      const icon = event.target.parentElement
+        .querySelector("svg")
+        .cloneNode(true);
+
+      if (filterButton) {
+        filterButton.replaceChildren(icon);
+        filterButton.innerHTML += event.target.parentElement.innerText;
+      }
+      filterPopover && filterPopover.hidePopover();
+    });
+  });
+</script>

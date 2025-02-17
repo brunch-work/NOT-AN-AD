@@ -66,7 +66,7 @@ a:hover {
   --first-content-mid-display: none;
   --placeholder-height: 90%;
   --aside-width: 100%;
-  --aside-height: calc(100dvh - 6.4rem);
+  --aside-height: calc(100dvh - 4.2rem);
   --aside-margin-bottom: 2.4rem;
   --category-icon-display: none;
 }
@@ -85,30 +85,23 @@ a:hover {
 
   aside {
     position: fixed;
-    padding-top: 4rem;
     margin: 0;
+  }
+
+  .work-link {
+    display: none;
   }
 }
 
-nav {
-  position: sticky;
-  top: 2.4rem;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: var(--header-margin-bottom);
+#top {
+  position: absolute;
+  top: 0;
+}
 
-  a {
-    color: var(--text);
-    z-index: 2;
-  }
-
-  @media screen and (min-width: 600px) {
-    position: fixed;
-    width: calc(100% - 4.8rem);
-    left: unset;
-  }
+.work-link {
+  position: absolute;
+  right: 2.4rem;
+  text-decoration: none;
 }
 
 aside {
@@ -117,6 +110,18 @@ aside {
   flex-direction: column;
   height: var(--aside-height);
   margin-bottom: var(--aside-margin-bottom);
+
+  a.logo {
+    position: fixed;
+    z-index: 2;
+    color: var(--text);
+    margin-bottom: 2.4rem;
+  }
+
+  header {
+    margin-top: 4rem;
+  }
+
   .first-content {
     flex-grow: 1;
     align-content: center;
