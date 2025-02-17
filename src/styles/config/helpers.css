@@ -1,0 +1,8 @@
+.visually-hidden {
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  overflow: clip;
+  position: absolute;
+  white-space: nowrap;
+}

@@ -1,13 +1,21 @@
 ---
 import NotAnAdLogo from "../assets/images/svg/NOT_AN_AD_LOGO.svg";
 import IconStrategy from "../assets/images/svg/icon_strategy.svg";
+import IconPartnership from "../assets/images/svg/icon_partnerships.svg";
+import IconEarnedMedia from "../assets/images/svg/icon_earned_media.svg";
+import IconContent from "../assets/images/svg/icon_content.svg";
+import IconAmplification from "../assets/images/svg/icon_amplification.svg";
+
 import CaseStudy from "./CaseStudy.astro";
 ---
 
 <div id="container">
+  <span id="top"></span>
   <nav>
-    <NotAnAdLogo width={24} fill="currentColor" />
-    <a class="button">Menu</a>
+    <a href="#top"
+      ><NotAnAdLogo width={24} fill="currentColor" class="nav-logo" /></a
+    >
+    <a class="button" href="#work">Work</a>
   </nav>
 
   <aside>
@@ -36,13 +44,106 @@ import CaseStudy from "./CaseStudy.astro";
     </footer>
   </aside>
 
-  <section class="content">
+  <section class="content" id="work">
     <figure class="first-content content-slot">
       <div class="placeholder placeholder-v"></div>
     </figure>
+    <fieldset class="filter-menu">
+      <legend class="visually-hidden">Filter</legend>
+      <button id="filter-button" popovertarget="filters-popover" class="button"
+        >Filter</button
+      >
+      <ul class="content-filter" id="filters-popover" popover>
+        <li>
+          <label for="strategy">
+            <input
+              type="radio"
+              name="content-filter"
+              id="strategy"
+              value="strategy"
+            />
+            <IconStrategy
+              fill="currentColor"
+              width="15"
+              height="15"
+              role="presentation"
+            />
+            Strategy
+          </label>
+        </li>
+        <li>
+          <label for="partnerships">
+            <input
+              type="radio"
+              name="content-filter"
+              id="partnerships"
+              value="partnerships"
+            />
+            <IconPartnership
+              fill="currentColor"
+              width="15"
+              height="15"
+              role="presentation"
+            />
+            Partnerships
+          </label>
+        </li>
+        <li>
+          <label for="amplification">
+            <input
+              type="radio"
+              name="content-filter"
+              id="amplification"
+              value="amplification"
+            />
+            <IconAmplification
+              fill="currentColor"
+              width="15"
+              height="15"
+              role="presentation"
+            />
+            Amplification
+          </label>
+        </li>
+        <li>
+          <label for="content">
+            <input
+              type="radio"
+              name="content-filter"
+              id="content"
+              value="content"
+            />
+            <IconContent
+              fill="currentColor"
+              width="15"
+              height="15"
+              role="presentation"
+            />
+            Content creation
+          </label>
+        </li>
+        <li>
+          <label for="earned-media">
+            <input
+              type="radio"
+              name="content-filter"
+              id="earned-media"
+              value="earned-media"
+            />
+            <IconEarnedMedia
+              fill="currentColor"
+              width="15"
+              height="15"
+              role="presentation"
+            />
+            Earned media
+          </label>
+        </li>
+      </ul>
+    </fieldset>
     <ul class="content-grid">
       <li>
-        <CaseStudy title="Square" category="Feature" year="2025" shape="s">
+        <CaseStudy title="Square" category="strategy" year="2025" shape="s">
           <IconStrategy
             slot="icon"
             fill="currentColor"
@@ -53,8 +154,8 @@ import CaseStudy from "./CaseStudy.astro";
         </CaseStudy>
       </li>
       <li>
-        <CaseStudy title="Landscape" category="Feature" year="2025" shape="h">
-          <IconStrategy
+        <CaseStudy title="Landscape" category="strategy" year="2025" shape="h">
+          <IconPartnership
             slot="icon"
             fill="currentColor"
             width="15"
@@ -63,8 +164,8 @@ import CaseStudy from "./CaseStudy.astro";
           />
         </CaseStudy>
         <li>
-          <CaseStudy title="Portrait" category="Feature" year="2025" shape="v">
-            <IconStrategy
+          <CaseStudy title="Portrait" category="strategy" year="2025" shape="v">
+            <IconEarnedMedia
               slot="icon"
               fill="currentColor"
               width="15"
@@ -74,41 +175,26 @@ import CaseStudy from "./CaseStudy.astro";
           </CaseStudy>
         </li>
         <li>
-          <figure class="content-slot">
-            <div class="placeholder placeholder-v"></div>
-            <figcaption>
-              <span class="content-title">Paramount</span>
-              <span class="content-category">Social strategy </span>
-              <span class="content-icon">
-                <IconStrategy
-                  fill="currentColor"
-                  width="15"
-                  height="15"
-                  role="presentation"
-                />
-              </span>
-              <span class="content-year">2022 </span>
-            </figcaption>
-          </figure>
+          <CaseStudy title="Portrait" category="strategy" year="2025" shape="v">
+            <IconContent
+              slot="icon"
+              fill="currentColor"
+              width="15"
+              height="15"
+              role="presentation"
+            />
+          </CaseStudy>
         </li>
         <li>
-          <figure class="content-slot">
-            <div class="placeholder placeholder-h"></div>
-            <figcaption>
-              <span class="content-title">Paramount</span>
-              <span class="content-category">Social strategy </span>
-              <span class="content-icon">
-                <IconStrategy
-                  fill="currentColor"
-                  width="15"
-                  height="15"
-                  role="presentation"
-                />
-              </span>
-              <span class="content-year">2022 </span>
-              <span class="content-year">2022 </span>
-            </figcaption>
-          </figure>
+          <CaseStudy title="Portrait" category="strategy" year="2025" shape="v">
+            <IconAmplification
+              slot="icon"
+              fill="currentColor"
+              width="15"
+              height="15"
+              role="presentation"
+            />
+          </CaseStudy>
         </li>
         <li>
           <figure class="content-slot">
