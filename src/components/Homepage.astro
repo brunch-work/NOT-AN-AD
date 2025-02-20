@@ -140,151 +140,134 @@ import CaseStudy from "./CaseStudy.astro";
       </ul>
     </fieldset>
     <ul class="content-grid">
-      <li>
-        <CaseStudy title="Square" category="strategy" year="2025" shape="s">
-          <IconStrategy
-            slot="icon"
-            fill="currentColor"
-            width="15"
-            height="15"
-            role="presentation"
-          />
-        </CaseStudy>
-      </li>
-      <li>
-        <CaseStudy title="Landscape" category="strategy" year="2025" shape="h">
-          <IconPartnership
-            slot="icon"
-            fill="currentColor"
-            width="15"
-            height="15"
-            role="presentation"
-          />
-        </CaseStudy>
-        <li>
-          <CaseStudy title="Portrait" category="strategy" year="2025" shape="v">
-            <IconEarnedMedia
-              slot="icon"
-              fill="currentColor"
-              width="15"
-              height="15"
-              role="presentation"
-            />
-          </CaseStudy>
-        </li>
-        <li>
-          <CaseStudy title="Portrait" category="strategy" year="2025" shape="v">
-            <IconContent
-              slot="icon"
-              fill="currentColor"
-              width="15"
-              height="15"
-              role="presentation"
-            />
-          </CaseStudy>
-        </li>
-        <li>
-          <CaseStudy title="Portrait" category="strategy" year="2025" shape="v">
-            <IconAmplification
-              slot="icon"
-              fill="currentColor"
-              width="15"
-              height="15"
-              role="presentation"
-            />
-          </CaseStudy>
-        </li>
-        <li>
-          <figure class="content-slot">
-            <div class="placeholder placeholder-v"></div>
-            <figcaption>
-              <span class="content-title">Paramount</span>
-              <span class="content-category">Social strategy </span>
-              <span class="content-icon">
-                <IconStrategy
-                  fill="currentColor"
-                  width="15"
-                  height="15"
-                  role="presentation"
-                />
-              </span>
-              <span class="content-year">2022 </span>
-            </figcaption>
-          </figure>
-        </li>
-        <li>
-          <figure class="content-slot">
-            <div class="placeholder placeholder-h"></div>
-            <figcaption>
-              <span class="content-title">Paramount</span>
-              <span class="content-category">Social strategy </span>
-              <span class="content-icon">
-                <IconStrategy
-                  fill="currentColor"
-                  width="15"
-                  height="15"
-                  role="presentation"
-                />
-              </span>
-              <span class="content-year">2022 </span>
-            </figcaption>
-          </figure>
-        </li>
-        <li>
-          <figure class="content-slot">
-            <div class="placeholder placeholder-s"></div>
-            <figcaption>
-              <span class="content-title">Paramount</span>
-              <span class="content-category">Social strategy </span>
-              <span class="content-icon">
-                <IconStrategy
-                  fill="currentColor"
-                  width="15"
-                  height="15"
-                  role="presentation"
-                />
-              </span>
-              <span class="content-year">2022 </span>
-            </figcaption>
-          </figure>
-        </li>
-        <li>
-          <figure class="content-slot">
-            <div class="placeholder placeholder-h"></div>
-            <figcaption>
-              <span class="content-title">Paramount</span>
-              <span class="content-category">Social strategy </span>
-              <span class="content-icon">
-                <IconStrategy
-                  fill="currentColor"
-                  width="15"
-                  height="15"
-                  role="presentation"
-                />
-              </span>
-              <span class="content-year">2022 </span>
-            </figcaption>
-          </figure>
-        </li>
-        <li>
-          <figure class="content-slot">
-            <div class="placeholder placeholder-v"></div>
-            <figcaption>
-              <span class="content-title">Paramount</span>
-              <span class="content-category">Social strategy </span>
-              <span class="content-icon">
-                <IconStrategy
-                  fill="currentColor"
-                  width="15"
-                  height="15"
-                  role="presentation"
-                />
-              </span>
-              <span class="content-year">2022 </span>
-            </figcaption>
-          </figure>
-        </li>
-      </li>
+      <CaseStudy
+        id="s1"
+        title="Square"
+        category="strategy"
+        year="2025"
+        shape="s"
+      >
+        <IconStrategy
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+      </CaseStudy>
+      <CaseStudy
+        id="p1"
+        title="Landscape"
+        category="partnerships"
+        year="2025"
+        shape="h"
+      >
+        <IconPartnership
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+      </CaseStudy>
+      <CaseStudy
+        id="e1"
+        title="Portrait"
+        category="earned media"
+        year="2025"
+        shape="v"
+      >
+        <IconEarnedMedia
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+      </CaseStudy>
+      <CaseStudy title="Portrait" category="content" year="2025" shape="v">
+        <IconContent
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+      </CaseStudy>
+      <CaseStudy
+        title="Portrait"
+        category="amplification"
+        year="2025"
+        shape="v"
+      >
+        <IconAmplification
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+      </CaseStudy>
+      <CaseStudy title="Portrait" category="strategy" year="2022" shape="v">
+        <IconStrategy
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+      </CaseStudy>
+      <CaseStudy
+        title="Landscape"
+        category="partnerships"
+        year="2021"
+        shape="h"
+      >
+        <IconPartnership
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+      </CaseStudy>
+      <CaseStudy
+        title="Landscape"
+        category="amplification"
+        year="2020"
+        shape="s"
+      >
+        <IconAmplification
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+      </CaseStudy>
+      <CaseStudy title="Landscape" category="content" year="2019" shape="v">
+        <IconContent
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+      </CaseStudy>
+      <CaseStudy
+        title="Landscape"
+        category="earned media"
+        year="2018"
+        shape="v"
+      >
+        <IconEarnedMedia
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+      </CaseStudy>
     </ul>
   </section>
 </div>
@@ -295,17 +278,41 @@ import CaseStudy from "./CaseStudy.astro";
   const filterRadios = document.querySelectorAll(
     '#filters-popover input[type="radio"]'
   );
+  const contentGrid = document.querySelector(".content-grid") as HTMLElement;
+  const filterTargets = document.querySelectorAll(
+    `.content-grid li`
+  ) as NodeListOf<HTMLElement>;
+  const { matches: motionOK } = window.matchMedia(
+    "(prefers-reduced-motion: no-preference)"
+  );
+  if (motionOK) {
+    filterTargets.forEach((item, i) => {
+      item.style.viewTransitionName = "--case-study-" + i;
+    });
+  }
 
   filterRadios.forEach((radio) => {
     radio.addEventListener("change", (event) => {
-      const icon = event.target.parentElement
-        .querySelector("svg")
-        .cloneNode(true);
+      const target = event.target as HTMLInputElement;
+      const icon = target.parentElement
+        ?.querySelector("svg")
+        ?.cloneNode(true) as SVGElement;
 
       if (filterButton) {
         filterButton.replaceChildren(icon);
-        filterButton.innerHTML += event.target.parentElement.innerText;
+        filterButton.innerHTML += target.parentElement?.innerText;
       }
+
+      function filter() {
+        if (contentGrid) {
+          contentGrid.dataset.filter = target.value;
+        }
+      }
+
+      document.startViewTransition
+        ? document.startViewTransition(() => filter())
+        : filter();
+
       filterPopover && filterPopover.hidePopover();
     });
   });
