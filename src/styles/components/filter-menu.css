@@ -1,12 +1,17 @@
-.filter-menu {
-  padding: 0;
-  margin: 0;
-  border: none;
+.filter-view-menu {
   position: sticky;
+  display: flex;
+  justify-content: space-between;
   top: 2.4rem;
   left: 3rem;
   z-index: 2;
   container-type: scroll-state;
+
+  fieldset {
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
 
   button {
     anchor-name: --filter-menu-button;
@@ -64,6 +69,24 @@
     background-color: var(--text);
   }
 
+  .content-view {
+    display: inline-flex;
+    gap: 2.8rem;
+
+    label {
+      &:has(:checked) {
+        &::before {
+          content: "[";
+          margin-right: 0.8rem;
+        }
+        &::after {
+          content: "]";
+          margin-left: 0.8rem;
+        }
+      }
+    }
+  }
+
   label {
     display: inline-flex;
     align-items: center;
@@ -82,11 +105,13 @@
 }
 
 @media screen and (min-width: 600px) {
-  .filter-menu {
+  .filter-menu,
+  .view-menu {
     button {
       display: none;
     }
-    #filters-popover {
+
+    ul {
       position: static;
       display: inline-flex;
       gap: 2.8rem;

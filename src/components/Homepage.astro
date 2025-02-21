@@ -46,99 +46,128 @@ import CaseStudy from "./CaseStudy.astro";
     <figure class="first-content content-slot">
       <div class="placeholder placeholder-v"></div>
     </figure>
-    <fieldset class="filter-menu">
-      <legend class="visually-hidden">Filter</legend>
-      <button id="filter-button" popovertarget="filters-popover" class="button"
-        >Filter</button
-      >
-      <ul class="content-filter" id="filters-popover" popover>
-        <li>
-          <label for="strategy">
-            <input
-              type="radio"
-              name="content-filter"
-              id="strategy"
-              value="strategy"
-            />
-            <IconStrategy
-              fill="currentColor"
-              width="15"
-              height="15"
-              role="presentation"
-            />
-            Strategy
-          </label>
-        </li>
-        <li>
-          <label for="partnerships">
-            <input
-              type="radio"
-              name="content-filter"
-              id="partnerships"
-              value="partnerships"
-            />
-            <IconPartnership
-              fill="currentColor"
-              width="15"
-              height="15"
-              role="presentation"
-            />
-            Partnerships
-          </label>
-        </li>
-        <li>
-          <label for="amplification">
-            <input
-              type="radio"
-              name="content-filter"
-              id="amplification"
-              value="amplification"
-            />
-            <IconAmplification
-              fill="currentColor"
-              width="15"
-              height="15"
-              role="presentation"
-            />
-            Amplification
-          </label>
-        </li>
-        <li>
-          <label for="content">
-            <input
-              type="radio"
-              name="content-filter"
-              id="content"
-              value="content"
-            />
-            <IconContent
-              fill="currentColor"
-              width="15"
-              height="15"
-              role="presentation"
-            />
-            Content creation
-          </label>
-        </li>
-        <li>
-          <label for="earned-media">
-            <input
-              type="radio"
-              name="content-filter"
-              id="earned-media"
-              value="earned media"
-            />
-            <IconEarnedMedia
-              fill="currentColor"
-              width="15"
-              height="15"
-              role="presentation"
-            />
-            Earned media
-          </label>
-        </li>
-      </ul>
-    </fieldset>
+    <div class="filter-view-menu">
+      <fieldset class="filter-menu">
+        <legend class="visually-hidden">Filter</legend>
+        <button
+          id="filter-button"
+          popovertarget="filters-popover"
+          class="button">Filter</button
+        >
+        <ul class="content-filter" id="filters-popover" popover>
+          <li>
+            <label for="strategy">
+              <input
+                type="radio"
+                name="content-filter"
+                id="strategy"
+                value="strategy"
+              />
+              <IconStrategy
+                fill="currentColor"
+                width="15"
+                height="15"
+                role="presentation"
+              />
+              Strategy
+            </label>
+          </li>
+          <li>
+            <label for="partnerships">
+              <input
+                type="radio"
+                name="content-filter"
+                id="partnerships"
+                value="partnerships"
+              />
+              <IconPartnership
+                fill="currentColor"
+                width="15"
+                height="15"
+                role="presentation"
+              />
+              Partnerships
+            </label>
+          </li>
+          <li>
+            <label for="amplification">
+              <input
+                type="radio"
+                name="content-filter"
+                id="amplification"
+                value="amplification"
+              />
+              <IconAmplification
+                fill="currentColor"
+                width="15"
+                height="15"
+                role="presentation"
+              />
+              Amplification
+            </label>
+          </li>
+          <li>
+            <label for="content">
+              <input
+                type="radio"
+                name="content-filter"
+                id="content"
+                value="content"
+              />
+              <IconContent
+                fill="currentColor"
+                width="15"
+                height="15"
+                role="presentation"
+              />
+              Content creation
+            </label>
+          </li>
+          <li>
+            <label for="earned-media">
+              <input
+                type="radio"
+                name="content-filter"
+                id="earned-media"
+                value="earned media"
+              />
+              <IconEarnedMedia
+                fill="currentColor"
+                width="15"
+                height="15"
+                role="presentation"
+              />
+              Earned media
+            </label>
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset class="view-menu">
+        <ul class="content-view" id="view-menu--controls">
+          <li>
+            <label for="view-menu--grid">
+              <input
+                type="radio"
+                name="content-view-type"
+                id="view-menu--grid"
+                checked
+              />
+              Grid
+            </label>
+          </li>
+          <li>
+            <label for="view-menu--list">
+              <input
+                type="radio"
+                name="content-view-type"
+                id="view-menu--list"
+              />
+              List
+            </label>
+          </li>
+        </ul>
+      </fieldset>
+    </div>
     <ul class="content-grid">
       <CaseStudy
         id="s1"
