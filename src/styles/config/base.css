@@ -164,6 +164,43 @@ aside {
   --min-column-width: 16rem;
   --max-columns: 4; /* max + 1 */
 
+  &[data-view="grid"] {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(max(var(--min-column-width), 100% / var(--max-columns)), 1fr)
+    );
+  }
+  &[data-view="list"] {
+    display: table;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    li,
+    figure {
+      display: contents;
+    }
+
+    figcaption {
+      display: table-row;
+      width: 100%;
+      height: 3.3rem;
+      span {
+        display: table-cell;
+        vertical-align: middle;
+
+        &:last-of-type {
+          text-align: right;
+        }
+      }
+    }
+
+    .placeholder {
+      display: none;
+    }
+  }
+
   display: grid;
   gap: 1.5rem;
   margin-block-start: 3.8rem;

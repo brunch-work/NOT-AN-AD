@@ -307,6 +307,9 @@ import CaseStudy from "./CaseStudy.astro";
   const filterRadios = document.querySelectorAll(
     '#filters-popover input[type="radio"]'
   );
+  const viewRadios = document.querySelectorAll(
+    '.content-view input[type="radio"]'
+  );
   const contentGrid = document.querySelector(".content-grid") as HTMLElement;
   const filterTargets = document.querySelectorAll(
     `.content-grid li`
@@ -343,6 +346,17 @@ import CaseStudy from "./CaseStudy.astro";
         : filter();
 
       filterPopover && filterPopover.hidePopover();
+    });
+  });
+
+  viewRadios.forEach((radio) => {
+    radio.addEventListener("change", (event) => {
+      const target = event.target as HTMLInputElement;
+      const view = target.id.split("--")[1];
+
+      if (contentGrid) {
+        contentGrid.dataset.view = view;
+      }
     });
   });
 </script>
