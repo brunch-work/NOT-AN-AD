@@ -16,6 +16,7 @@ html {
   background-color: var(--background);
   color: var(--text);
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
 
   &:has(dialog[open]) {
     overflow: hidden;
@@ -68,6 +69,7 @@ a:hover {
   --aside-width: 100%;
   --aside-height: calc(100dvh - 4.2rem);
   --aside-margin-bottom: 2.4rem;
+  --aside-scroll-snap-align: start;
   --category-icon-display: none;
 }
 
@@ -110,6 +112,8 @@ aside {
   flex-direction: column;
   height: var(--aside-height);
   margin-bottom: var(--aside-margin-bottom);
+  scroll-snap-align: var(--aside-scroll-snap-align);
+  scroll-margin-top: 4.2rem;
 
   a.logo {
     position: fixed;
@@ -163,6 +167,9 @@ aside {
 .content-grid {
   --min-column-width: 16rem;
   --max-columns: 4; /* max + 1 */
+
+  scroll-snap-align: start;
+  scroll-margin-block-start: 7.2rem;
 
   &[data-view="grid"] {
     display: grid;
