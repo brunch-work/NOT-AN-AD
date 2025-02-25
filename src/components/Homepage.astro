@@ -320,6 +320,10 @@ import CaseStudy from "./CaseStudy.astro";
   if (motionOK) {
     filterTargets.forEach((item, i) => {
       item.style.viewTransitionName = "--case-study-" + i;
+
+      const figcaption = item.querySelector("figcaption") as HTMLElement;
+      if (figcaption)
+        figcaption.style.viewTransitionName = `--case-study-figcaption-${i}`;
     });
   }
 
@@ -354,9 +358,15 @@ import CaseStudy from "./CaseStudy.astro";
       const target = event.target as HTMLInputElement;
       const view = target.id.split("--")[1];
 
-      if (contentGrid) {
-        contentGrid.dataset.view = view;
+      function filter() {
+        if (contentGrid) {
+          contentGrid.dataset.view = view;
+        }
       }
+
+      document.startViewTransition
+        ? document.startViewTransition(() => filter())
+        : filter();
     });
   });
 </script>
