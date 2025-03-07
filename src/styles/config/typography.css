@@ -18,6 +18,7 @@ label,
 figcaption {
   margin: 0;
   font-size: 1.4rem;
+  font-weight: 400;
   font-family: "IBM Plex Mono", monospace;
   text-transform: uppercase;
 }

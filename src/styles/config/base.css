@@ -149,12 +149,13 @@ aside {
   @media screen and (min-width: 600px) {
     width: calc(100% - 35rem);
     padding-top: 4rem;
-    padding-left: var(--aside-width);
+    padding-left: calc(var(--aside-width) + 20px);
   }
 
   .first-content {
     display: var(--first-content-mid-display);
     min-height: 100dvh;
+    scroll-snap-align: start;
   }
 
   .placeholder {

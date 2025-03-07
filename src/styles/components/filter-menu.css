@@ -44,6 +44,7 @@
   #filters-popover {
     padding: 0.4rem;
     border: none;
+    background-color: unset;
   }
 
   #filters-popover:popover-open {
