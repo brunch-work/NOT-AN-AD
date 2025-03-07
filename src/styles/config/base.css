@@ -82,7 +82,6 @@ a:hover {
     --aside-width: 35rem;
     --aside-height: calc(100dvh - 4.8rem);
     --aside-margin-bottom: 0;
-    --category-icon-display: block;
   }
 
   aside {
@@ -133,11 +132,13 @@ aside {
   .placeholder {
     display: var(--first-content-aside-display);
     width: 80%;
+    height: var(--placeholder-height);
   }
 }
 
 .content-slot {
   align-content: center;
+  aspect-ratio: 1;
 }
 
 .content {
@@ -148,7 +149,6 @@ aside {
   position: relative;
   @media screen and (min-width: 600px) {
     width: calc(100% - 35rem);
-    padding-top: 4rem;
     padding-left: calc(var(--aside-width) + 20px);
   }
 
@@ -161,7 +161,6 @@ aside {
   .placeholder {
     max-width: 100%;
     max-height: 80vh;
-    height: var(--placeholder-height);
   }
 }
 
@@ -293,10 +292,12 @@ figure {
 
 .placeholder-h {
   aspect-ratio: 16 / 9;
+  width: 100%;
 }
 
 .placeholder-v {
   aspect-ratio: 9 / 16;
+  height: 100%;
 }
 
 .placeholder-s {
