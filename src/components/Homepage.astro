@@ -58,7 +58,7 @@ import CaseStudy from "./CaseStudy.astro";
           <li>
             <label for="strategy">
               <input
-                type="radio"
+                type="checkbox"
                 name="content-filter"
                 id="strategy"
                 value="strategy"
@@ -75,7 +75,7 @@ import CaseStudy from "./CaseStudy.astro";
           <li>
             <label for="partnerships">
               <input
-                type="radio"
+                type="checkbox"
                 name="content-filter"
                 id="partnerships"
                 value="partnerships"
@@ -92,7 +92,7 @@ import CaseStudy from "./CaseStudy.astro";
           <li>
             <label for="amplification">
               <input
-                type="radio"
+                type="checkbox"
                 name="content-filter"
                 id="amplification"
                 value="amplification"
@@ -109,7 +109,7 @@ import CaseStudy from "./CaseStudy.astro";
           <li>
             <label for="content">
               <input
-                type="radio"
+                type="checkbox"
                 name="content-filter"
                 id="content"
                 value="content"
@@ -126,7 +126,7 @@ import CaseStudy from "./CaseStudy.astro";
           <li>
             <label for="earned-media">
               <input
-                type="radio"
+                type="checkbox"
                 name="content-filter"
                 id="earned-media"
                 value="earned media"
@@ -304,8 +304,8 @@ import CaseStudy from "./CaseStudy.astro";
 <script>
   const filterButton = document.getElementById("filter-button");
   const filterPopover = document.getElementById("filters-popover");
-  const filterRadios = document.querySelectorAll(
-    '#filters-popover input[type="radio"]'
+  const filterCheckboxes = document.querySelectorAll(
+    '#filters-popover input[type="checkbox"]'
   );
   const viewRadios = document.querySelectorAll(
     '.content-view input[type="radio"]'
@@ -327,21 +327,31 @@ import CaseStudy from "./CaseStudy.astro";
     });
   }
 
-  filterRadios.forEach((radio) => {
-    radio.addEventListener("change", (event) => {
+  filterCheckboxes.forEach((chk) => {
+    chk.addEventListener("change", (event) => {
+      filterCheckboxes.forEach((checkbox) => {
+        if (checkbox !== event.target) {
+          (checkbox as HTMLInputElement).checked = false;
+        }
+      });
       const target = event.target as HTMLInputElement;
       const icon = target.parentElement
         ?.querySelector("svg")
         ?.cloneNode(true) as SVGElement;
 
       if (filterButton) {
-        filterButton.replaceChildren(icon);
-        filterButton.innerHTML += target.parentElement?.innerText;
+        if (target.checked) {
+          filterButton.replaceChildren(icon);
+          filterButton.innerHTML += target.parentElement?.innerText;
+        } else {
+          filterButton.innerHTML = "Filter";
+        }
       }
 
       function filter() {
         if (contentGrid) {
-          contentGrid.dataset.filter = target.value;
+          contentGrid.dataset.filter =
+            target.checked && target.value ? target.value : "";
         }
       }
 
