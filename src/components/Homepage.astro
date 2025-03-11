@@ -1,7 +1,382 @@
 ---
 import NotAnAdLogo from "../assets/images/svg/NOT_AN_AD_LOGO.svg";
+import IconStrategy from "../assets/images/svg/icon_strategy.svg";
+import IconPartnership from "../assets/images/svg/icon_partnerships.svg";
+import IconEarnedMedia from "../assets/images/svg/icon_earned_media.svg";
+import IconContent from "../assets/images/svg/icon_content.svg";
+import IconAmplification from "../assets/images/svg/icon_amplification.svg";
+
+import CaseStudy from "./CaseStudy.astro";
 ---
 
 <div id="container">
-  <NotAnAdLogo width={24} fill="currentColor" />
+  <span id="top"></span>
+
+  <a class="button work-link" href="#work">Work</a>
+  <aside>
+    <a href="#top" class="logo"
+      ><NotAnAdLogo width={24} fill="currentColor" /></a
+    >
+    <header>
+      <h1>
+        NOT AN AD is a social-media advertising agency based in New York City.
+      </h1>
+      <br />
+      <p>
+        Traditional messaging strategies simply will not reach those born into
+        an ad-saturated world. With our extensive experience in organic social
+        content we will help create an online presence that cultivates a
+        dedicated following for your brand.
+      </p>
+    </header>
+    <figure class="first-content">
+      <div class="placeholder placeholder-v"></div>
+    </figure>
+    <footer class="footer">
+      <p>
+        to discuss a potential project, please email use with a brief
+        description, a timeline and a rough budget.
+      </p>
+      <br />
+      <p>→ <a href="mailto:info@notanad.us">youup@notanad.us</a></p>
+    </footer>
+  </aside>
+
+  <section class="content" id="work">
+    <figure class="first-content content-slot">
+      <div class="placeholder placeholder-v"></div>
+    </figure>
+    <div class="filter-view-menu">
+      <fieldset class="filter-menu">
+        <legend class="visually-hidden">Filter</legend>
+        <button
+          id="filter-button"
+          popovertarget="filters-popover"
+          class="button">Filter</button
+        >
+        <ul class="content-filter" id="filters-popover" popover>
+          <li>
+            <label for="strategy">
+              <input
+                type="checkbox"
+                name="content-filter"
+                id="strategy"
+                value="strategy"
+              />
+              <IconStrategy
+                fill="currentColor"
+                width="15"
+                height="15"
+                role="presentation"
+              />
+              Strategy
+            </label>
+          </li>
+          <li>
+            <label for="partnerships">
+              <input
+                type="checkbox"
+                name="content-filter"
+                id="partnerships"
+                value="partnerships"
+              />
+              <IconPartnership
+                fill="currentColor"
+                width="15"
+                height="15"
+                role="presentation"
+              />
+              Partnerships
+            </label>
+          </li>
+          <li>
+            <label for="amplification">
+              <input
+                type="checkbox"
+                name="content-filter"
+                id="amplification"
+                value="amplification"
+              />
+              <IconAmplification
+                fill="currentColor"
+                width="15"
+                height="15"
+                role="presentation"
+              />
+              Amplification
+            </label>
+          </li>
+          <li>
+            <label for="content">
+              <input
+                type="checkbox"
+                name="content-filter"
+                id="content"
+                value="content"
+              />
+              <IconContent
+                fill="currentColor"
+                width="15"
+                height="15"
+                role="presentation"
+              />
+              Content creation
+            </label>
+          </li>
+          <li>
+            <label for="earned-media">
+              <input
+                type="checkbox"
+                name="content-filter"
+                id="earned-media"
+                value="earned media"
+              />
+              <IconEarnedMedia
+                fill="currentColor"
+                width="15"
+                height="15"
+                role="presentation"
+              />
+              Earned media
+            </label>
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset class="view-menu">
+        <ul class="content-view" id="view-menu--controls">
+          <li>
+            <label for="view-menu--grid">
+              <input
+                type="radio"
+                name="content-view-type"
+                id="view-menu--grid"
+                checked
+              />
+              Grid
+            </label>
+          </li>
+          <li>
+            <label for="view-menu--list">
+              <input
+                type="radio"
+                name="content-view-type"
+                id="view-menu--list"
+              />
+              List
+            </label>
+          </li>
+        </ul>
+      </fieldset>
+    </div>
+    <ul class="content-grid">
+      <CaseStudy
+        id="s1"
+        title="Square"
+        category="strategy"
+        year="2025"
+        shape="s"
+      >
+        <IconStrategy
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+      </CaseStudy>
+      <CaseStudy
+        id="p1"
+        title="Landscape"
+        category="partnerships"
+        year="2025"
+        shape="h"
+      >
+        <IconPartnership
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+      </CaseStudy>
+      <CaseStudy
+        id="e1"
+        title="Portrait"
+        category="earned media"
+        year="2025"
+        shape="v"
+      >
+        <IconEarnedMedia
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+      </CaseStudy>
+      <CaseStudy title="Portrait" category="content" year="2025" shape="v">
+        <IconContent
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+      </CaseStudy>
+      <CaseStudy
+        title="Portrait"
+        category="amplification"
+        year="2025"
+        shape="v"
+      >
+        <IconAmplification
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+      </CaseStudy>
+      <CaseStudy title="Portrait" category="strategy" year="2022" shape="v">
+        <IconStrategy
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+      </CaseStudy>
+      <CaseStudy
+        title="Landscape"
+        category="partnerships"
+        year="2021"
+        shape="h"
+      >
+        <IconPartnership
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+      </CaseStudy>
+      <CaseStudy
+        title="Landscape"
+        category="amplification"
+        year="2020"
+        shape="h"
+      >
+        <IconAmplification
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+      </CaseStudy>
+      <CaseStudy title="Landscape" category="content" year="2019" shape="h">
+        <IconContent
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+      </CaseStudy>
+      <CaseStudy
+        title="Landscape"
+        category="earned media"
+        year="2018"
+        shape="h"
+      >
+        <IconEarnedMedia
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+      </CaseStudy>
+    </ul>
+  </section>
 </div>
+
+<script>
+  const filterButton = document.getElementById("filter-button");
+  const filterPopover = document.getElementById("filters-popover");
+  const filterCheckboxes = document.querySelectorAll(
+    '#filters-popover input[type="checkbox"]'
+  );
+  const viewRadios = document.querySelectorAll(
+    '.content-view input[type="radio"]'
+  );
+  const contentGrid = document.querySelector(".content-grid") as HTMLElement;
+  const filterTargets = document.querySelectorAll(
+    `.content-grid li`
+  ) as NodeListOf<HTMLElement>;
+  const { matches: motionOK } = window.matchMedia(
+    "(prefers-reduced-motion: no-preference)"
+  );
+  if (motionOK) {
+    filterTargets.forEach((item, i) => {
+      item.style.viewTransitionName = "--case-study-" + i;
+
+      const figcaption = item.querySelector("figcaption") as HTMLElement;
+      if (figcaption)
+        figcaption.style.viewTransitionName = `--case-study-figcaption-${i}`;
+    });
+  }
+
+  filterCheckboxes.forEach((chk) => {
+    chk.addEventListener("change", (event) => {
+      filterCheckboxes.forEach((checkbox) => {
+        if (checkbox !== event.target) {
+          (checkbox as HTMLInputElement).checked = false;
+        }
+      });
+      const target = event.target as HTMLInputElement;
+      const icon = target.parentElement
+        ?.querySelector("svg")
+        ?.cloneNode(true) as SVGElement;
+
+      if (filterButton) {
+        if (target.checked) {
+          filterButton.replaceChildren(icon);
+          filterButton.innerHTML += target.parentElement?.innerText;
+        } else {
+          filterButton.innerHTML = "Filter";
+        }
+      }
+
+      function filter() {
+        if (contentGrid) {
+          contentGrid.dataset.filter =
+            target.checked && target.value ? target.value : "";
+        }
+      }
+
+      document.startViewTransition
+        ? document.startViewTransition(() => filter())
+        : filter();
+
+      filterPopover && filterPopover.hidePopover();
+    });
+  });
+
+  viewRadios.forEach((radio) => {
+    radio.addEventListener("change", (event) => {
+      const target = event.target as HTMLInputElement;
+      const view = target.id.split("--")[1];
+
+      function filter() {
+        if (contentGrid) {
+          contentGrid.dataset.view = view;
+        }
+      }
+
+      document.startViewTransition
+        ? document.startViewTransition(() => filter())
+        : filter();
+    });
+  });
+</script>
