@@ -48,6 +48,7 @@ a:hover {
   padding: 0;
   background: none;
   border: none;
+  cursor: pointer;
 }
 
 #container {
@@ -174,6 +175,7 @@ aside {
 
   scroll-snap-align: start;
   scroll-margin-block-start: 7.2rem;
+  margin-block-end: 7.2rem;
 
   &[data-view="grid"] {
     display: grid;
@@ -197,6 +199,11 @@ aside {
       display: table-row;
       width: 100%;
       height: 3.3rem;
+
+      &:hover {
+        background-color: var(--accent);
+      }
+
       span {
         display: table-cell;
         vertical-align: middle;
@@ -251,6 +258,13 @@ aside {
 }
 
 figure {
+  button {
+    display: contents;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
   figcaption {
     margin-top: 0.8rem;
     margin-inline: auto;

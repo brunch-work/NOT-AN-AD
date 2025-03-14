@@ -4,14 +4,16 @@ const { id, title, category, shape = "s", year } = Astro.props;
 
 <li>
   <figure class="content-slot" data-type={category}>
-    <div class=`placeholder placeholder-${shape}`></div>
-    <figcaption>
-      <span class="content-title">{title}</span>
-      <span class="content-category">{category}</span>
-      <span class="content-icon">
-        <slot name="icon" />
-      </span>
-      <span class="content-year">{year}</span>
-    </figcaption>
+    <button light-box>
+      <div class=`placeholder placeholder-${shape}`></div>
+      <figcaption>
+        <span class="content-title">{title}</span>
+        <span class="content-category">{category}</span>
+        <span class="content-icon">
+          <slot name="icon" />
+        </span>
+        <span class="content-year">{year}</span>
+      </figcaption>
+    </button>
   </figure>
 </li>
