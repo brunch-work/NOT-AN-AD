@@ -68,7 +68,7 @@ a:hover {
   --first-content-mid-display: none;
   --placeholder-height: 90%;
   --aside-width: 100%;
-  --aside-height: calc(100dvh - 4.2rem);
+  --aside-height: calc(100dvh - 4.8rem);
   --aside-margin-bottom: 2.4rem;
   --aside-scroll-snap-align: start;
   --figcaption-justify-content: center;
@@ -136,8 +136,8 @@ aside {
   }
   .placeholder {
     display: var(--first-content-aside-display);
-    width: 80%;
-    height: var(--placeholder-height);
+    width: min-content;
+    height: 90%;
   }
 }
 
@@ -170,7 +170,7 @@ aside {
 }
 
 .content-grid {
-  --min-column-width: 16rem;
+  --min-column-width: 14rem;
   --max-columns: 4; /* max + 1 */
 
   scroll-snap-align: start;
@@ -260,6 +260,7 @@ aside {
 figure {
   button {
     display: contents;
+    color: var(--text);
     border: none;
     background: none;
     cursor: pointer;
