@@ -1,22 +1,31 @@
 dialog#lightbox {
+  opacity: 0;
+  transition: opacity, display;
+  transition-behavior: allow-discrete;
+  transition-duration: 0.3s;
+  background-color: var(--background);
+
+  view-transition-name: --lightbox;
+
   &[open] {
+    opacity: 1;
     display: flex;
     background-color: var(--background);
+
+    @starting-style {
+      opacity: 0;
+    }
+
     --content-icon-display: inline;
     --content-year-display: inline;
     --content-icon-display: inline;
   }
 
   width: 100%;
-
   height: 100%;
   border: none;
   flex-direction: column;
-  gap: 60px;
-
-  &::backdrop {
-    background-color: var(--background);
-  }
+  justify-content: space-between;
 
   header {
     display: flex;
@@ -47,6 +56,9 @@ dialog#lightbox {
     .placeholder {
       max-height: 90%;
       max-width: 100%;
+      &.placeholder-s {
+        width: 100%;
+      }
     }
   }
 }
@@ -69,6 +81,14 @@ dialog#lightbox {
 
     .modal-content {
       width: 100%;
+      margin: 0 auto;
+      &:has(.placeholder-v) {
+        width: calc(100% * 9 / 16);
+      }
+      &:has(.placeholder-h),
+      &:has(.placeholder-s) {
+        width: 80%;
+      }
       display: flex;
       flex-direction: column;
       justify-content: center;

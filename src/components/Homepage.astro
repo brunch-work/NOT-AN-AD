@@ -183,6 +183,7 @@ import CaseStudy from "./CaseStudy.astro";
           height="15"
           role="presentation"
         />
+        <img slot="image" src="https://placecats.com/300/300" alt="" />
       </CaseStudy>
       <CaseStudy
         id="p1"
@@ -198,6 +199,7 @@ import CaseStudy from "./CaseStudy.astro";
           height="15"
           role="presentation"
         />
+        <img slot="image" src="https://placecats.com/533/300" alt="" />
       </CaseStudy>
       <CaseStudy
         id="e1"
@@ -213,6 +215,7 @@ import CaseStudy from "./CaseStudy.astro";
           height="15"
           role="presentation"
         />
+        <img slot="image" src="https://placecats.com/300/533" alt="" />
       </CaseStudy>
       <CaseStudy title="Portrait" category="content" year="2025" shape="v">
         <IconContent
@@ -222,6 +225,7 @@ import CaseStudy from "./CaseStudy.astro";
           height="15"
           role="presentation"
         />
+        <img slot="image" src="https://placecats.com/300/533" alt="" />
       </CaseStudy>
       <CaseStudy
         title="Portrait"
@@ -236,6 +240,7 @@ import CaseStudy from "./CaseStudy.astro";
           height="15"
           role="presentation"
         />
+        <img slot="image" src="https://placecats.com/300/533" alt="" />
       </CaseStudy>
       <CaseStudy title="Portrait" category="strategy" year="2022" shape="v">
         <IconStrategy
@@ -245,6 +250,7 @@ import CaseStudy from "./CaseStudy.astro";
           height="15"
           role="presentation"
         />
+        <img slot="image" src="https://placecats.com/300/533" alt="" />
       </CaseStudy>
       <CaseStudy
         title="Landscape"
@@ -259,6 +265,7 @@ import CaseStudy from "./CaseStudy.astro";
           height="15"
           role="presentation"
         />
+        <img slot="image" src="https://placecats.com/533/300" alt="" />
       </CaseStudy>
       <CaseStudy
         title="Landscape"
@@ -273,6 +280,7 @@ import CaseStudy from "./CaseStudy.astro";
           height="15"
           role="presentation"
         />
+        <img slot="image" src="https://placecats.com/533/300" alt="" />
       </CaseStudy>
       <CaseStudy title="Landscape" category="content" year="2019" shape="h">
         <IconContent
@@ -282,6 +290,7 @@ import CaseStudy from "./CaseStudy.astro";
           height="15"
           role="presentation"
         />
+        <img slot="image" src="https://placecats.com/533/300" alt="" />
       </CaseStudy>
       <CaseStudy
         title="Landscape"
@@ -296,6 +305,7 @@ import CaseStudy from "./CaseStudy.astro";
           height="15"
           role="presentation"
         />
+        <img slot="image" src="https://placecats.com/533/300" alt="" />
       </CaseStudy>
     </ul>
   </section>
@@ -326,7 +336,7 @@ import CaseStudy from "./CaseStudy.astro";
   );
   if (motionOK) {
     filterTargets.forEach((item, i) => {
-      item.style.viewTransitionName = "--case-study-" + i;
+      //item.style.viewTransitionName = "--case-study-" + i;
 
       const placeholder = item.querySelector(".placeholder") as HTMLElement;
       const figcaption = item.querySelector("figcaption") as HTMLElement;
@@ -409,20 +419,22 @@ import CaseStudy from "./CaseStudy.astro";
   caseStudies.forEach((caseStudy: HTMLElement) => {
     caseStudy.addEventListener("click", (event) => {
       function openLightbox(cs: HTMLElement) {
-        const placeholder = caseStudy.querySelector(
-          ".placeholder"
-        ) as HTMLElement;
-        const figcaption = caseStudy.querySelector("figcaption") as HTMLElement;
-        // assign them viewTransitionNames
+        const plh = caseStudy.querySelector(".placeholder") as HTMLElement;
+        const figc = caseStudy.querySelector("figcaption") as HTMLElement;
+
+        // add styles to the document to make the clicked item appear on top
+        document.styleSheets[0].insertRule(
+          `::view-transition-group(${plh.style.getPropertyValue("view-transition-name")}), ::view-transition-group(${figc.style.getPropertyValue("view-transition-name")})  { z-index: 3; }`
+        );
+
+        plh.classList.add("lightbox-originator");
+        figc.classList.add("lightbox-originator");
 
         // set up a placeholder instead of the caseStudy
         lightboxContent.innerHTML = cs.innerHTML;
 
-        placeholder.classList.add("lightbox-originator");
-        figcaption.classList.add("lightbox-originator");
-
-        placeholder.style.display = "none";
-        figcaption.style.display = "none";
+        plh.style.display = "none";
+        figc.style.display = "none";
 
         // now we call the API to put the popover lightbox into the :top-layer
         lightbox.showModal();
@@ -437,11 +449,9 @@ import CaseStudy from "./CaseStudy.astro";
     });
   });
 
-  lightbox.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      event.preventDefault();
-      lightboxCloseButton.click();
-    }
+  lightbox.addEventListener("cancel", (event) => {
+    event.preventDefault();
+    lightboxCloseButton.click();
   });
 
   lightboxCloseButton.addEventListener("click", () => {
@@ -464,6 +474,8 @@ import CaseStudy from "./CaseStudy.astro";
 
       lightbox.close();
       state.open = false;
+
+      document.styleSheets[0].deleteRule(0);
     }
 
     document.startViewTransition

@@ -5,7 +5,9 @@ const { id, title, category, shape = "s", year } = Astro.props;
 <li>
   <figure class="content-slot" data-type={category}>
     <button light-box>
-      <div class=`placeholder placeholder-${shape}`></div>
+      <div class=`placeholder placeholder-${shape}`>
+        <slot name="image" />
+      </div>
       <figcaption>
         <span class="content-title">{title}</span>
         <span class="content-category">{category}</span>
