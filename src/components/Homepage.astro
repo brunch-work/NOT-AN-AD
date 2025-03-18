@@ -336,8 +336,6 @@ import CaseStudy from "./CaseStudy.astro";
   );
   if (motionOK) {
     filterTargets.forEach((item, i) => {
-      //item.style.viewTransitionName = "--case-study-" + i;
-
       const placeholder = item.querySelector(".placeholder") as HTMLElement;
       const figcaption = item.querySelector("figcaption") as HTMLElement;
       if (figcaption && placeholder)
