@@ -1,6 +1,6 @@
 dialog#lightbox {
   opacity: 0;
-  transition: opacity, display;
+  transition: opacity, display, overlay;
   transition-behavior: allow-discrete;
   transition-duration: 0.3s;
   background-color: var(--background);
