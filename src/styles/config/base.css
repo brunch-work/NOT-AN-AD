@@ -51,18 +51,8 @@ a:hover {
   cursor: pointer;
 }
 
-#container {
-  margin: 0 auto;
-  max-width: 151.2rem;
-  width: 100%;
-  padding: 2.4rem;
-  display: flex;
-  align-content: start;
-  flex-wrap: wrap;
-  min-height: 100dvh;
-}
-
 :root {
+  --container-padding: 2.4rem;
   --header-margin-bottom: 1.2rem;
   --first-content-aside-display: block;
   --first-content-mid-display: none;
@@ -97,6 +87,17 @@ a:hover {
   .work-link {
     display: none;
   }
+}
+
+#container {
+  margin: 0 auto;
+  max-width: 151.2rem;
+  width: 100%;
+  padding: var(--container-padding);
+  display: flex;
+  align-content: start;
+  flex-wrap: wrap;
+  min-height: 100dvh;
 }
 
 #top {

@@ -4,8 +4,12 @@ dialog#lightbox {
   transition-behavior: allow-discrete;
   transition-duration: 0.3s;
   background-color: var(--background);
+  padding: var(--container-padding);
 
   view-transition-name: --lightbox;
+
+  --modal-logo-visibility: visible;
+  --header-justify-content: space-between;
 
   &[open] {
     opacity: 1;
@@ -31,7 +35,10 @@ dialog#lightbox {
 
   header {
     display: flex;
-    justify-content: space-between;
+    justify-content: var(--header-justify-content);
+    svg {
+      display: var(--modal-logo-visibility);
+    }
   }
 
   .modal-content {
@@ -71,6 +78,9 @@ dialog#lightbox {
     --dsk-dialog-inset: calc(
       (100% - min(151.2rem, 100%)) / 2 + var(--aside-width) + 2.4rem
     );
+    --modal-logo-visibility: none;
+    --header-justify-content: end;
+
     max-width: 100%;
     max-height: 100%;
     width: var(--dsk-dialog-width);
