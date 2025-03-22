@@ -1,0 +1,45 @@
+:root {
+  --deck-header-logo-width: 30px;
+  --deck-header-logo-height: 18px;
+  --intro-h1-font-size: 2.8rem;
+}
+
+@media screen and (min-width: 600px) {
+  :root {
+    --deck-header-logo-width: 40px;
+    --deck-header-logo-height: 24px;
+    --intro-h1-font-size: 4.9rem;
+  }
+}
+
+header {
+  width: 100%;
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+
+  .deck-header--logo {
+    width: var(--deck-header-logo-width);
+    height: var(--deck-header-logo-height);
+  }
+
+  nav {
+    text-transform: uppercase;
+  }
+}
+
+.intro {
+  h1 {
+    font-size: clamp(2.4rem, 0.7696rem + 2.7174vw, 4.9rem);
+    line-height: 90%;
+  }
+
+  .inline-icon {
+    height: calc(var(--intro-h1-font-size) * 0.8);
+    width: auto;
+    margin-inline: 6px;
+
+    vertical-align: baseline;
+    line-height: inherit;
+  }
+}

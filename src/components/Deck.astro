@@ -2,12 +2,13 @@
 import "../styles/components/deck.css";
 
 import NotAnAdLogo from "../assets/images/svg/NOT_AN_AD_LOGO.svg";
+import TapeIcon from "../assets/images/svg/tape_icon.svg";
 ---
 
-<div id="container">
+<div class="container">
   <span id="top"> </span>
   <header>
-    <NotAnAdLogo width={40} height={24} fill="currentColor" />
+    <NotAnAdLogo class="deck-header--logo" fill="currentColor" />
     <nav>
       <ul>
         <li>Not an ad</li>
@@ -16,4 +17,17 @@ import NotAnAdLogo from "../assets/images/svg/NOT_AN_AD_LOGO.svg";
       </ul>
     </nav>
   </header>
+  <section class="intro">
+    <h1>
+      NOT AN AD<NotAnAdLogo class="inline-icon" fill="currentColor" />is a
+      social media<br />
+      advertising agency<TapeIcon
+        class="inline-icon"
+        fill="currentColor"
+      />based<br />
+      in new york city
+    </h1>
+  </section>
+  <section></section>
+  <section></section>
 </div>
