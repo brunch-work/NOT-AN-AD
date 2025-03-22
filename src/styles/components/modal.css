@@ -63,11 +63,8 @@ dialog#lightbox {
     }
 
     .placeholder {
-      max-height: 90%;
+      max-height: 100%;
       max-width: 100%;
-      &.placeholder-s {
-        width: 100%;
-      }
     }
   }
 }
@@ -94,8 +91,11 @@ dialog#lightbox {
     .modal-content {
       width: 100%;
       margin: 0 auto;
+      &:has(.placeholder) {
+        max-height: calc(100% - var(--container-padding));
+      }
       &:has(.placeholder-v) {
-        width: calc(100% * 9 / 16);
+        max-width: calc(100% * 9 / 16);
       }
       &:has(.placeholder-h),
       &:has(.placeholder-s) {

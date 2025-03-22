@@ -162,11 +162,15 @@ aside {
     display: var(--first-content-mid-display);
     min-height: 100dvh;
     scroll-snap-align: start;
+
+    .placeholder {
+      max-height: 80vh;
+    }
   }
 
   .placeholder {
     max-width: 100%;
-    max-height: 80vh;
+    max-height: 100%;
   }
 }
 
@@ -290,12 +294,12 @@ figure {
 .placeholder {
   margin: 0 auto;
   border: solid var(--text) 1px;
+  box-sizing: content-box;
   position: relative;
   img {
-    width: 100%;
-    height: 100%;
     display: block;
     max-width: 100%;
+    max-height: 100%;
     z-index: 2;
   }
 
@@ -324,12 +328,10 @@ figure {
 
 .placeholder-h {
   aspect-ratio: 16 / 9;
-  width: 100%;
 }
 
 .placeholder-v {
   aspect-ratio: 9 / 16;
-  height: 100%;
 
   & ~ figcaption {
     width: calc(100% * (9 / 16));
