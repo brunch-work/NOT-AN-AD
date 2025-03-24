@@ -1,14 +1,15 @@
 :root {
   --deck-header-logo-width: 30px;
   --deck-header-logo-height: 18px;
-  --intro-h1-font-size: 2.8rem;
+  --intro-h1-font-size: clamp(1.95rem, 0.7696rem + 2.7174vw, 4.9rem);
+  --placeholder-height: 90%;
 }
 
 @media screen and (min-width: 600px) {
   :root {
     --deck-header-logo-width: 40px;
     --deck-header-logo-height: 24px;
-    --intro-h1-font-size: 4.9rem;
+    --placeholder-height: 80%;
   }
 }
 
@@ -25,12 +26,36 @@ header {
 
   nav {
     text-transform: uppercase;
+    ul {
+      display: flex;
+    }
   }
 }
 
+section {
+  width: 100%;
+  height: calc(100vh - 4.8rem - var(--deck-header-logo-height));
+}
+
 .intro {
+  align-content: end;
+  display: flex;
+  flex-wrap: wrap;
+
+  .first-content {
+    width: 100%;
+    flex-grow: 1;
+    align-content: center;
+  }
+
+  .placeholder {
+    display: block;
+    width: 80%;
+    height: var(--placeholder-height);
+  }
+
   h1 {
-    font-size: clamp(2.4rem, 0.7696rem + 2.7174vw, 4.9rem);
+    font-size: var(--intro-h1-font-size);
     line-height: 90%;
   }
 
