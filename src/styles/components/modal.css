@@ -1,0 +1,110 @@
+dialog#lightbox {
+  opacity: 0;
+  transition: opacity, display, overlay;
+  transition-behavior: allow-discrete;
+  transition-duration: 0.3s;
+  background-color: var(--background);
+  padding: var(--container-padding);
+
+  view-transition-name: --lightbox;
+
+  --modal-logo-visibility: visible;
+  --header-justify-content: space-between;
+
+  &[open] {
+    opacity: 1;
+    display: flex;
+    background-color: var(--background);
+
+    @starting-style {
+      opacity: 0;
+    }
+
+    --content-icon-display: inline;
+    --content-year-display: inline;
+    --content-icon-display: inline;
+  }
+
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  height: 100%;
+  border: none;
+  flex-direction: column;
+  justify-content: space-between;
+
+  header {
+    display: flex;
+    justify-content: var(--header-justify-content);
+    svg {
+      display: var(--modal-logo-visibility);
+    }
+  }
+
+  .modal-content {
+    flex-grow: 1;
+    align-content: center;
+
+    figcaption {
+      width: 100%;
+    }
+
+    @media screen and (max-width: 599px) {
+      figcaption {
+        flex-wrap: wrap;
+        span {
+          width: 50%;
+
+          &:nth-child(even) {
+            text-align: end;
+          }
+        }
+      }
+    }
+
+    .placeholder {
+      max-height: 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  dialog#lightbox {
+    --dsk-dialog-width: calc(min(151.2rem, 100%) - var(--aside-width) - 2.4rem);
+    --dsk-dialog-inset: calc(
+      (100% - min(151.2rem, 100%)) / 2 + var(--aside-width) + 2.4rem
+    );
+    --modal-logo-visibility: none;
+    --header-justify-content: end;
+
+    max-width: 100%;
+    max-height: 100%;
+    width: var(--dsk-dialog-width);
+    margin: 0;
+    inset-inline-start: var(--dsk-dialog-inset);
+
+    &::backdrop {
+      inset-inline: calc(100% - min(151.2rem, 100%) / 2);
+    }
+
+    .modal-content {
+      width: 100%;
+      margin: 0 auto;
+      &:has(.placeholder) {
+        max-height: calc(100% - var(--container-padding));
+      }
+      &:has(.placeholder-v) {
+        max-width: calc(100% * 9 / 16);
+      }
+      &:has(.placeholder-h),
+      &:has(.placeholder-s) {
+        width: 80%;
+      }
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
