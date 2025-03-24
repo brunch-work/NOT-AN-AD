@@ -48,26 +48,17 @@ a:hover {
   padding: 0;
   background: none;
   border: none;
-}
-
-#container {
-  margin: 0 auto;
-  max-width: 151.2rem;
-  width: 100%;
-  padding: 2.4rem;
-  display: flex;
-  align-content: start;
-  flex-wrap: wrap;
-  min-height: 100dvh;
+  cursor: pointer;
 }
 
 :root {
+  --container-padding: 2.4rem;
   --header-margin-bottom: 1.2rem;
   --first-content-aside-display: block;
   --first-content-mid-display: none;
   --placeholder-height: 90%;
   --aside-width: 100%;
-  --aside-height: calc(100dvh - 4.2rem);
+  --aside-height: calc(100dvh - 4.8rem);
   --aside-margin-bottom: 2.4rem;
   --aside-scroll-snap-align: start;
   --figcaption-justify-content: center;
@@ -96,6 +87,17 @@ a:hover {
   .work-link {
     display: none;
   }
+}
+
+#container {
+  margin: 0 auto;
+  max-width: 151.2rem;
+  width: 100%;
+  padding: var(--container-padding);
+  display: flex;
+  align-content: start;
+  flex-wrap: wrap;
+  min-height: 100dvh;
 }
 
 #top {
@@ -135,8 +137,8 @@ aside {
   }
   .placeholder {
     display: var(--first-content-aside-display);
-    width: 80%;
-    height: var(--placeholder-height);
+    width: min-content;
+    height: 90%;
   }
 }
 
@@ -160,20 +162,25 @@ aside {
     display: var(--first-content-mid-display);
     min-height: 100dvh;
     scroll-snap-align: start;
+
+    .placeholder {
+      max-height: 80vh;
+    }
   }
 
   .placeholder {
     max-width: 100%;
-    max-height: 80vh;
+    max-height: 100%;
   }
 }
 
 .content-grid {
-  --min-column-width: 16rem;
+  --min-column-width: 14rem;
   --max-columns: 4; /* max + 1 */
 
   scroll-snap-align: start;
   scroll-margin-block-start: 7.2rem;
+  margin-block-end: 7.2rem;
 
   &[data-view="grid"] {
     display: grid;
@@ -197,6 +204,11 @@ aside {
       display: table-row;
       width: 100%;
       height: 3.3rem;
+
+      &:hover {
+        background-color: var(--accent);
+      }
+
       span {
         display: table-cell;
         vertical-align: middle;
@@ -251,6 +263,14 @@ aside {
 }
 
 figure {
+  button {
+    display: contents;
+    color: var(--text);
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
   figcaption {
     margin-top: 0.8rem;
     margin-inline: auto;
@@ -274,8 +294,16 @@ figure {
 .placeholder {
   margin: 0 auto;
   border: solid var(--text) 1px;
+  box-sizing: content-box;
   position: relative;
-  &::after {
+  img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    z-index: 2;
+  }
+
+  &:not(:has(img))::after {
     content: "";
     position: absolute;
     top: 0;
@@ -286,7 +314,7 @@ figure {
     clip-path: polygon(100% 0, 0% 100%, 0.5% 100%, 100% 0.5%);
   }
 
-  &::before {
+  &:not(:has(img))::before {
     content: "";
     position: absolute;
     top: 0;
@@ -300,12 +328,11 @@ figure {
 
 .placeholder-h {
   aspect-ratio: 16 / 9;
-  width: 100%;
 }
 
 .placeholder-v {
   aspect-ratio: 9 / 16;
-  height: 100%;
+
   & ~ figcaption {
     width: calc(100% * (9 / 16));
   }
@@ -313,4 +340,8 @@ figure {
 
 .placeholder-s {
   aspect-ratio: 1;
+  img {
+    width: 100%;
+    height: 100%;
+  }
 }
