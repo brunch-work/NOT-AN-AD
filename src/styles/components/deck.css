@@ -38,20 +38,21 @@ section {
 }
 
 .intro {
-  align-content: end;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-rows: 1fr auto;
 
   .first-content {
-    width: 100%;
-    flex-grow: 1;
+    max-height: calc(
+      100vh - 4.8rem - var(--deck-header-logo-height) -
+        (var(--intro-h1-font-size) * 3)
+    );
     align-content: center;
   }
 
   .placeholder {
     display: block;
-    width: 80%;
-    height: var(--placeholder-height);
+    max-width: 80%;
+    max-height: var(--placeholder-height);
   }
 
   h1 {
