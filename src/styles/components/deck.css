@@ -3,6 +3,10 @@
   --deck-header-logo-height: 18px;
   --intro-h1-font-size: clamp(1.95rem, 0.7696rem + 2.7174vw, 4.9rem);
   --placeholder-height: 90%;
+  --intro-footer-grid-row: 3;
+  --intro-footer-justify-content: space-between;
+  --intro-footer-tape-icon-display: flex;
+  --intro-time-font-size: 1.3rem;
 }
 
 @media screen and (min-width: 600px) {
@@ -10,6 +14,10 @@
     --deck-header-logo-width: 40px;
     --deck-header-logo-height: 24px;
     --placeholder-height: 80%;
+    --intro-footer-grid-row: 2 / 3;
+    --intro-footer-justify-content: end;
+    --intro-footer-tape-icon-display: none;
+    --intro-time-font-size: 2rem;
   }
 }
 
@@ -39,12 +47,17 @@ section {
 
 .intro {
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-auto-rows: auto;
+  grid-template-rows: 1fr;
+
+  grid-template-columns: 1fr;
+  row-gap: 3rem;
 
   .first-content {
+    grid-column: span 2;
     max-height: calc(
       100vh - 4.8rem - var(--deck-header-logo-height) -
-        (var(--intro-h1-font-size) * 3)
+        (var(--intro-h1-font-size) * 3) - 6.8rem
     );
     align-content: center;
   }
@@ -58,6 +71,8 @@ section {
   h1 {
     font-size: var(--intro-h1-font-size);
     line-height: 90%;
+    grid-row: 2 / 3;
+    grid-column: 1 / -1;
   }
 
   .inline-icon {
@@ -67,5 +82,27 @@ section {
 
     vertical-align: baseline;
     line-height: inherit;
+  }
+
+  .intro-footer {
+    display: flex;
+    justify-content: var(--intro-footer-justify-content);
+    align-items: center;
+    font-size: var(--intro-time-font-size);
+
+    grid-column: 1 / -1;
+    grid-row: var(--intro-footer-grid-row);
+
+    svg {
+      display: var(--intro-footer-tape-icon-display);
+      height: calc(var(--intro-time-font-size) * 0.9);
+      margin-top: 1px;
+      width: auto;
+      vertical-align: baseline;
+    }
+
+    span {
+      align-self: end;
+    }
   }
 }
