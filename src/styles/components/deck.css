@@ -7,8 +7,9 @@
   --footer-justify-content: space-between;
   --footer-tape-icon-display: flex;
   --intro-time-font-size: 1.3rem;
-  --services-padding-top: 7rem;
+  --services-margin-top: 7rem;
   --services-h2-font-size: 2rem;
+  --services-h2-grid-row: 1;
 }
 
 @media screen and (min-width: 600px) {
@@ -20,8 +21,9 @@
     --footer-justify-content: end;
     --footer-tape-icon-display: none;
     --intro-time-font-size: 2rem;
-    --services-padding-top: 32.9rem;
+    --services-margin-top: 32.9rem;
     --services-h2-font-size: 2.5rem;
+    --services-h2-grid-row: span 2;
   }
 }
 
@@ -117,13 +119,34 @@ section {
 }
 
 .services {
-  padding-top: var(--services-padding-top);
-  h2 {
+  .services--grid {
     border-top: solid 1px var(--text);
-    font-size: var(--services-h2-font-size);
-    span {
-      font-size: 1.6em;
-      line-height: 0;
+    --min-column-width: 18rem;
+    --max-columns: 5; /* max + 1 */
+
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(max(var(--min-column-width), 100% / var(--max-columns)), 1fr)
+    );
+    gap: 5rem;
+    margin-top: var(--services-margin-top);
+    padding-top: 2.2rem;
+    h2 {
+      width: max-content;
+      grid-row: var(--services-h2-grid-row);
+      font-size: var(--services-h2-font-size);
+      span {
+        font-size: 1.6em;
+        line-height: 0;
+      }
+    }
+
+    h3 {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 1rem;
     }
   }
 }
