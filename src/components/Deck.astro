@@ -6,19 +6,17 @@ import TapeIcon from "../assets/images/svg/tape_icon.svg";
 ---
 
 <div class="container padding-inline-0">
-  <div class="container-i">
-    <span id="top"> </span>
-    <header>
-      <NotAnAdLogo class="deck-header--logo" fill="currentColor" />
-      <nav>
-        <ul>
-          <li>Not an ad</li>
-          <li>Services</li>
-          <li>Case studies</li>
-        </ul>
-      </nav>
-    </header>
-  </div>
+  <span id="top"> </span>
+  <header class="container-i">
+    <NotAnAdLogo class="deck-header--logo" fill="currentColor" />
+    <nav>
+      <ul>
+        <li>Not an ad</li>
+        <li>Services</li>
+        <li>Case studies</li>
+      </ul>
+    </nav>
+  </header>
   <section class="intro container-i">
     <figure class="first-content">
       <div class="placeholder placeholder-v">
@@ -31,13 +29,15 @@ import TapeIcon from "../assets/images/svg/tape_icon.svg";
       advertising agency<TapeIcon class="inline-icon" />based<br />
       in new york city
     </h1>
-    <div class="intro-footer">
-      <TapeIcon />
-      <span id="intro-time">15:32:00</span>
-    </div>
+  </section>
+  <section class="services container-i">
+    <h2>[<span>↘</span>] Services</h2>
   </section>
   <section></section>
-  <section></section>
+  <footer class="intro-footer">
+    <TapeIcon />
+    <span id="intro-time">15:32:00</span>
+  </footer>
 </div>
 <script>
   const introTime = document.getElementById("intro-time") as HTMLSpanElement;

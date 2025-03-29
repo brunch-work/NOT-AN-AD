@@ -53,6 +53,7 @@ button {
 
 :root {
   --container-padding: 2.4rem;
+  --container-padding-inline: 2rem;
 }
 
 .container {
