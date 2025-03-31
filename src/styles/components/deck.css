@@ -10,6 +10,8 @@
   --services-margin-top: 7rem;
   --services-h2-font-size: 2rem;
   --services-h2-grid-row: 1;
+  --case-studies-margin-top: 17.2rem;
+  --case-studies-marquee-font-size: clamp(2.9rem, 1.5304rem + 2.2826vw, 5rem);
 }
 
 @media screen and (min-width: 600px) {
@@ -22,6 +24,7 @@
     --footer-tape-icon-display: none;
     --intro-time-font-size: 2rem;
     --services-margin-top: 32.9rem;
+    --case-studies-margin-top: var(--services-margin-top);
     --services-h2-font-size: 2.5rem;
     --services-h2-grid-row: span 2;
   }
@@ -75,7 +78,17 @@ footer {
 
 section {
   width: 100%;
-  height: calc(100vh - 4.8rem - 2 * var(--deck-header-logo-height));
+  min-height: calc(100vh - 4.8rem - 2 * var(--deck-header-logo-height));
+  overflow: clip;
+
+  h2 {
+    width: max-content;
+    font-size: var(--services-h2-font-size);
+    span {
+      font-size: 1.6em;
+      line-height: 0;
+    }
+  }
 }
 
 .intro {
@@ -119,6 +132,7 @@ section {
 }
 
 .services {
+  padding-bottom: 10.5rem;
   .services--grid {
     border-top: solid 1px var(--text);
     --min-column-width: 18rem;
@@ -133,13 +147,7 @@ section {
     margin-top: var(--services-margin-top);
     padding-top: 2.2rem;
     h2 {
-      width: max-content;
       grid-row: var(--services-h2-grid-row);
-      font-size: var(--services-h2-font-size);
-      span {
-        font-size: 1.6em;
-        line-height: 0;
-      }
     }
 
     h3 {
@@ -147,6 +155,59 @@ section {
       align-items: center;
       gap: 1.2rem;
       margin-bottom: 1rem;
+    }
+  }
+}
+
+@keyframes --marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-19ch);
+  }
+}
+
+.case-studies {
+  --background: light-dark(var(--palette-black), var(--palette-blue));
+  --text: var(--palette-white);
+
+  background: var(--background);
+  color: var(--text);
+  text-transform: uppercase;
+  .case-studies--grid {
+    width: 100%;
+    border-top: solid 1px var(--text);
+    margin-top: var(--case-studies-margin-top);
+    padding-top: 2.2rem;
+
+    display: flex;
+    justify-content: space-between;
+
+    h2 {
+      width: 25%;
+      flex-shrink: 0;
+    }
+
+    ul {
+      list-style-type: "* ";
+      width: 25%;
+      flex-shrink: 0;
+      font-size: var(--services-h2-font-size);
+      li {
+        margin-bottom: 0.9em;
+      }
+    }
+  }
+
+  .marquee {
+    display: inline-block;
+    text-wrap: nowrap;
+    margin-top: 25vh;
+    font-size: var(--case-studies-marquee-font-size);
+    animation: --marquee 10s linear infinite;
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
     }
   }
 }
