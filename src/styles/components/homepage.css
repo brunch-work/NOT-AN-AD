@@ -7,9 +7,6 @@
   --aside-height: calc(100dvh - 4.2rem);
   --aside-margin-bottom: 2.4rem;
   --aside-scroll-snap-align: start;
-  --figcaption-justify-content: center;
-  --content-icon-display: none;
-  --content-year-display: none;
 }
 
 @media screen and (min-width: 600px) {
@@ -22,7 +19,6 @@
     --aside-height: calc(100dvh - 4.8rem);
     --aside-margin-bottom: 0;
     --figcaption-justify-content: space-between;
-    --content-year-display: inline;
   }
 
   aside {
@@ -77,11 +73,6 @@ aside {
   }
 }
 
-.content-slot {
-  align-content: center;
-  aspect-ratio: 1;
-}
-
 .content {
   width: 100%;
   flex-grow: 1;
@@ -102,108 +93,5 @@ aside {
   .placeholder {
     max-width: 100%;
     max-height: 80vh;
-  }
-}
-
-.content-grid {
-  --min-column-width: 16rem;
-  --max-columns: 4; /* max + 1 */
-
-  scroll-snap-align: start;
-  scroll-margin-block-start: 7.2rem;
-
-  &[data-view="grid"] {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(
-      auto-fill,
-      minmax(max(var(--min-column-width), 100% / var(--max-columns)), 1fr)
-    );
-  }
-  &[data-view="list"] {
-    display: table;
-    flex-direction: column;
-    gap: 1.5rem;
-
-    li,
-    figure {
-      display: contents;
-    }
-
-    figcaption {
-      display: table-row;
-      width: 100%;
-      height: 3.3rem;
-      span {
-        display: table-cell;
-        vertical-align: middle;
-
-        &:last-of-type {
-          text-align: right;
-        }
-      }
-    }
-
-    .placeholder {
-      display: none;
-    }
-  }
-
-  display: grid;
-  gap: 1.5rem;
-  margin-block-start: 3.8rem;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(max(var(--min-column-width), 100% / var(--max-columns)), 1fr)
-  );
-  li {
-    align-content: center;
-  }
-
-  &[data-filter="strategy"] {
-    li:not(:has([data-type="strategy"])) {
-      display: none;
-    }
-  }
-  &[data-filter="partnerships"] {
-    li:not(:has([data-type="partnerships"])) {
-      display: none;
-    }
-  }
-  &[data-filter="amplification"] {
-    li:not(:has([data-type="amplification"])) {
-      display: none;
-    }
-  }
-  &[data-filter="content"] {
-    li:not(:has([data-type="content"])) {
-      display: none;
-    }
-  }
-  &[data-filter="earned media"] {
-    li:not(:has([data-type="earned media"])) {
-      display: none;
-    }
-  }
-}
-
-figure {
-  figcaption {
-    margin-top: 0.8rem;
-    margin-inline: auto;
-    display: flex;
-    justify-content: var(--figcaption-justify-content);
-
-    .content-category {
-      align-items: center;
-    }
-
-    .content-category,
-    .content-icon {
-      display: var(--content-icon-display);
-    }
-    .content-year {
-      display: var(--content-year-display);
-    }
   }
 }

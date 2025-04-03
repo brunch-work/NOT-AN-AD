@@ -2,6 +2,7 @@
   --deck-header-logo-width: 30px;
   --deck-header-logo-height: 18px;
   --intro-h1-font-size: clamp(1.95rem, 0.7696rem + 2.7174vw, 4.9rem);
+  --intro-pb: 2.4rem;
   --placeholder-height: 90%;
   --footer-grid-row: 3;
   --footer-justify-content: space-between;
@@ -12,12 +13,14 @@
   --services-h2-grid-row: 1;
   --case-studies-margin-top: 17.2rem;
   --case-studies-marquee-font-size: clamp(2.9rem, 1.5304rem + 2.2826vw, 5rem);
+  --case-study-h3-font-size: 2.1rem;
 }
 
 @media screen and (min-width: 600px) {
   :root {
     --deck-header-logo-width: 40px;
     --deck-header-logo-height: 24px;
+    --intro-pb: 0;
     --placeholder-height: 80%;
     --footer-grid-row: 2 / 3;
     --footer-justify-content: end;
@@ -27,6 +30,7 @@
     --case-studies-margin-top: var(--services-margin-top);
     --services-h2-font-size: 2.5rem;
     --services-h2-grid-row: span 2;
+    --case-study-h3-font-size: 2.5rem;
   }
 }
 
@@ -78,7 +82,7 @@ footer {
 
 section {
   width: 100%;
-  min-height: calc(100vh - 4.8rem - 2 * var(--deck-header-logo-height));
+  min-height: 100svh;
   overflow: clip;
 
   h2 {
@@ -98,6 +102,9 @@ section {
 
   grid-template-columns: 1fr;
   row-gap: 3rem;
+
+  min-height: calc(100vh - 2.4rem - 2 * var(--deck-header-logo-height));
+  padding-bottom: var(--intro-pb);
 
   .first-content {
     grid-column: span 2;
@@ -209,5 +216,21 @@ section {
     @media (prefers-reduced-motion: reduce) {
       animation: none;
     }
+  }
+}
+
+.case-study {
+  display: flex;
+  padding-top: 7.2rem;
+
+  aside {
+    flex: 1;
+    h3 {
+      font-size: var(--case-study-h3-font-size);
+    }
+  }
+
+  .content-grid {
+    flex: 3;
   }
 }
