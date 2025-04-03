@@ -232,5 +232,6 @@ section {
 
   .content-grid {
     flex: 3;
+    grid-auto-rows: max-content;
   }
 }

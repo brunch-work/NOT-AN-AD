@@ -98,6 +98,7 @@ button {
 
   scroll-snap-align: start;
   scroll-margin-block-start: 7.2rem;
+  margin-block-start: 3.8rem;
 
   &[data-view="grid"] {
     display: grid;
@@ -152,13 +153,6 @@ button {
     }
   }
 
-  display: grid;
-  gap: 1.5rem;
-  margin-block-start: 3.8rem;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(max(var(--min-column-width), 100% / var(--max-columns)), 1fr)
-  );
   li {
     align-content: center;
   }
