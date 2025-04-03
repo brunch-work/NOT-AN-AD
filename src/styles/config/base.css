@@ -260,5 +260,8 @@ figure {
     .content-year {
       display: var(--content-year-display);
     }
+    .content-title {
+      display: var(--content-title-display, inline);
+    }
   }
 }

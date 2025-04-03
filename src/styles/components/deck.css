@@ -13,7 +13,9 @@
   --services-h2-grid-row: 1;
   --case-studies-margin-top: 17.2rem;
   --case-studies-marquee-font-size: clamp(2.9rem, 1.5304rem + 2.2826vw, 5rem);
+  --case-study-flex-direction: column;
   --case-study-h3-font-size: 2.1rem;
+  --case-study-h3-margin-bottom: 3rem;
 }
 
 @media screen and (min-width: 600px) {
@@ -30,7 +32,9 @@
     --case-studies-margin-top: var(--services-margin-top);
     --services-h2-font-size: 2.5rem;
     --services-h2-grid-row: span 2;
+    --case-study-flex-direction: row;
     --case-study-h3-font-size: 2.5rem;
+    --case-study-h3-margin-bottom: 4rem;
   }
 }
 
@@ -221,17 +225,34 @@ section {
 
 .case-study {
   display: flex;
+  flex-direction: var(--case-study-flex-direction);
   padding-top: 7.2rem;
 
   aside {
     flex: 1;
     h3 {
       font-size: var(--case-study-h3-font-size);
+      margin-bottom: var(--case-study-h3-margin-bottom);
+    }
+
+    p {
+      margin-bottom: 1.1rem;
+    }
+
+    a {
+      display: block;
+      color: var(--text);
+      margin-bottom: 4rem;
     }
   }
 
   .content-grid {
+    --content-icon-display: inline;
+    --content-title-display: none;
+    --content-year-display: none;
+
     flex: 3;
     grid-auto-rows: max-content;
+    scroll-snap-align: unset;
   }
 }
