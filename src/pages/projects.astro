@@ -1,0 +1,28 @@
+---
+import { sanityClient } from "sanity:client";
+import Layout from "../layouts/Layout.astro";
+
+// Define the type for a project
+type Project = {
+  client: string;
+  service: string;
+  publishedAt: string;
+  slug: string;
+};
+
+const projects: Project[] = await sanityClient.fetch(
+  `*[_type == "project" && defined(slug)] | order(publishedAt desc)`
+);
+---
+
+<Layout>
+  <ul>
+    {
+      projects.map((project: Project) => (
+        <li>
+          {project.client} | {project.service} | {project.publishedAt}
+        </li>
+      ))
+    }
+  </ul>
+</Layout>
