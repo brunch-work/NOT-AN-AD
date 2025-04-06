@@ -16,6 +16,7 @@
   --case-study-flex-direction: column;
   --case-study-h3-font-size: 2.1rem;
   --case-study-h3-margin-bottom: 3rem;
+  --content-category-order: 1;
 }
 
 @media screen and (min-width: 600px) {
@@ -207,6 +208,13 @@ section {
       font-size: var(--services-h2-font-size);
       li {
         margin-bottom: 0.9em;
+        a {
+          font-size: inherit;
+          color: inherit;
+          &:hover {
+            text-decoration: none;
+          }
+        }
       }
     }
   }

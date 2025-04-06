@@ -6,6 +6,7 @@ html,
 body {
   font-family: "IBM Plex Mono", monospace;
   -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
 }
 
 html {
@@ -24,14 +25,13 @@ html {
 }
 
 :root {
-  --figcaption-justify-content: center;
+  --figcaption-justify-content: space-between;
   --content-icon-display: none;
   --content-year-display: none;
 }
 
 @media screen and (min-width: 600px) {
   :root {
-    --figcaption-justify-content: space-between;
     --content-year-display: inline;
   }
 }
@@ -254,6 +254,10 @@ figure {
     }
 
     .content-category,
+    .content-client {
+      display: var(--content-icon-display);
+      order: var(--content-category-order, 0);
+    }
     .content-icon {
       display: var(--content-icon-display);
     }

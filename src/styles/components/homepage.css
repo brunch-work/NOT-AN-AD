@@ -88,6 +88,7 @@ aside {
     display: var(--first-content-mid-display);
     height: calc(100dvh - 2.4rem);
     scroll-snap-align: start;
+    align-content: center;
   }
 
   .placeholder {

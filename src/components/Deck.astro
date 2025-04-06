@@ -106,9 +106,9 @@ import CaseStudy from "./CaseStudy.astro";
     <div class="case-studies--grid">
       <h2>[<span>↘</span>] UGC</h2>
       <ul>
-        <li>Domino's</li>
-        <li>Dunkin</li>
-        <li>Doordash</li>
+        <li><a href="#dominos">Domino's</a></li>
+        <li><a href="#dunkin">Dunkin</a></li>
+        <li><a href="#doordash">Doordash</a></li>
       </ul>
     </div>
     <span class="marquee">
@@ -117,9 +117,9 @@ import CaseStudy from "./CaseStudy.astro";
       >
     </span>
   </section>
-  <section class="case-study container-i">
+  <section class="case-study container-i" id="dominos">
     <aside>
-      <h3>UGC | [Dunkin]</h3>
+      <h3>UGC | [Domino's]</h3>
       <p>▮ _ Year of the project - 2023</p>
       <a href="#">[↗] Link</a>
       <p>
@@ -231,6 +231,121 @@ import CaseStudy from "./CaseStudy.astro";
       </CaseStudy>
     </ul>
   </section>
+  <section class="case-study container-i" id="dunkin">
+    <aside>
+      <h3>UGC | [Domino's]</h3>
+      <p>▮ _ Year of the project - 2023</p>
+      <a href="#">[↗] Link</a>
+      <p>
+        In eiusmod occaecat aute magna veniam elit minim consectetur adipisicing
+        exercitation par iatur exercitation veniam magna. Labore nisi laboris
+        tempor sint non. Deserunt eiusmod esse exercitation. Pariatur consequat
+        in excepteur quis voluptate aliquip aute deserunt non. Sunt ipsum
+        proident laboris sint occaecat ad exercitation nostrud ullamco fugiat
+        nisi ex ullamco dolor.
+      </p>
+    </aside>
+    <ul class="content-grid" data-view="grid">
+      <CaseStudy
+        id="s1"
+        title="Square"
+        category="strategy"
+        year="2025"
+        shape="s"
+      >
+        <IconStrategy
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+        <img slot="image" src="https://placehold.co/1080x1080" alt="" />
+      </CaseStudy>
+      <CaseStudy
+        id="s1"
+        title="Square"
+        category="strategy"
+        year="2025"
+        shape="v"
+      >
+        <IconStrategy
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+        <img slot="image" src="https://placehold.co/1080x1920" alt="" />
+      </CaseStudy>
+      <CaseStudy
+        id="s1"
+        title="Square"
+        category="strategy"
+        year="2025"
+        shape="h"
+      >
+        <IconStrategy
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+        <img slot="image" src="https://placehold.co/1920x1080" alt="" />
+      </CaseStudy>
+      <CaseStudy
+        id="s1"
+        title="Square"
+        category="strategy"
+        year="2025"
+        shape="s"
+      >
+        <IconStrategy
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+        <img slot="image" src="https://placehold.co/1080x1080" alt="" />
+      </CaseStudy>
+      <CaseStudy
+        id="s1"
+        title="Square"
+        category="strategy"
+        year="2025"
+        shape="h"
+      >
+        <IconStrategy
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+        <img slot="image" src="https://placehold.co/1920x1080" alt="" />
+      </CaseStudy>
+
+      <CaseStudy
+        id="s1"
+        title="Square"
+        category="strategy"
+        year="2025"
+        shape="v"
+      >
+        <IconStrategy
+          slot="icon"
+          fill="currentColor"
+          width="15"
+          height="15"
+          role="presentation"
+        />
+        <img slot="image" src="https://placehold.co/1080x1920" alt="" />
+      </CaseStudy>
+    </ul>
+  </section>
+
   <footer class="intro-footer">
     <TapeIcon />
     <span id="intro-time">15:32:00</span>
