@@ -173,10 +173,10 @@ section {
 
 @keyframes --marquee {
   0% {
-    transform: translateX(0);
+    transform: translateX(-19ch);
   }
   100% {
-    transform: translateX(-19ch);
+    transform: translateX(-38ch);
   }
 }
 
