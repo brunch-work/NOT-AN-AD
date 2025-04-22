@@ -17,11 +17,137 @@ import CaseStudy from "./CaseStudy.astro";
   <header class="container-i">
     <NotAnAdLogo class="deck-header--logo" fill="currentColor" />
     <nav>
-      <ul>
-        <li>Not an ad</li>
-        <li>Services</li>
-        <li>Case studies</li>
-      </ul>
+      <details role="tabpanel" id="nav-0">
+        <summary>Not an ad</summary>
+        <ul role="tablist">
+          <li role="tab"><button>Not an ad</button></li>
+          <li role="tab"><button id="btn-0-1-1">Services</button></li>
+          <li role="tab"><button id="btn-0-1-2">Case studies</button></li>
+        </ul>
+      </details>
+      <details role="tabpanel" id="nav-1">
+        <summary
+          ><IconStrategy
+            fill="currentColor"
+            width="1em"
+            height="1em"
+          />Strategy</summary
+        >
+        <ul role="tablist" id="nav-1-1">
+          <li role="tab">
+            <button
+              ><IconStrategy
+                fill="currentColor"
+                width="1em"
+                height="1em"
+              />Strategy</button
+            >
+          </li>
+          <li role="tab">
+            <button
+              ><IconPartnership
+                fill="currentColor"
+                width="1em"
+                height="1em"
+              />Partnerships</button
+            >
+          </li>
+          <li role="tab">
+            <button
+              ><IconAmplification
+                fill="currentColor"
+                width="1em"
+                height="1em"
+              />Amplification</button
+            >
+          </li>
+          <li role="tab">
+            <button
+              ><IconContent
+                fill="currentColor"
+                width="1em"
+                height="1em"
+              />Content creation</button
+            >
+          </li>
+          <li role="tab">
+            <button
+              ><IconEarnedMedia
+                fill="currentColor"
+                width="1em"
+                height="1em"
+              />Earned media</button
+            >
+          </li>
+        </ul>
+        <ul role="tablist" id="nav-1-2">
+          <li role="tab">
+            <button id="btn-1-2-0">UGC</button>
+          </li>
+          <li role="tab">
+            <button id="btn-1-2-1">Studio</button>
+          </li>
+          <li role="tab">
+            <button id="btn-1-2-2">Broadcast</button>
+          </li>
+          <li role="tab">
+            <button id="btn-1-2-3">Partnerships</button>
+          </li>
+        </ul>
+      </details>
+      <details role="tabpanel" id="nav-2">
+        <summary
+          ><IconStrategy
+            fill="currentColor"
+            width="1em"
+            height="1em"
+          />Strategy</summary
+        >
+        <ul role="tablist" id="nav-2-0">
+          <li role="tab">
+            <button>UGC-1</button>
+          </li>
+          <li role="tab">
+            <button>UGC-2</button>
+          </li>
+          <li role="tab">
+            <button>UGC-3</button>
+          </li>
+        </ul>
+        <ul role="tablist" id="nav-2-1">
+          <li role="tab">
+            <button>Studio-1</button>
+          </li>
+          <li role="tab">
+            <button>Studio-2</button>
+          </li>
+          <li role="tab">
+            <button>Studio-3</button>
+          </li>
+        </ul>
+        <ul role="tablist" id="nav-2-2">
+          <li role="tab">
+            <button>Broadcast-1</button>
+          </li>
+          <li role="tab">
+            <button>Broadcast-2</button>
+          </li>
+          <li role="tab">
+            <button>Broadcast-3</button>
+          </li>
+        </ul>
+        <ul role="tablist" id="nav-2-3">
+          <li role="tab">
+            <button>Partnerships-1</button>
+          </li>
+          <li role="tab">
+            <button>Partnerships-2</button>
+          </li>
+          <li role="tab">
+            <button>Partnerships-3</button>
+          </li>
+        </ul>
+      </details>
     </nav>
   </header>
   <section class="intro container-i">
@@ -367,4 +493,45 @@ import CaseStudy from "./CaseStudy.astro";
 
   updateTime();
   setInterval(updateTime, 1000);
+
+  /** navigation selector */
+  //const nav = document.querySelector("nav") as HTMLElement;
+  const topLevel = document.getElementById("nav-0") as HTMLDetailsElement;
+  const topLevelButtons = document.querySelectorAll(
+    'nav button[id^="btn"]'
+  ) as NodeListOf<HTMLButtonElement>;
+
+  function handleNavigation(i: number, event: Event) {
+    const target = event.target as HTMLButtonElement;
+    const targetId = target.id;
+    const menuLevel = targetId.split("-")[2];
+    const menuNumber = targetId.split("-")[3];
+
+    // open the child
+    const detail = document.getElementById(
+      `nav-${menuLevel}`
+    ) as HTMLDetailsElement;
+    detail.style.setProperty("display", "block");
+    detail.setAttribute("open", "");
+
+    // hide all ULs
+    const uls = detail.querySelectorAll(`ul`) as NodeListOf<HTMLUListElement>;
+    uls.forEach((n: HTMLUListElement) => {
+      n.style.setProperty("display", "none");
+    });
+
+    // only show the correct UL in the neighbouring child
+    const subMenuElement = document.getElementById(
+      `nav-${menuLevel}-${menuNumber}`
+    ) as HTMLUListElement;
+    if (subMenuElement) {
+      subMenuElement.style.setProperty("display", "block");
+    }
+
+    topLevel.setAttribute("open", "");
+  }
+
+  topLevelButtons.forEach((button, i) => {
+    button.addEventListener("click", (e) => handleNavigation(i, e));
+  });
 </script>

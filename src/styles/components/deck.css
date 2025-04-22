@@ -1,6 +1,8 @@
 :root {
   --deck-header-logo-width: 30px;
   --deck-header-logo-height: 18px;
+  --nav-font-size: 1.3rem;
+  --nav-min-width: 10.8rem;
   --intro-h1-font-size: clamp(1.95rem, 0.7696rem + 2.7174vw, 4.9rem);
   --intro-pb: 2.4rem;
   --placeholder-height: 90%;
@@ -23,6 +25,8 @@
   :root {
     --deck-header-logo-width: 40px;
     --deck-header-logo-height: 24px;
+    --nav-font-size: 1.6rem;
+    --nav-min-width: 18.4rem;
     --intro-pb: 0;
     --placeholder-height: 80%;
     --footer-grid-row: 2 / 3;
@@ -52,9 +56,57 @@ header {
   }
 
   nav {
+    font-size: var(--nav-font-size);
     text-transform: uppercase;
+    display: flex;
+    height: 1lh;
+
+    details {
+      &:not(:first-child) {
+        display: none;
+        margin-left: -1px;
+      }
+
+      &[open] summary {
+        display: none;
+      }
+
+      summary,
+      li {
+        list-style: none;
+        cursor: pointer;
+        min-width: var(--nav-min-width);
+        padding-inline: 0.2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        &:not(:last-child) {
+          border-bottom: solid 1px var(--text);
+        }
+        &:hover {
+          background-color: var(--palette-blue);
+          color: var(--palette-white);
+        }
+      }
+
+      button,
+      summary {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: var(--nav-font-size);
+      }
+    }
+
+    summary:not(:last-child),
+    ul {
+      border: solid 1px var(--text);
+    }
+
     ul {
       display: flex;
+      flex-direction: column;
     }
   }
 }
