@@ -55,6 +55,13 @@ a:hover {
   color: var(--text);
 }
 
+a:has(svg) {
+  color: var(--text);
+}
+a:has(svg):hover {
+  color: var(--accent);
+}
+
 button {
   color: var(--text);
   margin: 0;
@@ -255,6 +262,7 @@ figure {
     margin-inline: auto;
     display: flex;
     justify-content: var(--figcaption-justify-content);
+    gap: 0.8rem;
 
     .content-category {
       align-items: center;

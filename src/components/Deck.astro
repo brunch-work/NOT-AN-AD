@@ -15,7 +15,9 @@ import CaseStudy from "./CaseStudy.astro";
 <div class="container padding-inline-0">
   <span id="top"> </span>
   <header class="container-i">
-    <NotAnAdLogo class="deck-header--logo" fill="currentColor" />
+    <a href="/" aria-label="Home">
+      <NotAnAdLogo class="deck-header--logo" fill="currentColor" />
+    </a>
     <nav>
       <details role="tabpanel" id="nav-0">
         <summary>Not an ad</summary>
@@ -482,6 +484,13 @@ import CaseStudy from "./CaseStudy.astro";
     <span id="intro-time">15:32:00</span>
   </footer>
 </div>
+<dialog id="lightbox">
+  <header>
+    <NotAnAdLogo width={24} fill="currentColor" />
+    <button class="button">[ X ]</button>
+  </header>
+  <figure class="modal-content"></figure>
+</dialog>
 <script>
   const introTime = document.getElementById("intro-time") as HTMLSpanElement;
 
@@ -535,3 +544,4 @@ import CaseStudy from "./CaseStudy.astro";
     button.addEventListener("click", (e) => handleNavigation(i, e));
   });
 </script>
+<script src="../scripts/lightbox.js"></script>
