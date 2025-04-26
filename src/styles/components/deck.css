@@ -43,6 +43,13 @@
   }
 }
 
+dialog#lightbox {
+  /* double ID to increase specificity */
+  /* reset the lightbox to the center of the page*/
+  --dsk-dialog-width: 100%;
+  --dsk-dialog-inset: 0;
+}
+
 header {
   width: 100%;
   position: sticky;

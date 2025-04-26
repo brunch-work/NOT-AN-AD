@@ -18,7 +18,7 @@ const { matches: motionOK } = window.matchMedia(
 
 if (motionOK) {
   caseStudies.forEach((item, i) => {
-    const placeholder = item.querySelector(".placeholder") as HTMLElement;
+    const placeholder = item.querySelector(".placeholder img") as HTMLElement;
     const figcaption = item.querySelector("figcaption") as HTMLElement;
     if (figcaption && placeholder)
       placeholder.style.viewTransitionName = `--case-study-placeholder-${i}`;
@@ -30,11 +30,16 @@ if (motionOK) {
     caseStudy.addEventListener("click", (event) => {
       function openLightbox(cs: HTMLElement) {
         const plh = caseStudy.querySelector(".placeholder") as HTMLElement;
+        const plhImg = caseStudy.querySelector(
+          ".placeholder img"
+        ) as HTMLElement;
         const figc = caseStudy.querySelector("figcaption") as HTMLElement;
 
         // add styles to the document to make the clicked item appear on top
         document.styleSheets[0].insertRule(
-          `::view-transition-group(${plh.style.getPropertyValue("view-transition-name")}), ::view-transition-group(${figc.style.getPropertyValue("view-transition-name")})  { z-index: 3; }`
+          `::view-transition-group(${plhImg.style.getPropertyValue("view-transition-name")}), 
+          ::view-transition-group(${figc.style.getPropertyValue("view-transition-name")})  
+          { z-index: 3; }`
         );
 
         plh.classList.add("lightbox-originator");

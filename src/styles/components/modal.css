@@ -70,7 +70,7 @@ dialog#lightbox {
 }
 
 @media screen and (min-width: 600px) {
-  dialog#lightbox {
+  :where(dialog#lightbox) {
     --dsk-dialog-width: calc(min(151.2rem, 100%) - var(--aside-width) - 2.4rem);
     --dsk-dialog-inset: calc(
       (100% - min(151.2rem, 100%)) / 2 + var(--aside-width) + 2.4rem
