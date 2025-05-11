@@ -19,134 +19,28 @@ import CaseStudy from "./CaseStudy.astro";
       <NotAnAdLogo class="deck-header--logo" fill="currentColor" />
     </a>
     <nav>
-      <details role="tabpanel" id="nav-0">
+      <details role="combobox" aria-label="Sections">
         <summary>Not an ad</summary>
-        <ul role="tablist">
-          <li role="tab"><button>Not an ad</button></li>
-          <li role="tab"><button id="btn-0-1-1">Services</button></li>
-          <li role="tab"><button id="btn-0-1-2">Case studies</button></li>
+        <ul role="listbox">
+          <li role="option"><a href="#not-an-ad">Not an ad</a></li>
+          <li role="option"><a href="#services">Services</a></li>
+          <li role="option"><a href="#case-studies">Case studies</a></li>
         </ul>
       </details>
-      <details role="tabpanel" id="nav-1">
-        <summary
-          ><IconStrategy
-            fill="currentColor"
-            width="1em"
-            height="1em"
-          />Strategy</summary
-        >
-        <ul role="tablist" id="nav-1-1">
-          <li role="tab">
-            <button id="btn-1-1-0link">
-              <IconStrategy
-                fill="currentColor"
-                width="1em"
-                height="1em"
-              />Strategy</button
-            >
+      <details role="combobox" aria-label="Case study categories">
+        <summary>UGC</summary>
+        <ul role="listbox">
+          <li role="option">
+            <a href="#">UGC</a>
           </li>
-          <li role="tab">
-            <button id="btn-1-1-1link">
-              <IconPartnership
-                fill="currentColor"
-                width="1em"
-                height="1em"
-              />Partnerships</button
-            >
+          <li role="option">
+            <a href="#">Studio</a>
           </li>
-          <li role="tab">
-            <button id="btn-1-1-2link">
-              <IconAmplification
-                fill="currentColor"
-                width="1em"
-                height="1em"
-              />Amplification</button
-            >
+          <li role="option">
+            <a href="#">Broadcast</a>
           </li>
-          <li role="tab">
-            <button id="btn-1-1-3link">
-              <IconContent
-                fill="currentColor"
-                width="1em"
-                height="1em"
-              />Content creation</button
-            >
-          </li>
-          <li role="tab">
-            <button id="btn-1-1-4link">
-              <IconEarnedMedia
-                fill="currentColor"
-                width="1em"
-                height="1em"
-              />Earned media</button
-            >
-          </li>
-        </ul>
-        <ul role="tablist" id="nav-1-2">
-          <li role="tab">
-            <button id="btn-1-2-0">UGC</button>
-          </li>
-          <li role="tab">
-            <button id="btn-1-2-1">Studio</button>
-          </li>
-          <li role="tab">
-            <button id="btn-1-2-2">Broadcast</button>
-          </li>
-          <li role="tab">
-            <button id="btn-1-2-3">Partnerships</button>
-          </li>
-        </ul>
-      </details>
-      <details role="tabpanel" id="nav-2">
-        <summary
-          ><IconStrategy
-            fill="currentColor"
-            width="1em"
-            height="1em"
-          />Strategy</summary
-        >
-        <ul role="tablist" id="nav-2-0">
-          <li role="tab">
-            <button id="2-0-0link">UGC-1</button>
-          </li>
-          <li role="tab">
-            <button id="2-0-1link">UGC-2</button>
-          </li>
-          <li role="tab">
-            <button id="2-0-2link">UGC-3</button>
-          </li>
-        </ul>
-        <ul role="tablist" id="nav-2-1">
-          <li role="tab">
-            <button id="2-1-0link">Studio-1</button>
-          </li>
-          <li role="tab">
-            <button id="2-1-1link">Studio-2</button>
-          </li>
-          <li role="tab">
-            <button id="2-1-2link">Studio-3</button>
-          </li>
-        </ul>
-        <ul role="tablist" id="nav-2-2">
-          <li role="tab">
-            <button id="2-2-0link">Broadcast-1</button>
-          </li>
-          <li role="tab">
-            <button id="2-2-1link">Broadcast-2</button>
-          </li>
-          <li role="tab">
-            <button id="2-2-2link">Broadcast-3</button>
-          </li>
-        </ul>
-        <ul role="tablist" id="nav-2-3">
-          <li role="tab">
-            <button id="2-3-0link">Partnerships-1</button>
-          </li>
-          <li role="tab">
-            <button id="2-3-1link">Partnerships-2</button>
-          </li>
-          <li role="tab">
-            <button id="2-3-2link">Partnerships-3</button>
+          <li role="option">
+            <a href="#">Partnerships</a>
           </li>
         </ul>
       </details>
@@ -154,7 +48,7 @@ import CaseStudy from "./CaseStudy.astro";
   </header>
 
   <div class="container padding-inline-0">
-    <section class="intro container-i">
+    <section class="intro container-i" id="not-an-ad">
       <figure class="first-content">
         <div class="placeholder placeholder-v">
           <img src="https://placehold.co/1080x1920" alt="" />
@@ -167,7 +61,7 @@ import CaseStudy from "./CaseStudy.astro";
         in new york city
       </h1>
     </section>
-    <section class="services container-i">
+    <section class="services container-i" id="services">
       <div class="services--grid">
         <h2>[<span>↘</span>] Services</h2>
         <article>
@@ -240,7 +134,7 @@ import CaseStudy from "./CaseStudy.astro";
       </div>
     </section>
   </div>
-  <section class="case-studies">
+  <section class="case-studies" id="case-studies">
     <div class="container">
       <div class="case-studies--grid">
         <h2>[<span>↘</span>] UGC</h2>
@@ -515,52 +409,28 @@ import CaseStudy from "./CaseStudy.astro";
 
   /** navigation selector */
   //const nav = document.querySelector("nav") as HTMLElement;
-  const topLevel = document.getElementById("nav-0") as HTMLDetailsElement;
-  const topLevelButtons = document.querySelectorAll(
-    'nav button[id^="btn"]'
-  ) as NodeListOf<HTMLButtonElement>;
+  const topLevelLinks = document.querySelectorAll(
+    "nav a"
+  ) as NodeListOf<HTMLAnchorElement>;
 
   function handleNavigation(i: number, event: Event) {
-    const target = event.target as HTMLButtonElement;
-    const targetId = target.id;
-    const menuLevel = targetId.split("-")[2];
-    const menuNumber = targetId.split("-")[3];
+    const target = event.target as HTMLAnchorElement;
+    // find the parent details element and grab its summary
 
-    // open the child
-    const detail = document.getElementById(
-      `nav-${menuLevel}`
-    ) as HTMLDetailsElement;
-    detail.style.setProperty("display", "block");
-    detail.setAttribute("open", "");
+    const details = target.closest("details");
+    const summary = details?.querySelector("summary");
+    const subLinks = details?.querySelectorAll("a");
 
-    // hide all ULs
-    const uls = detail.querySelectorAll(`ul`) as NodeListOf<HTMLUListElement>;
-    uls.forEach((n: HTMLUListElement) => {
-      n.style.setProperty("display", "none");
-    });
-
-    // only show the correct UL in the neighbouring child
-    const subMenuElement = document.getElementById(
-      `nav-${menuLevel}-${menuNumber}`
-    ) as HTMLUListElement;
-
-    if (subMenuElement) {
-      subMenuElement.style.setProperty("display", "block");
-    } else {
-      // if the sub menu element is not found, hide any children detail-summaries
-      const unneededNeighbour = document.getElementById(
-        `nav-${menuLevel + 1}`
-      ) as HTMLDetailsElement;
-
-      console.log(unneededNeighbour);
-      unneededNeighbour.removeAttribute("style");
+    if (summary) {
+      summary.innerHTML = target.innerHTML;
+      details?.removeAttribute("open");
+      subLinks?.forEach((l) => l.removeAttribute("aria-selected"));
     }
-
-    topLevel.setAttribute("open", "");
+    target.setAttribute("aria-selected", "true");
   }
 
-  topLevelButtons.forEach((button, i) => {
-    button.addEventListener("click", (e) => handleNavigation(i, e));
+  topLevelLinks.forEach((link, i) => {
+    link.addEventListener("click", (e) => handleNavigation(i, e));
   });
 </script>
 <script src="../scripts/lightbox.js"></script>
