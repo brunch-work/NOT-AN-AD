@@ -65,7 +65,6 @@ header {
     font-size: var(--nav-font-size);
     text-transform: uppercase;
     display: flex;
-    height: 1lh;
 
     details {
       &:not(:first-child) {
@@ -79,6 +78,7 @@ header {
 
       summary,
       li {
+        box-sizing: content-box;
         display: flex;
         cursor: pointer;
         user-select: none;
