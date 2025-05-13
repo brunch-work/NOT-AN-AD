@@ -31,7 +31,7 @@ import CaseStudy from "./CaseStudy.astro";
         <summary>UGC</summary>
         <ul role="listbox">
           <li role="option">
-            <a href="#">UGC</a>
+            <a href="#ugc">UGC</a>
           </li>
           <li role="option">
             <a href="#">Studio</a>
@@ -153,11 +153,15 @@ import CaseStudy from "./CaseStudy.astro";
     </div>
   </section>
   <div class="container padding-inline-0">
-    <section class="case-study container-i" id="dominos">
-      <aside>
-        <h3>UGC | [Domino's]</h3>
-        <p>▮ _ Year of the project - 2023</p>
-        <a href="#">[↗] Link</a>
+    <section class="case-study container-i" id="ugc">
+      <fieldset>
+        <legend><h3>Domino's</h3></legend>
+        <p>
+          <a href="#">[↗] Link</a>
+        </p>
+        <p class="case-study--year">
+          <span>Year of the project</span><span>2023</span>
+        </p>
         <p>
           In eiusmod occaecat aute magna veniam elit minim consectetur
           adipisicing exercitation par iatur exercitation veniam magna. Labore
@@ -166,7 +170,7 @@ import CaseStudy from "./CaseStudy.astro";
           non. Sunt ipsum proident laboris sint occaecat ad exercitation nostrud
           ullamco fugiat nisi ex ullamco dolor.
         </p>
-      </aside>
+      </fieldset>
       <ul class="content-grid" data-view="grid">
         <CaseStudy
           id="s1"
@@ -267,11 +271,15 @@ import CaseStudy from "./CaseStudy.astro";
         </CaseStudy>
       </ul>
     </section>
-    <section class="case-study container-i" id="dunkin">
-      <aside>
-        <h3>UGC | [Domino's]</h3>
-        <p>▮ _ Year of the project - 2023</p>
-        <a href="#">[↗] Link</a>
+    <section class="case-study container-i">
+      <fieldset>
+        <legend><h3>Domino's</h3></legend>
+        <p>
+          <a href="#">[↗] Link</a>
+        </p>
+        <p class="case-study--year">
+          <span>Year of the project</span><span>2023</span>
+        </p>
         <p>
           In eiusmod occaecat aute magna veniam elit minim consectetur
           adipisicing exercitation par iatur exercitation veniam magna. Labore
@@ -280,7 +288,7 @@ import CaseStudy from "./CaseStudy.astro";
           non. Sunt ipsum proident laboris sint occaecat ad exercitation nostrud
           ullamco fugiat nisi ex ullamco dolor.
         </p>
-      </aside>
+      </fieldset>
       <ul class="content-grid" data-view="grid">
         <CaseStudy
           id="s1"
@@ -381,7 +389,6 @@ import CaseStudy from "./CaseStudy.astro";
         </CaseStudy>
       </ul>
     </section>
-
     <footer class="intro-footer">
       <TapeIcon />
       <span id="intro-time">15:32:00</span>
@@ -407,8 +414,6 @@ import CaseStudy from "./CaseStudy.astro";
   updateTime();
   setInterval(updateTime, 1000);
 
-  /** navigation selector */
-  //const nav = document.querySelector("nav") as HTMLElement;
   const topLevelLinks = document.querySelectorAll(
     "nav a"
   ) as NodeListOf<HTMLAnchorElement>;
@@ -431,6 +436,15 @@ import CaseStudy from "./CaseStudy.astro";
 
   topLevelLinks.forEach((link, i) => {
     link.addEventListener("click", (e) => handleNavigation(i, e));
+  });
+
+  // clickoutside of the details element
+  document.addEventListener("click", (e) => {
+    // check if the target is not a details element
+    const allDetails = document.querySelectorAll("details");
+    allDetails.forEach((d) => {
+      d.removeAttribute("open");
+    });
   });
 </script>
 <script src="../scripts/lightbox.js"></script>
