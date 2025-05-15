@@ -20,7 +20,7 @@ import CaseStudy from "./CaseStudy.astro";
     </a>
     <nav>
       <details role="combobox" aria-label="Sections">
-        <summary>Not an ad</summary>
+        <summary id="nav-1">Not an ad</summary>
         <ul role="listbox">
           <li role="option"><a href="#not-an-ad">Not an ad</a></li>
           <li role="option"><a href="#services">Services</a></li>
@@ -28,7 +28,7 @@ import CaseStudy from "./CaseStudy.astro";
         </ul>
       </details>
       <details role="combobox" aria-label="Case study categories">
-        <summary>UGC</summary>
+        <summary id="nav-2">UGC</summary>
         <ul role="listbox">
           <li role="option">
             <a href="#ugc">UGC</a>
@@ -48,7 +48,7 @@ import CaseStudy from "./CaseStudy.astro";
   </header>
 
   <div class="container padding-inline-0">
-    <section class="intro container-i" id="not-an-ad">
+    <section class="intro container-i" id="not-an-ad" data-nav-1="Not an ad">
       <figure class="first-content">
         <div class="placeholder placeholder-v">
           <img src="https://placehold.co/1080x1920" alt="" />
@@ -61,7 +61,7 @@ import CaseStudy from "./CaseStudy.astro";
         in new york city
       </h1>
     </section>
-    <section class="services container-i" id="services">
+    <section class="services container-i" id="services" data-nav-1="Services">
       <div class="services--grid">
         <h2>[<span>↘</span>] Services</h2>
         <article>
@@ -134,7 +134,7 @@ import CaseStudy from "./CaseStudy.astro";
       </div>
     </section>
   </div>
-  <section class="case-studies" id="case-studies">
+  <section class="case-studies" id="case-studies" data-nav-1="Case studies">
     <div class="container">
       <div class="case-studies--grid">
         <h2>[<span>↘</span>] UGC</h2>
@@ -153,7 +153,7 @@ import CaseStudy from "./CaseStudy.astro";
     </div>
   </section>
   <div class="container padding-inline-0">
-    <section class="case-study container-i" id="ugc">
+    <section class="case-study container-i" id="ugc" data-nav-2="UGC">
       <fieldset>
         <legend><h3>Domino's</h3></legend>
         <p>
@@ -405,6 +405,7 @@ import CaseStudy from "./CaseStudy.astro";
 <script>
   const introTime = document.getElementById("intro-time") as HTMLSpanElement;
 
+  /* update the clock at the bottom of the page */
   function updateTime() {
     const time = new Date();
     const formattedTime = time.toLocaleTimeString("en-US", { hour12: false });
@@ -414,36 +415,43 @@ import CaseStudy from "./CaseStudy.astro";
   updateTime();
   setInterval(updateTime, 1000);
 
-  const topLevelLinks = document.querySelectorAll(
-    "nav a"
-  ) as NodeListOf<HTMLAnchorElement>;
-
-  function handleNavigation(i: number, event: Event) {
-    const target = event.target as HTMLAnchorElement;
-    // find the parent details element and grab its summary
-
-    const details = target.closest("details");
-    const summary = details?.querySelector("summary");
-    const subLinks = details?.querySelectorAll("a");
-
-    if (summary) {
-      summary.innerHTML = target.innerHTML;
-      details?.removeAttribute("open");
-      subLinks?.forEach((l) => l.removeAttribute("aria-selected"));
-    }
-    target.setAttribute("aria-selected", "true");
-  }
-
-  topLevelLinks.forEach((link, i) => {
-    link.addEventListener("click", (e) => handleNavigation(i, e));
-  });
-
-  // clickoutside of the details element
+  // clickoutside of the details element closes it
   document.addEventListener("click", (e) => {
     // check if the target is not a details element
     const allDetails = document.querySelectorAll("details");
     allDetails.forEach((d) => {
       d.removeAttribute("open");
+    });
+  });
+
+  // add intersection observers to update the nav
+  const observedAttributes = ["nav-1", "nav-2"];
+
+  observedAttributes.forEach((attr) => {
+    const sections = document.querySelectorAll(`[data-${attr}]`);
+    const options: IntersectionObserverInit = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5,
+    };
+
+    const callback: IntersectionObserverCallback = (
+      entries: IntersectionObserverEntry[]
+    ) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const navSummary = document.querySelector(`summary#${attr}`);
+          const navVal = entry.target.getAttribute(`data-${attr}`);
+          if (navSummary?.innerHTML) {
+            navSummary.innerHTML = navVal ?? "";
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+    sections.forEach((section) => {
+      observer.observe(section);
     });
   });
 </script>

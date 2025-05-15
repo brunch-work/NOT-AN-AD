@@ -186,8 +186,9 @@ section {
   grid-template-columns: 1fr;
   row-gap: 3rem;
 
-  min-height: calc(100vh - 2.4rem - 2 * var(--deck-header-logo-height));
+  min-height: calc(100svh - 2.4rem - 2 * var(--deck-header-logo-height));
   padding-bottom: var(--intro-pb);
+  scroll-margin-block-start: calc(2 * var(--deck-header-logo-height));
 
   .first-content {
     grid-column: span 2;
