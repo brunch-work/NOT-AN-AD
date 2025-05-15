@@ -41,6 +41,10 @@
   }
 }
 
+div:first-of-type {
+  padding-bottom: 3.6rem;
+}
+
 dialog#lightbox {
   /* reset the lightbox to the center of the page*/
   --dsk-dialog-width: 100%;
