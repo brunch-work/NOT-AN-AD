@@ -49,100 +49,110 @@ import NAAVideo from "../assets/images/svg/NAA-video.svg";
 </div>
 
 <script type="module">
-  const distance = { x: 24, y: 34 };
-  const speed = { x: 3, y: 3 };
+  const screensaver = document.querySelector(".screensaver");
+  const ssStyle = getComputedStyle(screensaver);
+
+  const distance = {
+    x: parseInt(ssStyle.getPropertyValue("--dx").trim()),
+    y: parseInt(ssStyle.getPropertyValue("--dy").trim()),
+  };
+  const speed = {
+    x: parseFloat(ssStyle.getPropertyValue("--speedX").trim()),
+    y: parseFloat(ssStyle.getPropertyValue("--speedY").trim()),
+  };
 
   // Initial position
   let pos = { x: 0, y: 0 };
 
   // Wait for DOMContentLoaded to safely access elements
-  window.addEventListener("DOMContentLoaded", () => {
-    var windowFocus = false;
-    var canShowScreensaver = false;
 
-    const screensaver = document.querySelector(".screensaver");
-    const logo = document.getElementById("logo");
-    const clone1 = document.getElementById("clone1");
-    const clone2 = document.getElementById("clone2");
+  let canShowScreensaver = false;
+  const logo = document.getElementById("logo");
+  const clone1 = document.getElementById("clone1");
+  const clone2 = document.getElementById("clone2");
 
-    window.addEventListener("focus", () => {
-      windowFocus = true;
-      document.addEventListener("mousemove", () => {
-        canShowScreensaver = false;
-        screensaver.style.display = "none";
-      });
-      screensaver.style.display = "block";
-      update();
-    });
-    window.addEventListener("blur", () => {
-      windowFocus = false;
-      canShowScreensaver = true;
-      document.removeEventListener("mousemove", () => {
-        canShowScreensaver = false;
-        screensaver.style.display = "none";
-      });
-    });
-
-    if (!logo || !clone1 || !clone2) return;
-
-    // Current offsets for animation
-    let currentOffset = { x: distance.x, y: distance.y };
-
-    // Helper to update feOffset attributes
-    function setOffsets(dx, dy) {
-      clone1.setAttribute("dx", String(-dx));
-      clone1.setAttribute("dy", String(-dy));
-      clone2.setAttribute("dx", String(-2 * dx));
-      clone2.setAttribute("dy", String(-2 * dy));
-    }
-
-    function animateOffsets() {
-      // Animate currentOffset towards distance at the same rate as speed
-      ["x", "y"].forEach((axis) => {
-        if (currentOffset[axis] < distance[axis]) {
-          currentOffset[axis] = Math.min(
-            currentOffset[axis] + Math.abs(speed[axis]),
-            distance[axis]
-          );
-        } else if (currentOffset[axis] > distance[axis]) {
-          currentOffset[axis] = Math.max(
-            currentOffset[axis] - Math.abs(speed[axis]),
-            distance[axis]
-          );
-        }
-      });
-      setOffsets(currentOffset.x, currentOffset.y);
-    }
-
-    function update() {
-      // Move logo
-      pos.x += speed.x;
-      pos.y += speed.y;
-      logo.style.left = pos.x + "px";
-      logo.style.top = pos.y + "px";
-
-      // Get logo size and window size
-      const logoRect = logo.getBoundingClientRect();
-      const winW = window.innerWidth;
-      const winH = window.innerHeight;
-
-      // Bounce on X
-      if (pos.x <= 0 || pos.x + logoRect.width >= winW) {
-        speed.x *= -1;
-        distance.x *= -1;
-      }
-      // Bounce on Y
-      if (pos.y <= 0 || pos.y + logoRect.height >= winH) {
-        speed.y *= -1;
-        distance.y *= -1;
-      }
-
-      animateOffsets();
-
-      windowFocus && canShowScreensaver && requestAnimationFrame(update);
-    }
-
-    setOffsets(currentOffset.x, currentOffset.y);
+  // Function to show the screensaver
+  function showScreensaver() {
+    screensaver.classList.add("show");
+    canShowScreensaver = true;
     update();
-  });
+  }
+  function hideScreensaver() {
+    screensaver.classList.remove("show");
+    canShowScreensaver = false;
+  }
+
+  // Screensaver inactivity timer logic
+  let screensaverTimeout;
+  function resetScreensaverTimer() {
+    hideScreensaver();
+    clearTimeout(screensaverTimeout);
+    screensaverTimeout = setTimeout(showScreensaver, 3000);
+  }
+  // Listen for user activity to reset timer
+  ["mousemove", "mousedown", "touchstart", "touchmove", "keydown"].forEach(
+    (evt) =>
+      window.addEventListener(evt, resetScreensaverTimer, { passive: true })
+  );
+  // Start timer on load
+  resetScreensaverTimer();
+
+  // Current offsets for animation
+  let currentOffset = { x: distance.x, y: distance.y };
+
+  // Helper to update feOffset attributes
+  function setOffsets(dx, dy) {
+    clone1.setAttribute("dx", String(-dx));
+    clone1.setAttribute("dy", String(-dy));
+    clone2.setAttribute("dx", String(-2 * dx));
+    clone2.setAttribute("dy", String(-2 * dy));
+  }
+
+  function animateOffsets() {
+    // Animate currentOffset towards distance at the same rate as speed
+    ["x", "y"].forEach((axis) => {
+      if (currentOffset[axis] < distance[axis]) {
+        currentOffset[axis] = Math.min(
+          currentOffset[axis] + Math.abs(speed[axis]),
+          distance[axis]
+        );
+      } else if (currentOffset[axis] > distance[axis]) {
+        currentOffset[axis] = Math.max(
+          currentOffset[axis] - Math.abs(speed[axis]),
+          distance[axis]
+        );
+      }
+    });
+    setOffsets(currentOffset.x, currentOffset.y);
+  }
+
+  function update() {
+    // Move logo
+    pos.x += speed.x;
+    pos.y += speed.y;
+    logo.style.left = pos.x + "px";
+    logo.style.top = pos.y + "px";
+
+    // Get logo size and window size
+    const logoRect = logo.getBoundingClientRect();
+    const winW = window.innerWidth;
+    const winH = window.innerHeight;
+
+    // Bounce on X
+    if (pos.x <= 0 || pos.x + logoRect.width >= winW) {
+      speed.x *= -1;
+      distance.x *= -1;
+    }
+    // Bounce on Y
+    if (pos.y <= 0 || pos.y + logoRect.height >= winH) {
+      speed.y *= -1;
+      distance.y *= -1;
+    }
+
+    animateOffsets();
+
+    canShowScreensaver && requestAnimationFrame(update);
+  }
+
+  setOffsets(currentOffset.x, currentOffset.y);
 </script>

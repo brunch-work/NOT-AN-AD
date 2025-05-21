@@ -1,13 +1,47 @@
 .screensaver {
+  --speedX: 0.2;
+  --speedY: 1.5;
+  --width: 286px;
+  --dx: 16;
+  --dy: 22;
+
+  @media screen and (min-width: 600px) {
+    --speedX: 3;
+    --speedY: 3;
+    --width: 439px;
+    --dx: 24;
+    --dy: 34;
+  }
+
   display: none;
+  opacity: 0;
   position: fixed;
   inset: 0;
   background-color: var(--background);
   z-index: 9999;
 
+  transition: opacity, display;
+  transition-duration: 0.125s;
+  transition-timing-function: ease-in-out;
+  transition-behavior: allow-discrete;
+
+  &.show {
+    transition-duration: 3s;
+    display: block;
+    opacity: 1;
+  }
+
   svg {
+    width: var(--width);
+
     position: absolute;
     overflow: visible;
     filter: url(#dvd);
+  }
+}
+
+@starting-style {
+  .screensaver.show {
+    opacity: 0;
   }
 }
