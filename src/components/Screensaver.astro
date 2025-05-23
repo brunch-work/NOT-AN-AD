@@ -5,46 +5,6 @@ import NAAVideo from "../assets/images/svg/NAA-video.svg";
 ---
 
 <div class="screensaver">
-  <svg width="0" height="0">
-    <defs>
-      <filter
-        id="dvd"
-        x="-200%"
-        y="-200%"
-        width="600%"
-        height="1200%"
-        filterUnits="userSpaceOnUse"
-      >
-        <feOffset in="SourceGraphic" dx="0" dy="0" result="original"></feOffset>
-
-        <feOffset
-          in="SourceGraphic"
-          dx="-24"
-          dy="34"
-          id="clone1"
-          result="clone1_offset"></feOffset>
-        <feComponentTransfer in="clone1_offset" result="clone1">
-          <feFuncA type="linear" slope="0.6"></feFuncA>
-        </feComponentTransfer>
-
-        <feOffset
-          in="SourceGraphic"
-          dx="-48"
-          dy="68"
-          id="clone2"
-          result="clone2_offset"></feOffset>
-        <feComponentTransfer in="clone2_offset" result="clone2">
-          <feFuncA type="linear" slope="0.3"></feFuncA>
-        </feComponentTransfer>
-
-        <feMerge>
-          <feMergeNode in="original"></feMergeNode>
-          <feMergeNode in="clone1"></feMergeNode>
-          <feMergeNode in="clone2"></feMergeNode>
-        </feMerge>
-      </filter>
-    </defs>
-  </svg>
   <NAAVideo id="logo" />
 </div>
 
@@ -52,10 +12,6 @@ import NAAVideo from "../assets/images/svg/NAA-video.svg";
   const screensaver = document.querySelector(".screensaver");
   const ssStyle = getComputedStyle(screensaver);
 
-  const distance = {
-    x: parseInt(ssStyle.getPropertyValue("--dx").trim()),
-    y: parseInt(ssStyle.getPropertyValue("--dy").trim()),
-  };
   const speed = {
     x: parseFloat(ssStyle.getPropertyValue("--speedX").trim()),
     y: parseFloat(ssStyle.getPropertyValue("--speedY").trim()),
@@ -68,8 +24,6 @@ import NAAVideo from "../assets/images/svg/NAA-video.svg";
 
   let canShowScreensaver = false;
   const logo = document.getElementById("logo");
-  const clone1 = document.getElementById("clone1");
-  const clone2 = document.getElementById("clone2");
 
   // Function to show the screensaver
   function showScreensaver() {
@@ -97,35 +51,6 @@ import NAAVideo from "../assets/images/svg/NAA-video.svg";
   // Start timer on load
   resetScreensaverTimer();
 
-  // Current offsets for animation
-  let currentOffset = { x: distance.x, y: distance.y };
-
-  // Helper to update feOffset attributes
-  function setOffsets(dx, dy) {
-    clone1.setAttribute("dx", String(-dx));
-    clone1.setAttribute("dy", String(-dy));
-    clone2.setAttribute("dx", String(-2 * dx));
-    clone2.setAttribute("dy", String(-2 * dy));
-  }
-
-  function animateOffsets() {
-    // Animate currentOffset towards distance at the same rate as speed
-    ["x", "y"].forEach((axis) => {
-      if (currentOffset[axis] < distance[axis]) {
-        currentOffset[axis] = Math.min(
-          currentOffset[axis] + Math.abs(speed[axis]),
-          distance[axis]
-        );
-      } else if (currentOffset[axis] > distance[axis]) {
-        currentOffset[axis] = Math.max(
-          currentOffset[axis] - Math.abs(speed[axis]),
-          distance[axis]
-        );
-      }
-    });
-    setOffsets(currentOffset.x, currentOffset.y);
-  }
-
   function update() {
     // Move logo
     pos.x += speed.x;
@@ -141,18 +66,12 @@ import NAAVideo from "../assets/images/svg/NAA-video.svg";
     // Bounce on X
     if (pos.x <= 0 || pos.x + logoRect.width >= winW) {
       speed.x *= -1;
-      distance.x *= -1;
     }
     // Bounce on Y
     if (pos.y <= 0 || pos.y + logoRect.height >= winH) {
       speed.y *= -1;
-      distance.y *= -1;
     }
-
-    animateOffsets();
 
     canShowScreensaver && requestAnimationFrame(update);
   }
-
-  setOffsets(currentOffset.x, currentOffset.y);
 </script>

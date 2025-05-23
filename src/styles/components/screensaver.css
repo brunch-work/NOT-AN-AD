@@ -35,8 +35,6 @@
     width: var(--width);
 
     position: absolute;
-    overflow: visible;
-    filter: url(#dvd);
   }
 }
 
