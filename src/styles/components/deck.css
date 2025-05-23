@@ -336,6 +336,7 @@ section {
     legend {
       text-align: center;
       padding-inline: 0.8rem;
+      margin: 0 auto;
     }
 
     p {
@@ -364,6 +365,7 @@ section {
     a {
       display: block;
       color: var(--text);
+      text-decoration: none;
     }
   }
 
