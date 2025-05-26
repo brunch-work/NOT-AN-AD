@@ -1,0 +1,77 @@
+---
+import "../styles/components/screensaver.css";
+
+import NAAVideo from "../assets/images/svg/NAA-video.svg";
+---
+
+<div class="screensaver">
+  <NAAVideo id="logo" />
+</div>
+
+<script type="module">
+  const screensaver = document.querySelector(".screensaver");
+  const ssStyle = getComputedStyle(screensaver);
+
+  const speed = {
+    x: parseFloat(ssStyle.getPropertyValue("--speedX").trim()),
+    y: parseFloat(ssStyle.getPropertyValue("--speedY").trim()),
+  };
+
+  // Initial position
+  let pos = { x: 0, y: 0 };
+
+  // Wait for DOMContentLoaded to safely access elements
+
+  let canShowScreensaver = false;
+  const logo = document.getElementById("logo");
+
+  // Function to show the screensaver
+  function showScreensaver() {
+    screensaver.classList.add("show");
+    canShowScreensaver = true;
+    update();
+  }
+  function hideScreensaver() {
+    screensaver.classList.remove("show");
+    canShowScreensaver = false;
+  }
+
+  // Screensaver inactivity timer logic
+  let screensaverTimeout;
+  function resetScreensaverTimer() {
+    hideScreensaver();
+    clearTimeout(screensaverTimeout);
+    screensaverTimeout = setTimeout(showScreensaver, 10000);
+  }
+  // Listen for user activity to reset timer
+  ["mousemove", "mousedown", "touchstart", "touchmove", "keydown"].forEach(
+    (evt) =>
+      window.addEventListener(evt, resetScreensaverTimer, { passive: true })
+  );
+  // Start timer on load
+  resetScreensaverTimer();
+
+  function update() {
+    // Move logo
+    pos.x += speed.x;
+    pos.y += speed.y;
+    logo.style.left = pos.x + "px";
+    logo.style.top = pos.y + "px";
+
+    // Get logo size and window size
+    const logoRect = logo.getBoundingClientRect();
+    const winW = window.innerWidth;
+    const winH = window.innerHeight;
+
+    // Bounce on X
+    if (pos.x <= 0 || pos.x + logoRect.width >= winW) {
+      speed.x *= -1;
+    }
+    // Bounce on Y
+    if (pos.y <= 0 || pos.y + logoRect.height >= winH) {
+      speed.y *= -1;
+    }
+
+    canShowScreensaver && requestAnimationFrame(update);
+  }
+</script>
