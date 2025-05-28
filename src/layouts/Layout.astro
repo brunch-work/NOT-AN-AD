@@ -2,6 +2,7 @@
 // Astro will bundle and optimize this CSS for you automatically
 // This also works for preprocessor files like .scss, .styl, etc.
 import "../styles/global.css";
+import Screensaver from "../components/Screensaver.astro";
 ---
 
 <!doctype html>
@@ -15,6 +16,7 @@ import "../styles/global.css";
     <title>NOT AN AD</title>
   </head>
   <body>
+    <Screensaver />
     <slot />
   </body>
 </html>

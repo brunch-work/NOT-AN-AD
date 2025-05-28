@@ -1,4 +1,6 @@
 ---
+import { sanityClient } from "sanity:client";
+
 import "../styles/components/deck.css";
 
 import NotAnAdLogo from "../assets/images/svg/NOT_AN_AD_LOGO.svg";
@@ -10,8 +12,6 @@ import IconEarnedMedia from "../assets/images/svg/icon_earned_media.svg";
 import IconAmplification from "../assets/images/svg/icon_amplification.svg";
 
 import CaseStudy from "./CaseStudy.astro";
-
-import { sanityClient } from "sanity:client";
 
 const deckPage = await sanityClient.fetch(
   `*[_type == "deckPage" && defined(Sections)] | order(priority desc)`
