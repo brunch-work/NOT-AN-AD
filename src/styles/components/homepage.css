@@ -40,6 +40,7 @@
   position: absolute;
   right: 2.4rem;
   text-decoration: none;
+  color: var(--text);
 }
 
 aside {
@@ -65,11 +66,11 @@ aside {
   .first-content {
     flex-grow: 1;
     align-content: center;
+    padding: 3rem;
   }
   .placeholder {
+    max-height: calc(var(--aside-height) - 30lh);
     display: var(--first-content-aside-display);
-    width: 80%;
-    height: var(--placeholder-height);
   }
 }
 

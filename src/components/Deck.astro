@@ -1,4 +1,6 @@
 ---
+import { sanityClient } from "sanity:client";
+
 import "../styles/components/deck.css";
 
 import NotAnAdLogo from "../assets/images/svg/NOT_AN_AD_LOGO.svg";
@@ -10,480 +12,413 @@ import IconEarnedMedia from "../assets/images/svg/icon_earned_media.svg";
 import IconAmplification from "../assets/images/svg/icon_amplification.svg";
 
 import CaseStudy from "./CaseStudy.astro";
-import Screensaver from "./Screensaver.astro";
+
+const deckPage = await sanityClient.fetch(
+  `*[_type == "deckPage" && defined(Sections)] | order(priority desc)`
+);
+
+type Asset = {
+  type: string;
+  image: {
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+  };
+};
+
+type Project = {
+  client: string;
+  assets: Asset[];
+  publishedAt: string;
+};
+
+type Section = {
+  title: string;
+  projects: Project[];
+};
 ---
 
-<div class="container padding-inline-0">
+<div>
   <span id="top"> </span>
   <header class="container-i">
     <a href="/" aria-label="Home">
       <NotAnAdLogo class="deck-header--logo" fill="currentColor" />
     </a>
     <nav>
-      <details role="tabpanel" id="nav-0">
-        <summary>Not an ad</summary>
-        <ul role="tablist">
-          <li role="tab"><button>Not an ad</button></li>
-          <li role="tab"><button id="btn-0-1-1">Services</button></li>
-          <li role="tab"><button id="btn-0-1-2">Case studies</button></li>
+      <details role="combobox" aria-label="Sections">
+        <summary id="nav-1">Not an ad</summary>
+        <ul role="listbox">
+          {}
+          <li role="option"><a href="#not-an-ad">Not an ad</a></li>
+          <li role="option"><a href="#services">Services</a></li>
+          <li role="option"><a href="#case-studies">Case studies</a></li>
         </ul>
       </details>
-      <details role="tabpanel" id="nav-1">
-        <summary
-          ><IconStrategy
-            fill="currentColor"
-            width="1em"
-            height="1em"
-          />Strategy</summary
-        >
-        <ul role="tablist" id="nav-1-1">
-          <li role="tab">
-            <button
-              ><IconStrategy
-                fill="currentColor"
-                width="1em"
-                height="1em"
-              />Strategy</button
-            >
-          </li>
-          <li role="tab">
-            <button
-              ><IconPartnership
-                fill="currentColor"
-                width="1em"
-                height="1em"
-              />Partnerships</button
-            >
-          </li>
-          <li role="tab">
-            <button
-              ><IconAmplification
-                fill="currentColor"
-                width="1em"
-                height="1em"
-              />Amplification</button
-            >
-          </li>
-          <li role="tab">
-            <button
-              ><IconContent
-                fill="currentColor"
-                width="1em"
-                height="1em"
-              />Content creation</button
-            >
-          </li>
-          <li role="tab">
-            <button
-              ><IconEarnedMedia
-                fill="currentColor"
-                width="1em"
-                height="1em"
-              />Earned media</button
-            >
-          </li>
-        </ul>
-        <ul role="tablist" id="nav-1-2">
-          <li role="tab">
-            <button id="btn-1-2-0">UGC</button>
-          </li>
-          <li role="tab">
-            <button id="btn-1-2-1">Studio</button>
-          </li>
-          <li role="tab">
-            <button id="btn-1-2-2">Broadcast</button>
-          </li>
-          <li role="tab">
-            <button id="btn-1-2-3">Partnerships</button>
-          </li>
-        </ul>
-      </details>
-      <details role="tabpanel" id="nav-2">
-        <summary
-          ><IconStrategy
-            fill="currentColor"
-            width="1em"
-            height="1em"
-          />Strategy</summary
-        >
-        <ul role="tablist" id="nav-2-0">
-          <li role="tab">
-            <button>UGC-1</button>
-          </li>
-          <li role="tab">
-            <button>UGC-2</button>
-          </li>
-          <li role="tab">
-            <button>UGC-3</button>
-          </li>
-        </ul>
-        <ul role="tablist" id="nav-2-1">
-          <li role="tab">
-            <button>Studio-1</button>
-          </li>
-          <li role="tab">
-            <button>Studio-2</button>
-          </li>
-          <li role="tab">
-            <button>Studio-3</button>
-          </li>
-        </ul>
-        <ul role="tablist" id="nav-2-2">
-          <li role="tab">
-            <button>Broadcast-1</button>
-          </li>
-          <li role="tab">
-            <button>Broadcast-2</button>
-          </li>
-          <li role="tab">
-            <button>Broadcast-3</button>
-          </li>
-        </ul>
-        <ul role="tablist" id="nav-2-3">
-          <li role="tab">
-            <button>Partnerships-1</button>
-          </li>
-          <li role="tab">
-            <button>Partnerships-2</button>
-          </li>
-          <li role="tab">
-            <button>Partnerships-3</button>
-          </li>
+      <details role="combobox" aria-label="Case study categories">
+        <summary id="nav-2">UGC</summary>
+        <ul role="listbox">
+          {
+            deckPage[0].Sections.map((section: Section) => (
+              <li role="option">
+                <a href={`#${section.title.toLowerCase().replace(" ", "-")}`}>
+                  {section.title}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </details>
     </nav>
   </header>
-  <section class="intro container-i">
-    <figure class="first-content">
-      <div class="placeholder placeholder-v">
-        <img src="https://placehold.co/1080x1920" alt="" />
+
+  <div class="container padding-inline-0">
+    <section class="intro container-i" id="not-an-ad" data-nav-1="Not an ad">
+      <figure class="first-content">
+        <div class="placeholder placeholder-v">
+          <img src="https://placehold.co/1080x1920" alt="" />
+        </div>
+      </figure>
+      <h1>
+        NOT AN AD<NotAnAdLogo class="inline-icon" fill="currentColor" />is a
+        social media<br />
+        advertising agency<TapeIcon class="inline-icon" />based<br />
+        in new york city
+      </h1>
+    </section>
+    <section class="services container-i" id="services" data-nav-1="Services">
+      <div class="services--grid">
+        <h2>[<span>↘</span>] Services</h2>
+        <article>
+          <h3>
+            <IconStrategy
+              fill="currentColor"
+              width="1em"
+              height="1em"
+            />Strategy
+          </h3>
+          <p>
+            ↳ In eiusmod occaecat aute magna veniam elit minim consectetur
+            adipisicing exercitation pariatur exercitation veniam magna. Labore
+            nisi laboris tempor sint non.
+          </p>
+        </article>
+        <article>
+          <h3>
+            <IconPartnership
+              fill="currentColor"
+              width="1em"
+              height="1em"
+            />Partnerships
+          </h3>
+          <p>
+            ↳ In eiusmod occaecat aute magna veniam elit minim consectetur
+            adipisicing exercitation pariatur exercitation veniam magna. Labore
+            nisi laboris tempor sint non.
+          </p>
+        </article>
+        <article>
+          <h3>
+            <IconContent fill="currentColor" width="1em" height="1em" />Content
+            creation
+          </h3>
+          <p>
+            ↳ In eiusmod occaecat aute magna veniam elit minim consectetur
+            adipisicing exercitation pariatur exercitation veniam magna. Labore
+            nisi laboris tempor sint non.
+          </p>
+        </article>
+        <article>
+          <h3>
+            <IconEarnedMedia
+              fill="currentColor"
+              width="1em"
+              height="1em"
+            />Earned media
+          </h3>
+          <p>
+            ↳ In eiusmod occaecat aute magna veniam elit minim consectetur
+            adipisicing exercitation pariatur exercitation veniam magna. Labore
+            nisi laboris tempor sint non.
+          </p>
+        </article>
+        <article>
+          <h3>
+            <IconAmplification
+              fill="currentColor"
+              width="1em"
+              height="1em"
+            />Amplification
+          </h3>
+          <p>
+            ↳ In eiusmod occaecat aute magna veniam elit minim consectetur
+            adipisicing exercitation pariatur exercitation veniam magna. Labore
+            nisi laboris tempor sint non.
+          </p>
+        </article>
       </div>
-    </figure>
-    <h1>
-      NOT AN AD<NotAnAdLogo class="inline-icon" fill="currentColor" />is a
-      social media<br />
-      advertising agency<TapeIcon class="inline-icon" />based<br />
-      in new york city
-    </h1>
-  </section>
-  <section class="services container-i">
-    <div class="services--grid">
-      <h2>[<span>↘</span>] Services</h2>
-      <article>
-        <h3>
-          <IconStrategy fill="currentColor" width="1em" height="1em" />Strategy
-        </h3>
-        <p>
-          ↳ In eiusmod occaecat aute magna veniam elit minim consectetur
-          adipisicing exercitation pariatur exercitation veniam magna. Labore
-          nisi laboris tempor sint non.
-        </p>
-      </article>
-      <article>
-        <h3>
-          <IconPartnership
-            fill="currentColor"
-            width="1em"
-            height="1em"
-          />Partnerships
-        </h3>
-        <p>
-          ↳ In eiusmod occaecat aute magna veniam elit minim consectetur
-          adipisicing exercitation pariatur exercitation veniam magna. Labore
-          nisi laboris tempor sint non.
-        </p>
-      </article>
-      <article>
-        <h3>
-          <IconContent fill="currentColor" width="1em" height="1em" />Content
-          creation
-        </h3>
-        <p>
-          ↳ In eiusmod occaecat aute magna veniam elit minim consectetur
-          adipisicing exercitation pariatur exercitation veniam magna. Labore
-          nisi laboris tempor sint non.
-        </p>
-      </article>
-      <article>
-        <h3>
-          <IconEarnedMedia fill="currentColor" width="1em" height="1em" />Earned
-          media
-        </h3>
-        <p>
-          ↳ In eiusmod occaecat aute magna veniam elit minim consectetur
-          adipisicing exercitation pariatur exercitation veniam magna. Labore
-          nisi laboris tempor sint non.
-        </p>
-      </article>
-      <article>
-        <h3>
-          <IconAmplification
-            fill="currentColor"
-            width="1em"
-            height="1em"
-          />Amplification
-        </h3>
-        <p>
-          ↳ In eiusmod occaecat aute magna veniam elit minim consectetur
-          adipisicing exercitation pariatur exercitation veniam magna. Labore
-          nisi laboris tempor sint non.
-        </p>
-      </article>
-    </div>
-  </section>
-</div>
-<section class="case-studies">
-  <div class="container">
-    <div class="case-studies--grid">
-      <h2>[<span>↘</span>] UGC</h2>
-      <ul>
-        <li><a href="#dominos">Domino's</a></li>
-        <li><a href="#dunkin">Dunkin</a></li>
-        <li><a href="#doordash">Doordash</a></li>
-      </ul>
-    </div>
-    <span class="marquee">
-      | →[case studies]* <span aria-hidden="true"
-        >| →[case studies]* | →[case studies]* | →[case studies]* | →[case
-        studies]* | →[case studies]*
-      </span>
-    </span>
+    </section>
   </div>
-</section>
-<div class="container padding-inline-0">
-  <section class="case-study container-i" id="dominos">
-    <aside>
-      <h3>UGC | [Domino's]</h3>
-      <p>▮ _ Year of the project - 2023</p>
-      <a href="#">[↗] Link</a>
-      <p>
-        In eiusmod occaecat aute magna veniam elit minim consectetur adipisicing
-        exercitation par iatur exercitation veniam magna. Labore nisi laboris
-        tempor sint non. Deserunt eiusmod esse exercitation. Pariatur consequat
-        in excepteur quis voluptate aliquip aute deserunt non. Sunt ipsum
-        proident laboris sint occaecat ad exercitation nostrud ullamco fugiat
-        nisi ex ullamco dolor.
-      </p>
-    </aside>
-    <ul class="content-grid" data-view="grid">
-      <CaseStudy
-        id="s1"
-        title="Square"
-        category="strategy"
-        year="2025"
-        shape="s"
-      >
-        <IconStrategy
-          slot="icon"
-          fill="currentColor"
-          width="15"
-          height="15"
-          role="presentation"
-        />
-        <img slot="image" src="https://placehold.co/1080x1080" alt="" />
-      </CaseStudy>
-      <CaseStudy
-        id="s1"
-        title="Square"
-        category="strategy"
-        year="2025"
-        shape="v"
-      >
-        <IconStrategy
-          slot="icon"
-          fill="currentColor"
-          width="15"
-          height="15"
-          role="presentation"
-        />
-        <img slot="image" src="https://placehold.co/1080x1920" alt="" />
-      </CaseStudy>
-      <CaseStudy
-        id="s1"
-        title="Square"
-        category="strategy"
-        year="2025"
-        shape="h"
-      >
-        <IconStrategy
-          slot="icon"
-          fill="currentColor"
-          width="15"
-          height="15"
-          role="presentation"
-        />
-        <img slot="image" src="https://placehold.co/1920x1080" alt="" />
-      </CaseStudy>
-      <CaseStudy
-        id="s1"
-        title="Square"
-        category="strategy"
-        year="2025"
-        shape="s"
-      >
-        <IconStrategy
-          slot="icon"
-          fill="currentColor"
-          width="15"
-          height="15"
-          role="presentation"
-        />
-        <img slot="image" src="https://placehold.co/1080x1080" alt="" />
-      </CaseStudy>
-      <CaseStudy
-        id="s1"
-        title="Square"
-        category="strategy"
-        year="2025"
-        shape="h"
-      >
-        <IconStrategy
-          slot="icon"
-          fill="currentColor"
-          width="15"
-          height="15"
-          role="presentation"
-        />
-        <img slot="image" src="https://placehold.co/1920x1080" alt="" />
-      </CaseStudy>
-
-      <CaseStudy
-        id="s1"
-        title="Square"
-        category="strategy"
-        year="2025"
-        shape="v"
-      >
-        <IconStrategy
-          slot="icon"
-          fill="currentColor"
-          width="15"
-          height="15"
-          role="presentation"
-        />
-        <img slot="image" src="https://placehold.co/1080x1920" alt="" />
-      </CaseStudy>
-    </ul>
+  <section class="case-studies" id="case-studies" data-nav-1="Case studies">
+    <div class="container">
+      <div class="case-studies--grid">
+        <h2>[<span>↘</span>] UGC</h2>
+        <ul>
+          <li><a href="#dominos">Domino's</a></li>
+          <li><a href="#dunkin">Dunkin</a></li>
+          <li><a href="#doordash">Doordash</a></li>
+        </ul>
+      </div>
+      <span class="marquee">
+        | →[case studies]* <span aria-hidden="true"
+          >| →[case studies]* | →[case studies]* | →[case studies]* | →[case
+          studies]* | →[case studies]*
+        </span>
+      </span>
+    </div>
   </section>
-  <section class="case-study container-i" id="dunkin">
-    <aside>
-      <h3>UGC | [Domino's]</h3>
-      <p>▮ _ Year of the project - 2023</p>
-      <a href="#">[↗] Link</a>
-      <p>
-        In eiusmod occaecat aute magna veniam elit minim consectetur adipisicing
-        exercitation par iatur exercitation veniam magna. Labore nisi laboris
-        tempor sint non. Deserunt eiusmod esse exercitation. Pariatur consequat
-        in excepteur quis voluptate aliquip aute deserunt non. Sunt ipsum
-        proident laboris sint occaecat ad exercitation nostrud ullamco fugiat
-        nisi ex ullamco dolor.
-      </p>
-    </aside>
-    <ul class="content-grid" data-view="grid">
-      <CaseStudy
-        id="s1"
-        title="Square"
-        category="strategy"
-        year="2025"
-        shape="s"
-      >
-        <IconStrategy
-          slot="icon"
-          fill="currentColor"
-          width="15"
-          height="15"
-          role="presentation"
-        />
-        <img slot="image" src="https://placehold.co/1080x1080" alt="" />
-      </CaseStudy>
-      <CaseStudy
-        id="s1"
-        title="Square"
-        category="strategy"
-        year="2025"
-        shape="v"
-      >
-        <IconStrategy
-          slot="icon"
-          fill="currentColor"
-          width="15"
-          height="15"
-          role="presentation"
-        />
-        <img slot="image" src="https://placehold.co/1080x1920" alt="" />
-      </CaseStudy>
-      <CaseStudy
-        id="s1"
-        title="Square"
-        category="strategy"
-        year="2025"
-        shape="h"
-      >
-        <IconStrategy
-          slot="icon"
-          fill="currentColor"
-          width="15"
-          height="15"
-          role="presentation"
-        />
-        <img slot="image" src="https://placehold.co/1920x1080" alt="" />
-      </CaseStudy>
-      <CaseStudy
-        id="s1"
-        title="Square"
-        category="strategy"
-        year="2025"
-        shape="s"
-      >
-        <IconStrategy
-          slot="icon"
-          fill="currentColor"
-          width="15"
-          height="15"
-          role="presentation"
-        />
-        <img slot="image" src="https://placehold.co/1080x1080" alt="" />
-      </CaseStudy>
-      <CaseStudy
-        id="s1"
-        title="Square"
-        category="strategy"
-        year="2025"
-        shape="h"
-      >
-        <IconStrategy
-          slot="icon"
-          fill="currentColor"
-          width="15"
-          height="15"
-          role="presentation"
-        />
-        <img slot="image" src="https://placehold.co/1920x1080" alt="" />
-      </CaseStudy>
+  <div class="container padding-inline-0">
+    <section class="case-study container-i" id="ugc" data-nav-2="UGC">
+      <fieldset>
+        <legend><h3>Domino's</h3></legend>
+        <p>
+          <a href="#">[↗] Link</a>
+        </p>
+        <p class="case-study--year">
+          <span>Year</span><span>2023</span>
+        </p>
+        <p>
+          In eiusmod occaecat aute magna veniam elit minim consectetur
+          adipisicing exercitation par iatur exercitation veniam magna. Labore
+          nisi laboris tempor sint non. Deserunt eiusmod esse exercitation.
+          Pariatur consequat in excepteur quis voluptate aliquip aute deserunt
+          non. Sunt ipsum proident laboris sint occaecat ad exercitation nostrud
+          ullamco fugiat nisi ex ullamco dolor.
+        </p>
+      </fieldset>
+      <ul class="content-grid" data-view="grid">
+        <CaseStudy
+          id="s1"
+          title="Square"
+          category="strategy"
+          year="2025"
+          shape="s"
+        >
+          <IconStrategy
+            slot="icon"
+            fill="currentColor"
+            width="15"
+            height="15"
+            role="presentation"
+          />
+          <img slot="image" src="https://placehold.co/1080x1080" alt="" />
+        </CaseStudy>
+        <CaseStudy
+          id="s1"
+          title="Square"
+          category="strategy"
+          year="2025"
+          shape="v"
+        >
+          <IconStrategy
+            slot="icon"
+            fill="currentColor"
+            width="15"
+            height="15"
+            role="presentation"
+          />
+          <img slot="image" src="https://placehold.co/1080x1920" alt="" />
+        </CaseStudy>
+        <CaseStudy
+          id="s1"
+          title="Square"
+          category="strategy"
+          year="2025"
+          shape="h"
+        >
+          <IconStrategy
+            slot="icon"
+            fill="currentColor"
+            width="15"
+            height="15"
+            role="presentation"
+          />
+          <img slot="image" src="https://placehold.co/1920x1080" alt="" />
+        </CaseStudy>
+        <CaseStudy
+          id="s1"
+          title="Square"
+          category="strategy"
+          year="2025"
+          shape="s"
+        >
+          <IconStrategy
+            slot="icon"
+            fill="currentColor"
+            width="15"
+            height="15"
+            role="presentation"
+          />
+          <img slot="image" src="https://placehold.co/1080x1080" alt="" />
+        </CaseStudy>
+        <CaseStudy
+          id="s1"
+          title="Square"
+          category="strategy"
+          year="2025"
+          shape="h"
+        >
+          <IconStrategy
+            slot="icon"
+            fill="currentColor"
+            width="15"
+            height="15"
+            role="presentation"
+          />
+          <img slot="image" src="https://placehold.co/1920x1080" alt="" />
+        </CaseStudy>
 
-      <CaseStudy
-        id="s1"
-        title="Square"
-        category="strategy"
-        year="2025"
-        shape="v"
-      >
-        <IconStrategy
-          slot="icon"
-          fill="currentColor"
-          width="15"
-          height="15"
-          role="presentation"
-        />
-        <img slot="image" src="https://placehold.co/1080x1920" alt="" />
-      </CaseStudy>
-    </ul>
-  </section>
+        <CaseStudy
+          id="s1"
+          title="Square"
+          category="strategy"
+          year="2025"
+          shape="v"
+        >
+          <IconStrategy
+            slot="icon"
+            fill="currentColor"
+            width="15"
+            height="15"
+            role="presentation"
+          />
+          <img slot="image" src="https://placehold.co/1080x1920" alt="" />
+        </CaseStudy>
+      </ul>
+    </section>
+    <section class="case-study container-i">
+      <fieldset>
+        <legend><h3>Domino's</h3></legend>
+        <p>
+          <a href="#">[↗] Link</a>
+        </p>
+        <p class="case-study--year">
+          <span>Year</span><span>2023</span>
+        </p>
+        <p>
+          In eiusmod occaecat aute magna veniam elit minim consectetur
+          adipisicing exercitation par iatur exercitation veniam magna. Labore
+          nisi laboris tempor sint non. Deserunt eiusmod esse exercitation.
+          Pariatur consequat in excepteur quis voluptate aliquip aute deserunt
+          non. Sunt ipsum proident laboris sint occaecat ad exercitation nostrud
+          ullamco fugiat nisi ex ullamco dolor.
+        </p>
+      </fieldset>
+      <ul class="content-grid" data-view="grid">
+        <CaseStudy
+          id="s1"
+          title="Square"
+          category="strategy"
+          year="2025"
+          shape="s"
+        >
+          <IconStrategy
+            slot="icon"
+            fill="currentColor"
+            width="15"
+            height="15"
+            role="presentation"
+          />
+          <img slot="image" src="https://placehold.co/1080x1080" alt="" />
+        </CaseStudy>
+        <CaseStudy
+          id="s1"
+          title="Square"
+          category="strategy"
+          year="2025"
+          shape="v"
+        >
+          <IconStrategy
+            slot="icon"
+            fill="currentColor"
+            width="15"
+            height="15"
+            role="presentation"
+          />
+          <img slot="image" src="https://placehold.co/1080x1920" alt="" />
+        </CaseStudy>
+        <CaseStudy
+          id="s1"
+          title="Square"
+          category="strategy"
+          year="2025"
+          shape="h"
+        >
+          <IconStrategy
+            slot="icon"
+            fill="currentColor"
+            width="15"
+            height="15"
+            role="presentation"
+          />
+          <img slot="image" src="https://placehold.co/1920x1080" alt="" />
+        </CaseStudy>
+        <CaseStudy
+          id="s1"
+          title="Square"
+          category="strategy"
+          year="2025"
+          shape="s"
+        >
+          <IconStrategy
+            slot="icon"
+            fill="currentColor"
+            width="15"
+            height="15"
+            role="presentation"
+          />
+          <img slot="image" src="https://placehold.co/1080x1080" alt="" />
+        </CaseStudy>
+        <CaseStudy
+          id="s1"
+          title="Square"
+          category="strategy"
+          year="2025"
+          shape="h"
+        >
+          <IconStrategy
+            slot="icon"
+            fill="currentColor"
+            width="15"
+            height="15"
+            role="presentation"
+          />
+          <img slot="image" src="https://placehold.co/1920x1080" alt="" />
+        </CaseStudy>
 
-  <footer class="intro-footer">
-    <TapeIcon />
-    <span id="intro-time">15:32:00</span>
-  </footer>
+        <CaseStudy
+          id="s1"
+          title="Square"
+          category="strategy"
+          year="2025"
+          shape="v"
+        >
+          <IconStrategy
+            slot="icon"
+            fill="currentColor"
+            width="15"
+            height="15"
+            role="presentation"
+          />
+          <img slot="image" src="https://placehold.co/1080x1920" alt="" />
+        </CaseStudy>
+      </ul>
+    </section>
+    <footer class="intro-footer">
+      <TapeIcon />
+      <span id="intro-time">15:32:00</span>
+    </footer>
+  </div>
 </div>
 <dialog id="lightbox">
   <header>
@@ -495,6 +430,7 @@ import Screensaver from "./Screensaver.astro";
 <script>
   const introTime = document.getElementById("intro-time") as HTMLSpanElement;
 
+  /* update the clock at the bottom of the page */
   function updateTime() {
     const time = new Date();
     const formattedTime = time.toLocaleTimeString("en-US", { hour12: false });
@@ -504,45 +440,44 @@ import Screensaver from "./Screensaver.astro";
   updateTime();
   setInterval(updateTime, 1000);
 
-  /** navigation selector */
-  //const nav = document.querySelector("nav") as HTMLElement;
-  const topLevel = document.getElementById("nav-0") as HTMLDetailsElement;
-  const topLevelButtons = document.querySelectorAll(
-    'nav button[id^="btn"]'
-  ) as NodeListOf<HTMLButtonElement>;
-
-  function handleNavigation(i: number, event: Event) {
-    const target = event.target as HTMLButtonElement;
-    const targetId = target.id;
-    const menuLevel = targetId.split("-")[2];
-    const menuNumber = targetId.split("-")[3];
-
-    // open the child
-    const detail = document.getElementById(
-      `nav-${menuLevel}`
-    ) as HTMLDetailsElement;
-    detail.style.setProperty("display", "block");
-    detail.setAttribute("open", "");
-
-    // hide all ULs
-    const uls = detail.querySelectorAll(`ul`) as NodeListOf<HTMLUListElement>;
-    uls.forEach((n: HTMLUListElement) => {
-      n.style.setProperty("display", "none");
+  // clickoutside of the details element closes it
+  document.addEventListener("click", (e) => {
+    // check if the target is not a details element
+    const allDetails = document.querySelectorAll("details");
+    allDetails.forEach((d) => {
+      d.removeAttribute("open");
     });
+  });
 
-    // only show the correct UL in the neighbouring child
-    const subMenuElement = document.getElementById(
-      `nav-${menuLevel}-${menuNumber}`
-    ) as HTMLUListElement;
-    if (subMenuElement) {
-      subMenuElement.style.setProperty("display", "block");
-    }
+  // add intersection observers to update the nav
+  const observedAttributes = ["nav-1", "nav-2"];
 
-    topLevel.setAttribute("open", "");
-  }
+  observedAttributes.forEach((attr) => {
+    const sections = document.querySelectorAll(`[data-${attr}]`);
+    const options: IntersectionObserverInit = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5,
+    };
 
-  topLevelButtons.forEach((button, i) => {
-    button.addEventListener("click", (e) => handleNavigation(i, e));
+    const callback: IntersectionObserverCallback = (
+      entries: IntersectionObserverEntry[]
+    ) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const navSummary = document.querySelector(`summary#${attr}`);
+          const navVal = entry.target.getAttribute(`data-${attr}`);
+          if (navSummary?.innerHTML) {
+            navSummary.innerHTML = navVal ?? "";
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
   });
 </script>
 <script src="../scripts/lightbox.js"></script>
