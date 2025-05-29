@@ -43,10 +43,6 @@ ul {
   padding: 0;
 }
 
-figure {
-  margin: 0;
-}
-
 a {
   color: var(--accent);
 }
@@ -257,6 +253,13 @@ button {
 }
 
 figure {
+  margin: 0;
+
+  &:focus-within {
+    outline: Highlight auto 1px;
+    outline: -webkit-focus-ring-color auto 1px;
+  }
+
   figcaption {
     margin-top: 0.8rem;
     margin-inline: auto;
