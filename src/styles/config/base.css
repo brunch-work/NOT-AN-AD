@@ -271,7 +271,6 @@ figure {
     .content-category,
     .content-client {
       display: var(--content-icon-display);
-      order: var(--content-category-order, 0);
     }
     .content-icon {
       display: var(--content-icon-display);

@@ -52,7 +52,7 @@ dialog#lightbox {
       figcaption {
         flex-wrap: wrap;
         span {
-          width: 50%;
+          width: calc(50% - var(--container-padding));
 
           &:nth-child(even) {
             text-align: end;
