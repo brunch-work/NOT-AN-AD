@@ -41,7 +41,7 @@
   }
 }
 
-div:first-of-type {
+div:has(#top) {
   padding-bottom: 3.6rem;
 }
 
@@ -373,7 +373,6 @@ section {
     --content-icon-display: inline;
     --content-title-display: none;
     --content-year-display: none;
-    --figcaption-justify-content: start;
 
     flex: 3;
     grid-auto-rows: max-content;
