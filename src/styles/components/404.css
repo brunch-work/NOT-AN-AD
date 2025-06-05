@@ -1,0 +1,56 @@
+body {
+  background-color: var(--palette-blue);
+  background-image: url("data:image/svg+xml,%3Csvg width='88.01' height='18' xmlns='http://www.w3.org/2000/svg'%3E%3Cstyle%3E @font-face %7B font-family: 'IBM Plex Mono', sans-serif; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/IBMPlexMono-Regular.woff2') format('woff2'); %7D text %7B fill: %23000; font-family: 'IBM Plex Mono', monospace; %7D %3C/style%3E%3Ctext x='47%25' y='40%25' font-size='14.62' text-anchor='middle' dominant-baseline='middle' %3E NOT AN AD %3C/text%3E%3C/svg%3E%0A");
+  font-size: 14.62px;
+  line-height: 18px;
+  --chw: 8.801;
+  --lhh: 18;
+
+  @media (width < 642px) {
+    font-size: 8px;
+    line-height: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg width='48.16' height='10' xmlns='http://www.w3.org/2000/svg'%3E%3Cstyle%3E @font-face %7B font-family: 'IBM Plex Mono', sans-serif; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/IBMPlexMono-Regular.woff2') format('woff2'); %7D text %7B fill: %23000; font-family: 'IBM Plex Mono', monospace; %7D %3C/style%3E%3Ctext x='44%25' y='49%25' font-size='8' text-anchor='middle' dominant-baseline='middle' %3E NOT AN AD %3C/text%3E%3C/svg%3E%0A");
+    --chw: 4.816;
+    --lhh: 10;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+fzf {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 3ch;
+  translate: var(--wi, -50%) var(--he, 50%);
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+f,
+z {
+  display: flex;
+  flex-wrap: wrap;
+  width: 23ch;
+  x,
+  o {
+    display: inline-block;
+    width: var(--w);
+    height: 1lh;
+  }
+}
+
+z {
+  width: 21ch;
+}
+
+x {
+  background-color: var(--palette-blue);
+}
+o {
+  background-color: transparent;
+}

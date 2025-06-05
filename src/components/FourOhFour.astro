@@ -1,0 +1,92 @@
+<fzf>
+  <f>
+    <o style="--w:11ch"></o><x style="--w:9ch"></x><o style="--w:3ch"></o>
+    <o style="--w:11ch"></o><x style="--w:9ch"></x><o style="--w:3ch"></o>
+    <o style="--w:9ch"></o><x style="--w:11ch"></x><o style="--w:3ch"></o>
+    <o style="--w:6ch"></o><x style="--w:6ch"></x><o style="--w:1ch"></o><x
+      style="--w:7ch"></x><o style="--w:3ch"></o>
+    <o style="--w:5ch"></o><x style="--w:6ch"></x><o style="--w:2ch"></o><x
+      style="--w:7ch"></x><o style="--w:3ch"></o>
+    <o style="--w:3ch"></o><x style="--w:7ch"></x><o style="--w:3ch"></o><x
+      style="--w:7ch"></x><o style="--w:3ch"></o>
+    <o style="--w:2ch"></o><x style="--w:6ch"></x><o style="--w:5ch"></o><x
+      style="--w:7ch"></x><o style="--w:3ch"></o>
+    <o style="--w:1ch"></o><x style="--w:6ch"></x><o style="--w:6ch"></o><x
+      style="--w:7ch"></x><o style="--w:3ch"></o>
+    <x style="--w:7ch"></x><o style="--w:6ch"></o><x style="--w:7ch"></x><o
+      style="--w:3ch"></o>
+    <x style="--w:23ch"></x>
+    <x style="--w:23ch"></x>
+    <o style="--w:13ch"></o><x style="--w:7ch"></x><o style="--w:3ch"></o>
+    <o style="--w:13ch"></o><x style="--w:7ch"></x><o style="--w:3ch"></o>
+    <o style="--w:13ch"></o><x style="--w:7ch"></x><o style="--w:3ch"></o>
+  </f>
+  <z>
+    <o style="--w:3ch"></o><x style="--w:15ch"></x><o style="--w:3ch"></o>
+    <o style="--w:2ch"></o><x style="--w:17ch"></x><o style="--w:2ch"></o>
+    <x style="--w:9ch"></x><o style="--w:3ch"></o><x style="--w:9ch"></x>
+    <x style="--w:8ch"></x><o style="--w:5ch"></o><x style="--w:8ch"></x>
+    <x style="--w:8ch"></x><o style="--w:5ch"></o><x style="--w:8ch"></x>
+    <x style="--w:8ch"></x><o style="--w:5ch"></o><x style="--w:8ch"></x>
+    <x style="--w:8ch"></x><o style="--w:5ch"></o><x style="--w:8ch"></x>
+    <x style="--w:8ch"></x><o style="--w:5ch"></o><x style="--w:8ch"></x>
+    <x style="--w:8ch"></x><o style="--w:5ch"></o><x style="--w:8ch"></x>
+    <x style="--w:8ch"></x><o style="--w:5ch"></o><x style="--w:8ch"></x>
+    <x style="--w:8ch"></x><o style="--w:5ch"></o><x style="--w:8ch"></x>
+    <x style="--w:9ch"></x><o style="--w:3ch"></o><x style="--w:9ch"></x>
+    <o style="--w:2ch"></o><x style="--w:17ch"></x><o style="--w:2ch"></o>
+    <o style="--w:3ch"></o><x style="--w:15ch"></x><o style="--w:3ch"></o>
+  </z>
+  <f>
+    <o style="--w:11ch"></o><x style="--w:9ch"></x><o style="--w:3ch"></o>
+    <o style="--w:11ch"></o><x style="--w:9ch"></x><o style="--w:3ch"></o>
+    <o style="--w:9ch"></o><x style="--w:11ch"></x><o style="--w:3ch"></o>
+    <o style="--w:6ch"></o><x style="--w:6ch"></x><o style="--w:1ch"></o><x
+      style="--w:7ch"></x><o style="--w:3ch"></o>
+    <o style="--w:5ch"></o><x style="--w:6ch"></x><o style="--w:2ch"></o><x
+      style="--w:7ch"></x><o style="--w:3ch"></o>
+    <o style="--w:3ch"></o><x style="--w:7ch"></x><o style="--w:3ch"></o><x
+      style="--w:7ch"></x><o style="--w:3ch"></o>
+    <o style="--w:2ch"></o><x style="--w:6ch"></x><o style="--w:5ch"></o><x
+      style="--w:7ch"></x><o style="--w:3ch"></o>
+    <o style="--w:1ch"></o><x style="--w:6ch"></x><o style="--w:6ch"></o><x
+      style="--w:7ch"></x><o style="--w:3ch"></o>
+    <x style="--w:7ch"></x><o style="--w:6ch"></o><x style="--w:7ch"></x><o
+      style="--w:3ch"></o>
+    <x style="--w:23ch"></x>
+    <x style="--w:23ch"></x>
+    <o style="--w:13ch"></o><x style="--w:7ch"></x><o style="--w:3ch"></o>
+    <o style="--w:13ch"></o><x style="--w:7ch"></x><o style="--w:3ch"></o>
+    <o style="--w:13ch"></o><x style="--w:7ch"></x><o style="--w:3ch"></o>
+  </f>
+</fzf>
+<script>
+  const element = document.querySelector("fzf") as HTMLElement;
+
+  function updatePosition() {
+    const windowCenter = window.innerWidth / 2;
+    const elementHalfWidth = element.offsetWidth / 2;
+    const leftPosition = windowCenter - elementHalfWidth;
+
+    const windowMiddle = window.innerHeight / 2;
+    const elementHalfHeight = element.offsetHeight / 2;
+    const topPosition = windowMiddle - elementHalfHeight;
+
+    // Round to the nearest ch and lh
+    const factorW =
+      1 / parseFloat(getComputedStyle(element).getPropertyValue("--chw")); // 1ch
+    const factorH =
+      1 / parseFloat(getComputedStyle(element).getPropertyValue("--lhh")); // 1lh
+    const roundedLeft = Math.round(leftPosition * factorW) / factorW;
+    const roundedTop = Math.round(topPosition * factorH) / factorH;
+
+    element.style.setProperty("--wi", `${roundedLeft}px`);
+    element.style.setProperty("--he", `${roundedTop}px`);
+  }
+
+  // Initial position calculation
+  updatePosition();
+
+  // Recalculate on resize
+  window.addEventListener("resize", updatePosition);
+</script>
