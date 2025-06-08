@@ -115,6 +115,11 @@ button {
       minmax(max(var(--min-column-width), 100% / var(--max-columns)), 1fr)
     );
 
+    figure:focus-within {
+      outline: 1px solid Highlight;
+      outline: 1px solid -webkit-focus-ring-color;
+    }
+
     .content-slot {
       align-content: center;
       aspect-ratio: 1;
@@ -135,6 +140,11 @@ button {
     li,
     figure {
       display: contents;
+    }
+
+    figure:focus-within figcaption {
+      outline: 1px solid Highlight;
+      outline: 1px solid -webkit-focus-ring-color;
     }
 
     figcaption {
@@ -254,11 +264,6 @@ button {
 
 figure {
   margin: 0;
-
-  &:focus-within {
-    outline: Highlight auto 1px;
-    outline: -webkit-focus-ring-color auto 1px;
-  }
 
   figcaption {
     margin-top: 0.8rem;
