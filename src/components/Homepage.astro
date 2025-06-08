@@ -387,7 +387,7 @@ import CaseStudy from "./CaseStudy.astro";
     });
   });
 
-  let shouldTrackMouse = true;
+  let shouldTrackMouse = false;
   let mouseX = 0,
     mouseY = 0;
   let rafId: number | null = null;
@@ -401,7 +401,6 @@ import CaseStudy from "./CaseStudy.astro";
           contentGrid.dataset.view = view;
           if (view === "list") {
             shouldTrackMouse = true;
-            //follower?.showPopover();
           } else {
             shouldTrackMouse = false;
           }
@@ -424,11 +423,15 @@ import CaseStudy from "./CaseStudy.astro";
 
   function updateFollower() {
     if (follower && shouldTrackMouse) {
-      let ty = mouseY;
-      if (window.innerHeight - mouseY < 350) {
-        ty = mouseY - 350;
+      let tx = 0;
+      let ty = 0;
+      if (window.innerWidth - mouseX < 350) {
+        tx = 100;
       }
-      follower.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+      if (window.innerHeight - mouseY < 350) {
+        ty = 100;
+      }
+      follower.style.transform = `translate(calc( ${mouseX}px - ${tx}% - (${tx} * 0.06px)), calc( ${mouseY}px - ${ty}% - (${tx} * 0.06px)) )`;
       rafId = null;
     }
   }
