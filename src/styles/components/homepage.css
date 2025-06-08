@@ -99,7 +99,11 @@ aside {
   }
 }
 
-body:has(.content-grid[data-view="list"]:hover) #hover-preview {
+body:has(
+    .content-grid[data-view="list"]:hover,
+    .content-grid[data-view="list"] button:focus-visible
+  )
+  #hover-preview {
   display: block;
   opacity: 1;
 }

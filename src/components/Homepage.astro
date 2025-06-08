@@ -336,18 +336,15 @@ import CaseStudy from "./CaseStudy.astro";
   const contentGridListItems = contentGrid.querySelectorAll(
     ".content-grid > li"
   ) as NodeListOf<HTMLElement>;
+  const contentListButtons = contentGrid.querySelectorAll(
+    ".content-grid > li button"
+  ) as NodeListOf<HTMLButtonElement>;
 
   const follower = document.getElementById("hover-preview");
 
   contentGridListItems.forEach((item) => {
     item.addEventListener("mouseover", (event) => {
-      const target = event.currentTarget as HTMLElement;
-      follower
-        ?.querySelector("img")
-        ?.setAttribute(
-          "src",
-          target.querySelector("img")?.getAttribute("src") || ""
-        );
+      updateFollowerImage(event);
     });
   });
 
@@ -421,6 +418,20 @@ import CaseStudy from "./CaseStudy.astro";
     }
   });
 
+  contentListButtons.forEach((b) => {
+    b.addEventListener("focus", (event) => {
+      const target = event.currentTarget as HTMLButtonElement;
+      const figc = target.querySelector("figcaption") as HTMLElement;
+      const rect = figc.getBoundingClientRect();
+      mouseX = rect.left;
+      mouseY = rect.top;
+      if (!rafId && shouldTrackMouse) {
+        rafId = requestAnimationFrame(updateFollower);
+        updateFollowerImage(event);
+      }
+    });
+  });
+
   function updateFollower() {
     if (follower && shouldTrackMouse) {
       let tx = 0;
@@ -434,6 +445,16 @@ import CaseStudy from "./CaseStudy.astro";
       follower.style.transform = `translate(calc( ${mouseX}px - ${tx}% - (${tx} * 0.06px)), calc( ${mouseY}px - ${ty}% - (${tx} * 0.06px)) )`;
       rafId = null;
     }
+  }
+
+  function updateFollowerImage(event: Event) {
+    const target = event.currentTarget as HTMLElement;
+    follower
+      ?.querySelector("img")
+      ?.setAttribute(
+        "src",
+        target.querySelector("img")?.getAttribute("src") || ""
+      );
   }
 </script>
 
