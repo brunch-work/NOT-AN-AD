@@ -116,7 +116,7 @@ body:has(
   opacity: 1;
   position: fixed;
   top: 0;
-  left: 0;
+  left: 50%;
   margin-top: 3px;
   margin-left: 3px;
   z-index: 2;

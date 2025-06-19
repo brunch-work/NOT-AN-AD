@@ -434,15 +434,11 @@ import CaseStudy from "./CaseStudy.astro";
 
   function updateFollower() {
     if (follower && shouldTrackMouse) {
-      let tx = 0;
       let ty = 0;
-      if (window.innerWidth - mouseX < 350) {
-        tx = 100;
-      }
       if (window.innerHeight - mouseY < 350) {
         ty = 100;
       }
-      follower.style.transform = `translate(calc( ${mouseX}px - ${tx}% - (${tx} * 0.06px)), calc( ${mouseY}px - ${ty}% - (${tx} * 0.06px)) )`;
+      follower.style.transform = `translate(-50%, calc( ${mouseY}px - ${ty}% - (${ty} * 0.06px) )`;
       rafId = null;
     }
   }
