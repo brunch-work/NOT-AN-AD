@@ -98,3 +98,34 @@ aside {
     max-height: 80vh;
   }
 }
+
+body:has(
+    .content-grid[data-view="list"]:hover,
+    .content-grid[data-view="list"] button:focus-visible
+  )
+  #hover-preview {
+  display: block;
+  opacity: 1;
+}
+
+#hover-preview {
+  @starting-style {
+    opacity: 0;
+  }
+  display: none;
+  opacity: 1;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  margin-top: 3px;
+  margin-left: 3px;
+  z-index: 2;
+  transition:
+    display 0.2s ease,
+    opacity 0.2s ease;
+  transition-behavior: allow-discrete;
+  img {
+    max-width: 353px;
+    max-height: 353px;
+  }
+}

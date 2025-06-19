@@ -319,7 +319,11 @@ import CaseStudy from "./CaseStudy.astro";
   </header>
   <figure class="modal-content"></figure>
 </dialog>
+<picture id="hover-preview">
+  <img src="https://placehold.co/500x500" alt="" />
+</picture>
 <script>
+  //filtering and list display switching
   const filterButton = document.getElementById("filter-button");
   const filterPopover = document.getElementById("filters-popover");
   const filterCheckboxes = document.querySelectorAll(
@@ -329,6 +333,20 @@ import CaseStudy from "./CaseStudy.astro";
     '.content-view input[type="radio"]'
   );
   const contentGrid = document.querySelector(".content-grid") as HTMLElement;
+  const contentGridListItems = contentGrid.querySelectorAll(
+    ".content-grid > li"
+  ) as NodeListOf<HTMLElement>;
+  const contentListButtons = contentGrid.querySelectorAll(
+    ".content-grid > li button"
+  ) as NodeListOf<HTMLButtonElement>;
+
+  const follower = document.getElementById("hover-preview");
+
+  contentGridListItems.forEach((item) => {
+    item.addEventListener("mouseover", (event) => {
+      updateFollowerImage(event);
+    });
+  });
 
   filterCheckboxes.forEach((chk) => {
     chk.addEventListener("change", (event) => {
@@ -366,21 +384,74 @@ import CaseStudy from "./CaseStudy.astro";
     });
   });
 
+  let shouldTrackMouse = false;
+  let mouseX = 0,
+    mouseY = 0;
+  let rafId: number | null = null;
   viewRadios.forEach((radio) => {
     radio.addEventListener("change", (event) => {
       const target = event.target as HTMLInputElement;
       const view = target.id.split("--")[1];
 
-      function filter() {
+      function changeView() {
         if (contentGrid) {
           contentGrid.dataset.view = view;
+          if (view === "list") {
+            shouldTrackMouse = true;
+          } else {
+            shouldTrackMouse = false;
+          }
         }
       }
 
       document.startViewTransition
-        ? document.startViewTransition(() => filter())
-        : filter();
+        ? document.startViewTransition(() => changeView())
+        : changeView();
     });
   });
+
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    if (!rafId && shouldTrackMouse) {
+      rafId = requestAnimationFrame(updateFollower);
+    }
+  });
+
+  contentListButtons.forEach((b) => {
+    b.addEventListener("focus", (event) => {
+      const target = event.currentTarget as HTMLButtonElement;
+      const figc = target.querySelector("figcaption") as HTMLElement;
+      const rect = figc.getBoundingClientRect();
+      mouseX = rect.left;
+      mouseY = rect.top;
+      if (!rafId && shouldTrackMouse) {
+        rafId = requestAnimationFrame(updateFollower);
+        updateFollowerImage(event);
+      }
+    });
+  });
+
+  function updateFollower() {
+    if (follower && shouldTrackMouse) {
+      let ty = 0;
+      if (window.innerHeight - mouseY < 350) {
+        ty = 100;
+      }
+      follower.style.transform = `translate(-50%, calc( ${mouseY}px - ${ty}% - (${ty} * 0.06px) )`;
+      rafId = null;
+    }
+  }
+
+  function updateFollowerImage(event: Event) {
+    const target = event.currentTarget as HTMLElement;
+    follower
+      ?.querySelector("img")
+      ?.setAttribute(
+        "src",
+        target.querySelector("img")?.getAttribute("src") || ""
+      );
+  }
 </script>
+
 <script src="../scripts/lightbox.js"></script>
