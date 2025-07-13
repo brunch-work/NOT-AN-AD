@@ -44,9 +44,15 @@ import NAAVideo from "../assets/images/svg/NAA-video.svg";
     screensaverTimeout = setTimeout(showScreensaver, 30000);
   }
   // Listen for user activity to reset timer
-  ["mousemove", "mousedown", "touchstart", "touchmove", "keydown"].forEach(
-    (evt) =>
-      window.addEventListener(evt, resetScreensaverTimer, { passive: true })
+  [
+    "mousemove",
+    "mousedown",
+    "touchstart",
+    "touchmove",
+    "keydown",
+    "scroll",
+  ].forEach((evt) =>
+    window.addEventListener(evt, resetScreensaverTimer, { passive: true })
   );
   // Start timer on load
   resetScreensaverTimer();
