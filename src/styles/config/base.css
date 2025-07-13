@@ -102,6 +102,7 @@ button {
   scroll-snap-align: start;
   scroll-margin-block-start: 7.2rem;
   margin-block-start: 3.8rem;
+  z-index: 1;
 
   button {
     display: contents;
