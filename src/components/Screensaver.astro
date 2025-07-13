@@ -41,7 +41,7 @@ import NAAVideo from "../assets/images/svg/NAA-video.svg";
   function resetScreensaverTimer() {
     hideScreensaver();
     clearTimeout(screensaverTimeout);
-    screensaverTimeout = setTimeout(showScreensaver, 10000);
+    screensaverTimeout = setTimeout(showScreensaver, 30000);
   }
   // Listen for user activity to reset timer
   ["mousemove", "mousedown", "touchstart", "touchmove", "keydown"].forEach(
