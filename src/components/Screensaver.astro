@@ -4,9 +4,9 @@ import "../styles/components/screensaver.css";
 import NAAVideo from "../assets/images/svg/NAA-video.svg";
 ---
 
-<div class="screensaver">
+<dialog class="screensaver">
   <NAAVideo id="logo" />
-</div>
+</dialog>
 
 <script type="module">
   const screensaver = document.querySelector(".screensaver");
@@ -28,11 +28,13 @@ import NAAVideo from "../assets/images/svg/NAA-video.svg";
   // Function to show the screensaver
   function showScreensaver() {
     screensaver.classList.add("show");
+    screensaver.showModal();
     canShowScreensaver = true;
     update();
   }
   function hideScreensaver() {
     screensaver.classList.remove("show");
+    screensaver.close();
     canShowScreensaver = false;
   }
 

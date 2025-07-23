@@ -13,27 +13,29 @@
     --dy: 34;
   }
 
-  display: none;
-  opacity: 0;
-  position: fixed;
-  inset: 0;
-  background-color: var(--background);
-  z-index: 9999;
+  ::backdrop {
+    background-color: var(--background);
+  }
 
-  transition: opacity, display;
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;
+  max-height: 100vh;
+  border: none;
+  overflow: clip;
+
+  transition: opacity, overlay, display;
   transition-duration: 0.125s;
   transition-timing-function: ease-in-out;
   transition-behavior: allow-discrete;
 
   &.show {
     transition-duration: 3s;
-    display: block;
     opacity: 1;
   }
 
   svg {
     width: var(--width);
-
     position: absolute;
   }
 }
