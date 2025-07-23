@@ -74,8 +74,6 @@ dialog#lightbox {
     --dsk-dialog-inset: calc(
       (100% - min(151.2rem, 100%)) / 2 + var(--aside-width) + 2.4rem
     );
-    --modal-logo-visibility: none;
-    --header-justify-content: end;
 
     max-width: 100%;
     max-height: 100%;

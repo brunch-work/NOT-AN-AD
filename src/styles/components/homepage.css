@@ -129,3 +129,10 @@ body:has(
     max-height: 353px;
   }
 }
+
+@media screen and (width > 600px) {
+  dialog#lightbox {
+    --modal-logo-visibility: none;
+    --header-justify-content: end;
+  }
+}
