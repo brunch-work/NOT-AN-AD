@@ -116,6 +116,10 @@
       display: none;
     }
 
+    ul.content-filter {
+      flex-wrap: wrap;
+    }
+
     ul {
       position: static;
       display: inline-flex;
