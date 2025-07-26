@@ -122,14 +122,9 @@ button {
       outline: 1px solid -webkit-focus-ring-color;
     }
 
-    .content-slot {
-      align-content: center;
-      aspect-ratio: 1;
-    }
-
     .placeholder {
       aspect-ratio: unset;
-      max-height: 100%;
+      max-width: 100%;
       display: flex;
       justify-content: center;
     }
@@ -182,10 +177,6 @@ button {
     .placeholder {
       display: none;
     }
-  }
-
-  li {
-    align-content: center;
   }
 
   &[data-filter="strategy"] {
@@ -259,10 +250,6 @@ button {
 
 .placeholder-v {
   aspect-ratio: 9 / 16;
-
-  & ~ figcaption {
-    width: calc(100% * (9 / 16));
-  }
 }
 
 .placeholder-s {
