@@ -1,4 +1,6 @@
 ---
+import { sanityClient } from "sanity:client";
+
 import "../styles/components/homepage.css";
 
 import NotAnAdLogo from "../assets/images/svg/NOT_AN_AD_LOGO.svg";
@@ -9,6 +11,8 @@ import IconContent from "../assets/images/svg/icon_content.svg";
 import IconAmplification from "../assets/images/svg/icon_amplification.svg";
 
 import CaseStudy from "./CaseStudy.astro";
+
+const homePageContent = await sanityClient.fetch(`*[_type == "home"]`);
 ---
 
 <main class="container">
@@ -20,15 +24,8 @@ import CaseStudy from "./CaseStudy.astro";
       ><NotAnAdLogo width={24} fill="currentColor" /></a
     >
     <header>
-      <h1>
-        NOT AN AD is a social-media advertising agency based in New York City.
-      </h1>
-      <br />
       <p>
-        Traditional messaging strategies simply will not reach those born into
-        an ad-saturated world. With our extensive experience in organic social
-        content we will help create an online presence that cultivates a
-        dedicated following for your brand.
+        {homePageContent[0].homepageIntro}
       </p>
     </header>
     <figure class="first-content">
@@ -36,8 +33,7 @@ import CaseStudy from "./CaseStudy.astro";
     </figure>
     <footer class="footer">
       <p>
-        to discuss a potential project, please email use with a brief
-        description, a timeline and a rough budget.
+        {homePageContent[0].homepageContact}
       </p>
       <br />
       <p>→ <a href="mailto:info@notanad.us">youup@notanad.us</a></p>
