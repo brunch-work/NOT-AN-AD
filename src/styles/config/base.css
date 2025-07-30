@@ -28,6 +28,7 @@ html {
   --figcaption-justify-content: space-between;
   --content-icon-display: none;
   --content-year-display: none;
+  --font-size: clamp(1.4rem, 0.8vw, 0.8vw);
 }
 
 @media screen and (min-width: 600px) {
@@ -110,7 +111,8 @@ button {
 
   &[data-view="grid"] {
     display: grid;
-    gap: 1.5rem;
+    column-gap: 3.2rem;
+    row-gap: 4.8rem;
     grid-template-columns: repeat(
       auto-fill,
       minmax(max(var(--min-column-width), 100% / var(--max-columns)), 1fr)

@@ -62,8 +62,8 @@ header {
   z-index: 3;
 
   .deck-header--logo {
-    width: var(--deck-header-logo-width);
-    height: var(--deck-header-logo-height);
+    width: auto;
+    height: calc(var(--font-size) * 1.2);
   }
 
   nav {
@@ -339,12 +339,16 @@ section {
   gap: 1.2rem;
 
   fieldset {
-    grid-column: 1 / span 3;
+    grid-column: 1 / -1;
     flex: 1;
     border-style: double;
     border-color: var(--text);
     border-width: 3px;
     align-self: start;
+
+    @media (min-width: 720px) {
+      grid-column: 1 / span 3;
+    }
 
     legend {
       text-align: center;
@@ -387,9 +391,13 @@ section {
     --content-title-display: none;
     --content-year-display: none;
 
-    grid-column: 4 / span 9;
+    grid-column: 1/-1;
     flex: 3;
     grid-auto-rows: max-content;
     scroll-snap-align: unset;
+
+    @media (min-width: 720px) {
+      grid-column: 4 / span 9;
+    }
   }
 }

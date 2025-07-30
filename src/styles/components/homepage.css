@@ -59,6 +59,11 @@ aside {
     z-index: 2;
     color: var(--text);
     margin-bottom: 2.4rem;
+
+    svg {
+      height: calc(var(--font-size) * 1.2);
+      width: auto;
+    }
   }
 
   header {
