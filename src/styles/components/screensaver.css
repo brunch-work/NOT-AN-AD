@@ -5,7 +5,7 @@
   --dx: 16;
   --dy: 22;
 
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 720px) {
     --speedX: 3;
     --speedY: 3;
     --width: 439px;

@@ -9,7 +9,7 @@
   --aside-scroll-snap-align: start;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 1000px) {
   :root {
     --header-margin-bottom: 2.4rem;
     --first-content-aside-display: none;
@@ -58,7 +58,7 @@ aside {
   a.logo {
     z-index: 2;
     color: var(--text);
-    margin-bottom: 2.4rem;
+    /* margin-bottom: 2.4rem; */
 
     svg {
       height: calc(var(--font-size) * 1.2);
@@ -67,7 +67,7 @@ aside {
   }
 
   header {
-    margin-top: 4rem;
+    margin-top: calc(var(--font-size) * 1.2);
   }
 
   .first-content {
@@ -80,7 +80,7 @@ aside {
     display: var(--first-content-aside-display);
   }
 
-  @media (min-width: 600px) {
+  @media (min-width: 1000px) {
     grid-column: 2 / span 3;
   }
 }
@@ -92,7 +92,7 @@ aside {
   flex-direction: column;
   position: relative;
 
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 1000px) {
     grid-column: 5 / span 9;
   }
 
