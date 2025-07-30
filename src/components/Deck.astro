@@ -34,7 +34,7 @@ type Project = {
 };
 
 type Section = {
-  title: string;
+  deckSectionTitle: string;
   projects: Project[];
 };
 ---
@@ -59,13 +59,17 @@ type Section = {
         <summary id="nav-2">UGC</summary>
         <ul role="listbox">
           {
-            deckPage[0].Sections.map((section: Section) => (
-              <li>
-                <a href={`#${section?.title?.toLowerCase().replace(" ", "-")}`}>
-                  {section.title}
-                </a>
-              </li>
-            ))
+            deckPage[0].Sections.map((section: Section) => {
+              return (
+                <li>
+                  <a
+                    href={`#${section.deckSectionTitle.toLowerCase().replace(" ", "-")}`}
+                  >
+                    {section.deckSectionTitle}
+                  </a>
+                </li>
+              );
+            })
           }
         </ul>
       </details>

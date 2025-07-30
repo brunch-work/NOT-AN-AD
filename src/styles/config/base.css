@@ -115,6 +115,8 @@ button {
   scroll-snap-align: start;
   scroll-margin-block-start: 7.2rem;
   margin-block-start: 3.8rem;
+  z-index: 1;
+  min-height: 100dvh;
 
   button {
     display: contents;
@@ -134,20 +136,15 @@ button {
       outline: 1px solid -webkit-focus-ring-color;
     }
 
-    .content-slot {
-      align-content: center;
-      aspect-ratio: 1;
-    }
-
     .placeholder {
       aspect-ratio: unset;
-      max-height: 100%;
+      max-width: 100%;
       display: flex;
       justify-content: center;
     }
   }
   &[data-view="list"] {
-    display: table;
+    display: flex;
     flex-direction: column;
     gap: 1.5rem;
 
@@ -162,9 +159,10 @@ button {
     }
 
     figcaption {
-      display: table-row;
+      display: flex;
       width: 100%;
       height: 3.3rem;
+      align-items: center;
 
       &:hover {
         background-color: var(--palette-blue);
@@ -172,9 +170,17 @@ button {
       }
 
       span {
-        display: table-cell;
+        display: inline-block;
+        flex: 1;
         vertical-align: middle;
         text-align: start;
+
+        &:nth-of-type(2) {
+          min-width: 13ch;
+        }
+        &:nth-of-type(3) {
+          max-width: 3ch;
+        }
 
         &:last-of-type {
           text-align: right;
@@ -185,10 +191,6 @@ button {
     .placeholder {
       display: none;
     }
-  }
-
-  li {
-    align-content: center;
   }
 
   &[data-filter="strategy"] {
@@ -262,10 +264,6 @@ button {
 
 .placeholder-v {
   aspect-ratio: 9 / 16;
-
-  & ~ figcaption {
-    width: calc(100% * (9 / 16));
-  }
 }
 
 .placeholder-s {

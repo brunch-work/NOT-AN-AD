@@ -3,7 +3,6 @@
   --first-content-aside-display: block;
   --first-content-mid-display: none;
   --placeholder-height: 90%;
-  --aside-width: 100%;
   --aside-height: calc(100dvh - 4.2rem);
   --aside-margin-bottom: 2.4rem;
   --aside-scroll-snap-align: start;
@@ -24,6 +23,8 @@
   .work-link {
     display: none;
   }
+.container {
+  gap: 1.2rem;
 }
 
 #top {
@@ -41,6 +42,7 @@
 aside {
   grid-column: 2 / -2;
   display: flex;
+  flex-basis: 100%;
   flex-direction: column;
   margin-bottom: var(--aside-margin-bottom);
   scroll-snap-align: var(--aside-scroll-snap-align);
@@ -93,6 +95,7 @@ aside {
   grid-column: 2/ -2;
   width: 100%;
   display: flex;
+  flex-basis: 100%;
   flex-direction: column;
   position: relative;
 
@@ -145,5 +148,41 @@ body:has(
   img {
     max-width: 353px;
     max-height: 353px;
+  }
+}
+
+@media screen and (width > 600px) {
+  :root {
+    --header-margin-bottom: 2.4rem;
+    --first-content-aside-display: none;
+    --first-content-mid-display: block;
+    --placeholder-height: 80%;
+    --aside-width: auto;
+    --aside-height: calc(100dvh - 4.8rem);
+    --aside-margin-bottom: 0;
+    --figcaption-justify-content: space-between;
+  }
+
+  aside {
+    flex-basis: unset;
+    flex: 1;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    margin: 0;
+  }
+
+  .content {
+    flex-basis: unset;
+    flex: 3;
+  }
+
+  .work-link {
+    display: none;
+  }
+
+  dialog#lightbox {
+    --modal-logo-visibility: none;
+    --header-justify-content: end;
   }
 }

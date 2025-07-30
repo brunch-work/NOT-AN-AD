@@ -133,6 +133,7 @@ header {
         gap: 0.6rem;
         color: var(--text);
         font-size: var(--nav-font-size);
+        text-decoration: none;
       }
     }
 
