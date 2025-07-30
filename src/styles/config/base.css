@@ -70,11 +70,12 @@ button {
 :root {
   --container-padding: 2.4rem;
   --container-padding-inline: 2rem;
+  --100dvh: calc(var(--vh, 1dvh) * 100);
 }
 
 .container {
   margin: 0 auto;
-  max-width: 151.2rem;
+  /* max-width: 151.2rem; */
   width: 100%;
   padding: 2.4rem;
   padding-inline: 2rem;
@@ -82,6 +83,7 @@ button {
   align-content: start;
   flex-wrap: wrap;
   min-height: 100dvh;
+  justify-content: space-between;
 }
 
 .padding-inline-0 {

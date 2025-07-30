@@ -21,12 +21,6 @@
     --figcaption-justify-content: space-between;
   }
 
-  aside {
-    position: fixed;
-    z-index: 1;
-    margin: 0;
-  }
-
   .work-link {
     display: none;
   }
@@ -45,16 +39,23 @@
 }
 
 aside {
-  width: var(--aside-width);
+  grid-column: 2 / -2;
   display: flex;
   flex-direction: column;
-  height: var(--aside-height);
   margin-bottom: var(--aside-margin-bottom);
   scroll-snap-align: var(--aside-scroll-snap-align);
   scroll-margin-top: 4.2rem;
 
+  .inner {
+    position: sticky;
+    height: calc(var(--100dvh) - 4.2rem);
+    top: 2.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
   a.logo {
-    position: fixed;
     z-index: 2;
     color: var(--text);
     margin-bottom: 2.4rem;
@@ -73,17 +74,21 @@ aside {
     max-height: calc(var(--aside-height) - 30lh);
     display: var(--first-content-aside-display);
   }
+
+  @media (min-width: 600px) {
+    grid-column: 2 / span 3;
+  }
 }
 
 .content {
+  grid-column: 2/ -2;
   width: 100%;
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   position: relative;
+
   @media screen and (min-width: 600px) {
-    width: calc(100% - 35rem);
-    padding-left: calc(var(--aside-width) + 20px);
+    grid-column: 4 / span 8;
   }
 
   .first-content {

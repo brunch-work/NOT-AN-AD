@@ -61,7 +61,7 @@ type Section = {
           {
             deckPage[0].Sections.map((section: Section) => (
               <li>
-                <a href={`#${section.title.toLowerCase().replace(" ", "-")}`}>
+                <a href={`#${section?.title?.toLowerCase().replace(" ", "-")}`}>
                   {section.title}
                 </a>
               </li>
