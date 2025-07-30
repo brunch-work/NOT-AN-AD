@@ -19,10 +19,11 @@
     --aside-margin-bottom: 0;
     --figcaption-justify-content: space-between;
   }
+}
 
-  .work-link {
-    display: none;
-  }
+.work-link {
+  display: none;
+}
 .container {
   gap: 1.2rem;
 }
@@ -77,6 +78,7 @@ aside {
     align-content: center;
     padding: 3rem;
   }
+
   .placeholder {
     max-height: calc(var(--aside-height) - 30lh);
     display: var(--first-content-aside-display);
@@ -154,8 +156,6 @@ body:has(
 @media screen and (width > 600px) {
   :root {
     --header-margin-bottom: 2.4rem;
-    --first-content-aside-display: none;
-    --first-content-mid-display: block;
     --placeholder-height: 80%;
     --aside-width: auto;
     --aside-height: calc(100dvh - 4.8rem);
@@ -163,14 +163,14 @@ body:has(
     --figcaption-justify-content: space-between;
   }
 
-  aside {
+  /* aside {
     flex-basis: unset;
     flex: 1;
     position: sticky;
     top: 0;
     z-index: 1;
     margin: 0;
-  }
+  } */
 
   .content {
     flex-basis: unset;
