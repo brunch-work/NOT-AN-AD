@@ -28,7 +28,7 @@ html {
   --figcaption-justify-content: space-between;
   --content-icon-display: none;
   --content-year-display: none;
-  --font-size: clamp(1.4rem, 0.8vw, 0.8vw);
+  --font-size: clamp(1.4rem, 0.8vw, 1.6rem);
   --grid-col-gap: 1.6rem;
   --grid-row-gap: 4.8rem;
 
@@ -107,6 +107,10 @@ button {
 .content-grid {
   --min-column-width: 16rem;
   --max-columns: 4; /* max + 1 */
+
+  @media (min-width: 1200px) {
+    --max-columns: 6;
+  }
 
   scroll-snap-align: start;
   scroll-margin-block-start: 7.2rem;
