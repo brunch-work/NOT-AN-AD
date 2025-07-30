@@ -62,6 +62,9 @@ aside {
 
   header {
     margin-top: 4rem;
+    h1 ~ p {
+      margin-top: 1lh;
+    }
   }
 
   .first-content {
@@ -91,6 +94,7 @@ aside {
     height: calc(100dvh - 2.4rem);
     scroll-snap-align: start;
     align-content: center;
+    margin: 0 auto;
   }
 
   .placeholder {
