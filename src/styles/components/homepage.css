@@ -122,7 +122,7 @@ aside {
 }
 
 body:has(
-    .content-grid[data-view="list"]:hover,
+    .content-grid[data-view="list"] figcaption:hover,
     .content-grid[data-view="list"] button:focus-visible
   )
   #hover-preview {
