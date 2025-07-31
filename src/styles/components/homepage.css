@@ -17,7 +17,6 @@
     --aside-width: 35rem;
     --aside-height: calc(100dvh - 4.8rem);
     --aside-margin-bottom: 0;
-    --figcaption-justify-content: space-between;
   }
 }
 
@@ -111,7 +110,7 @@ aside {
 
   .first-content {
     display: var(--first-content-mid-display);
-    height: calc(100dvh - 2.4rem);
+    height: calc(100dvh - 1.4rem);
     scroll-snap-align: start;
     align-content: center;
   }
@@ -159,8 +158,6 @@ body:has(
     --placeholder-height: 80%;
     --aside-width: auto;
     --aside-height: calc(100dvh - 4.8rem);
-    --aside-margin-bottom: 0;
-    --figcaption-justify-content: space-between;
   }
 
   /* aside {
