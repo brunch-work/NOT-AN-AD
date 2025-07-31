@@ -25,7 +25,6 @@ html {
 }
 
 :root {
-  --figcaption-justify-content: space-between;
   --content-icon-display: none;
   --content-year-display: none;
   --font-size: clamp(1.4rem, 0.8vw, 1.6rem);
@@ -281,7 +280,7 @@ figure {
     margin-top: 0.8rem;
     margin-inline: auto;
     display: flex;
-    justify-content: var(--figcaption-justify-content);
+    justify-content: space-between;
     gap: 0.8rem;
 
     .content-category {
