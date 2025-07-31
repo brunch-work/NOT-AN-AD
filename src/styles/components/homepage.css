@@ -88,7 +88,7 @@ aside {
     grid-column: 2 / span 3;
   }
 
-  @media (min-width: 1200px) {
+  @media (min-width: 1400px) {
     grid-column: 2 / span 2;
   }
 }
@@ -105,7 +105,7 @@ aside {
     grid-column: 5 / span 9;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1400px) {
     grid-column: 4 / span 10;
   }
 

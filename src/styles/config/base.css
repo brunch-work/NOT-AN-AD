@@ -108,7 +108,7 @@ button {
   --min-column-width: 16rem;
   --max-columns: 4; /* max + 1 */
 
-  @media (min-width: 1200px) {
+  @media (min-width: 1400px) {
     --max-columns: 6;
   }
 

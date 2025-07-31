@@ -351,7 +351,7 @@ section {
       grid-column: 1 / span 3;
     }
 
-    @media (min-width: 1200px) {
+    @media (min-width: 1400px) {
       grid-column: 1 / span 2;
     }
 
@@ -405,7 +405,7 @@ section {
       grid-column: 4 / span 9;
     }
 
-    @media (min-width: 1200px) {
+    @media (min-width: 1400px) {
       grid-column: 3 / span 10;
     }
   }
