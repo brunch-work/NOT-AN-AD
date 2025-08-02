@@ -182,8 +182,8 @@ button {
       display: none;
     }
   }
-  &[data-filter="partnerships"] {
-    li:not(:has([data-type="partnerships"])) {
+  &[data-filter="partnership"] {
+    li:not(:has([data-type="partnership"])) {
       display: none;
     }
   }
