@@ -11,37 +11,39 @@ import IconAmplification from "../assets/images/svg/icon_amplification.svg";
 import CaseStudy from "./CaseStudy.astro";
 ---
 
-<main class="container">
+<main class="grid">
   <span id="top"></span>
 
   <a class="button work-link" href="#work">Work</a>
   <aside>
-    <a href="#top" class="logo" aria-label="Home"
-      ><NotAnAdLogo width={24} fill="currentColor" /></a
-    >
-    <header>
-      <h1>
-        NOT AN AD is a social-media advertising agency based in New York City.
-      </h1>
-      <br />
-      <p>
-        Traditional messaging strategies simply will not reach those born into
-        an ad-saturated world. With our extensive experience in organic social
-        content we will help create an online presence that cultivates a
-        dedicated following for your brand.
-      </p>
-    </header>
-    <figure class="first-content">
-      <div class="placeholder placeholder-v"></div>
-    </figure>
-    <footer class="footer">
-      <p>
-        to discuss a potential project, please email use with a brief
-        description, a timeline and a rough budget.
-      </p>
-      <br />
-      <p>→ <a href="mailto:info@notanad.us">youup@notanad.us</a></p>
-    </footer>
+    <div class="inner">
+      <a href="#top" class="logo" aria-label="Home"
+        ><NotAnAdLogo width={24} fill="currentColor" /></a
+      >
+      <header>
+        <h1>
+          NOT AN AD is a social-media advertising agency based in New York City.
+        </h1>
+        <br />
+        <p>
+          Traditional messaging strategies simply will not reach those born into
+          an ad-saturated world. With our extensive experience in organic social
+          content we will help create an online presence that cultivates a
+          dedicated following for your brand.
+        </p>
+      </header>
+      <figure class="first-content">
+        <div class="placeholder placeholder-v"></div>
+      </figure>
+      <footer class="footer">
+        <p>
+          to discuss a potential project, please email use with a brief
+          description, a timeline and a rough budget.
+        </p>
+        <br />
+        <p>→ <a href="mailto:info@notanad.us">youup@notanad.us</a></p>
+      </footer>
+    </div>
   </aside>
 
   <section class="content" id="work">
