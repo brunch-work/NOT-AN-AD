@@ -52,6 +52,7 @@ dialog#lightbox {
 }
 
 header {
+  grid-column: 2/-2;
   width: 100%;
   height: var(--deck-header-logo-height);
   position: sticky;
@@ -61,8 +62,8 @@ header {
   z-index: 3;
 
   .deck-header--logo {
-    width: var(--deck-header-logo-width);
-    height: var(--deck-header-logo-height);
+    width: auto;
+    height: calc(var(--font-size) * 1.2);
   }
 
   nav {
@@ -132,6 +133,7 @@ header {
         gap: 0.6rem;
         color: var(--text);
         font-size: var(--nav-font-size);
+        text-decoration: none;
       }
     }
 
@@ -186,6 +188,14 @@ section {
       line-height: 0;
     }
   }
+}
+
+.main {
+  grid-column: 1/-1;
+}
+
+.section {
+  grid-column: 2/-2;
 }
 
 .intro {
@@ -273,10 +283,13 @@ section {
   --background: light-dark(var(--palette-black), var(--palette-blue));
   --text: var(--palette-white);
 
+  grid-column: 1/-1;
   background: var(--background);
   color: var(--text);
   text-transform: uppercase;
+
   .case-studies--grid {
+    grid-column: 1/-1;
     width: 100%;
     border-top: solid 1px var(--text);
     margin-top: var(--case-studies-margin-top);
@@ -327,11 +340,20 @@ section {
   gap: 1.2rem;
 
   fieldset {
+    grid-column: 1 / -1;
     flex: 1;
     border-style: double;
     border-color: var(--text);
     border-width: 3px;
     align-self: start;
+
+    @media (min-width: 720px) {
+      grid-column: 1 / span 3;
+    }
+
+    @media (min-width: 1400px) {
+      grid-column: 1 / span 2;
+    }
 
     legend {
       text-align: center;
@@ -374,8 +396,17 @@ section {
     --content-title-display: none;
     --content-year-display: none;
 
+    grid-column: 1/-1;
     flex: 3;
     grid-auto-rows: max-content;
     scroll-snap-align: unset;
+
+    @media (min-width: 720px) {
+      grid-column: 4 / span 9;
+    }
+
+    @media (min-width: 1400px) {
+      grid-column: 3 / span 10;
+    }
   }
 }

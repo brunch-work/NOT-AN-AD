@@ -1,0 +1,33 @@
+:root {
+  --columns: 6;
+  --padding: 1.2rem;
+  --gap: 1.6rem;
+}
+
+@media (min-width: 720px) {
+  :root {
+    --columns: 12;
+    --padding: 1.6rem;
+    --gap: max(2.4rem, 2.4vw);
+  }
+}
+
+.grid {
+  display: grid;
+  margin-inline: auto;
+  width: 100%;
+  gap: var(--gap);
+  grid-template-columns:
+    calc(var(--padding) - var(--gap)) repeat(var(--columns), minmax(0, 1fr))
+    calc(var(--padding) - var(--gap));
+  row-gap: 0;
+  grid-auto-rows: min-content;
+  padding-block: var(--padding);
+
+  .subgrid {
+    grid-column: 2 / -2;
+    display: grid;
+    grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+    gap: 0 var(--gap);
+  }
+}

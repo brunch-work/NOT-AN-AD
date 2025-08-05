@@ -34,15 +34,15 @@ type Project = {
 };
 
 type Section = {
-  title: string;
+  deckSectionTitle: string;
   projects: Project[];
 };
 ---
 
-<div>
+<div class="grid">
   <span id="top"> </span>
-  <header class="container-i">
-    <a href="/" aria-label="Home">
+  <header >
+    <a href="/" aria-label="Home" class="logo">
       <NotAnAdLogo class="deck-header--logo" fill="currentColor" />
     </a>
     <nav>
@@ -59,21 +59,25 @@ type Section = {
         <summary id="nav-2">UGC</summary>
         <ul role="listbox">
           {
-            deckPage[0].Sections.map((section: Section) => (
-              <li>
-                <a href={`#${section.title.toLowerCase().replace(" ", "-")}`}>
-                  {section.title}
-                </a>
-              </li>
-            ))
+            deckPage[0].Sections.map((section: Section) => {
+              return (
+                <li>
+                  <a
+                    href={`#${section.deckSectionTitle.toLowerCase().replace(" ", "-")}`}
+                  >
+                    {section.deckSectionTitle}
+                  </a>
+                </li>
+              );
+            })
           }
         </ul>
       </details>
     </nav>
   </header>
 
-  <main>
-    <div class="container padding-inline-0">
+  <main class="main grid">
+    <div class="section">
       <section class="intro container-i" id="not-an-ad" data-nav-1="Not an ad">
         <figure class="first-content">
           <div class="placeholder placeholder-v">
@@ -164,7 +168,7 @@ type Section = {
       </section>
     </div>
     <section class="case-studies" id="case-studies" data-nav-1="Case studies">
-      <div class="container">
+      <div class="container subgrid">
         <div class="case-studies--grid">
           <h2>[<span>↘</span>] UGC</h2>
           <ul>
@@ -181,8 +185,8 @@ type Section = {
         </span>
       </div>
     </section>
-    <div class="container padding-inline-0">
-      <section class="case-study container-i" id="ugc" data-nav-2="UGC">
+    <div class="section">
+      <section class="case-study subgrid" id="ugc" data-nav-2="UGC">
         <fieldset>
           <legend><h3>Domino's</h3></legend>
           <p>
@@ -300,7 +304,7 @@ type Section = {
           </CaseStudy>
         </ul>
       </section>
-      <section class="case-study container-i">
+      <section class="case-study subgrid">
         <fieldset>
           <legend><h3>Domino's</h3></legend>
           <p>

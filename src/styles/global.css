@@ -1,5 +1,6 @@
 @import "./config/fonts.css";
 @import "./config/typography.css";
+@import "./config/grid.css";
 @import "./config/colors.css";
 @import "./config/helpers.css";
 @import "./config/base.css";
