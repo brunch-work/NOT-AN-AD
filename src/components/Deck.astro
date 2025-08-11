@@ -11,37 +11,63 @@ import IconContent from "../assets/images/svg/icon_content.svg";
 import IconEarnedMedia from "../assets/images/svg/icon_earned_media.svg";
 import IconAmplification from "../assets/images/svg/icon_amplification.svg";
 
+import { deckPageQuery } from "../gql/queries.js";
+
 import CaseStudy from "./CaseStudy.astro";
 
-const deckPage = await sanityClient.fetch(
-  `*[_type == "deckPage" && defined(Sections)] | order(priority desc)`
-);
-
-type Asset = {
-  type: string;
-  image: {
-    asset: {
-      _ref: string;
-      _type: string;
-    };
+type DeckPageSections = {
+  deck: {
+    sections: Section[];
   };
 };
 
-type Project = {
-  client: string;
-  assets: Asset[];
-  publishedAt: string;
-};
-
 type Section = {
-  deckSectionTitle: string;
+  id: string;
+  sectionTitle: string;
   projects: Project[];
 };
+
+type Project = {
+  id: string;
+  clientName: string;
+  projectDescription: string;
+  assets: Asset[];
+};
+
+type Asset = {
+  id: string;
+  projectType: string;
+  asset: {
+    alt: string;
+    url: string;
+    height: number;
+    width: number;
+  };
+};
+
+const response = await fetch("https://graphql.datocms.com/", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    Authorization: `Bearer ${import.meta.env.DATOCMS_API_KEY}`,
+  },
+  body: JSON.stringify({
+    query: deckPageQuery,
+  }),
+});
+
+const json = await response.json();
+const data: DeckPageSections = json.data;
+
+const sections = data?.deck?.sections ?? [];
+
+console.log(sections);
 ---
 
 <div class="grid">
   <span id="top"> </span>
-  <header >
+  <header>
     <a href="/" aria-label="Home" class="logo">
       <NotAnAdLogo class="deck-header--logo" fill="currentColor" />
     </a>
@@ -59,14 +85,10 @@ type Section = {
         <summary id="nav-2">UGC</summary>
         <ul role="listbox">
           {
-            deckPage[0].Sections.map((section: Section) => {
+            sections.map((section: Section) => {
               return (
                 <li>
-                  <a
-                    href={`#${section.deckSectionTitle.toLowerCase().replace(" ", "-")}`}
-                  >
-                    {section.deckSectionTitle}
-                  </a>
+                  <a href={`#${section.slug}`}>{section.sectionTitle}</a>
                 </li>
               );
             })
