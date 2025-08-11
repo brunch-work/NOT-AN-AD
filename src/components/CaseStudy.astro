@@ -1,12 +1,12 @@
 ---
-const { id, title, category, shape = "s", year } = Astro.props;
+const { id, title, category, year, url } = Astro.props;
 ---
 
 <li>
   <figure class="content-slot" data-type={category}>
     <button light-box>
-      <div class=`placeholder placeholder-${shape}`>
-        <slot name="image" />
+      <div class="case-study__asset">
+        <img src={url} alt={title} />
       </div>
       <figcaption>
         <span class="content-title">{title}</span>

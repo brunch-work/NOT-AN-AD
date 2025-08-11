@@ -216,13 +216,22 @@ section {
       100vh - 4.8rem - var(--deck-header-logo-height) -
         (var(--intro-h1-font-size) * 3) - 6.8rem
     );
-    align-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .placeholder {
+  .reel {
     display: block;
     max-width: 80%;
     max-height: var(--placeholder-height);
+    height: 100%;
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   h1 {
@@ -280,13 +289,16 @@ section {
 }
 
 .case-studies {
-  --background: light-dark(var(--palette-black), var(--palette-blue));
-  --text: var(--palette-white);
-
   grid-column: 1/-1;
-  background: var(--background);
-  color: var(--text);
   text-transform: uppercase;
+
+  .section-header {
+    --background: light-dark(var(--palette-black), var(--palette-blue));
+    --text: var(--palette-white);
+    grid-column: 1/-1;
+    background: var(--background);
+    color: var(--text);
+  }
 
   .case-studies--grid {
     grid-column: 1/-1;
@@ -400,6 +412,14 @@ section {
     flex: 3;
     grid-auto-rows: max-content;
     scroll-snap-align: unset;
+
+    .case-study__asset {
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
+    }
 
     @media (min-width: 720px) {
       grid-column: 4 / span 9;

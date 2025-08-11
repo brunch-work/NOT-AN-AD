@@ -1,6 +1,4 @@
 ---
-import { sanityClient } from "sanity:client";
-
 import "../styles/components/deck.css";
 
 import NotAnAdLogo from "../assets/images/svg/NOT_AN_AD_LOGO.svg";
@@ -61,8 +59,6 @@ const json = await response.json();
 const data: DeckPageSections = json.data;
 
 const sections = data?.deck?.sections ?? [];
-
-console.log(sections);
 ---
 
 <div class="grid">
@@ -75,7 +71,6 @@ console.log(sections);
       <details aria-label="Sections">
         <summary id="nav-1">Not an ad</summary>
         <ul role="listbox">
-          {}
           <li><a href="#not-an-ad">Not an ad</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#case-studies">Case studies</a></li>
@@ -102,8 +97,14 @@ console.log(sections);
     <div class="section">
       <section class="intro container-i" id="not-an-ad" data-nav-1="Not an ad">
         <figure class="first-content">
-          <div class="placeholder placeholder-v">
-            <img src="https://placehold.co/1080x1920" alt="" />
+          <div class="reel">
+            <video
+              src={data.deck.reel.url}
+              alt={data.deck.reel.alt}
+              autoplay
+              loop
+              muted
+              playsinline></video>
           </div>
         </figure>
         <h1>
@@ -189,266 +190,102 @@ console.log(sections);
         </div>
       </section>
     </div>
-    <section class="case-studies" id="case-studies" data-nav-1="Case studies">
-      <div class="container subgrid">
-        <div class="case-studies--grid">
-          <h2>[<span>↘</span>] UGC</h2>
-          <ul>
-            <li><a href="#dominos">Domino's</a></li>
-            <li><a href="#dunkin">Dunkin</a></li>
-            <li><a href="#doordash">Doordash</a></li>
-          </ul>
-        </div>
-        <span class="marquee">
-          | →[case studies]* <span aria-hidden="true"
-            >| →[case studies]* | →[case studies]* | →[case studies]* | →[case
-            studies]* | →[case studies]*
-          </span>
-        </span>
-      </div>
+    <section class="case-studies">
+      {
+        sections.map((section: Section) => {
+          return (
+            <>
+              <section
+                class="case-study section-header"
+                id="case-studies"
+                data-nav-1="Case studies"
+              >
+                <div class="container subgrid">
+                  <div class="case-studies--grid">
+                    <h2>
+                      [<span>↘</span>] {section.sectionTitle}
+                    </h2>
+                    <ul>
+                      {section.projects.map((project: Project) => {
+                        return (
+                          <li>
+                            <a href={`#${project.slug}`}>
+                              {project.clientName}
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                  <span class="marquee">
+                    | →[case studies]*{" "}
+                    <span aria-hidden="true">
+                      | →[case studies]* | →[case studies]* | →[case studies]* |
+                      →[case studies]* | →[case studies]*
+                    </span>
+                  </span>
+                </div>
+              </section>
+              {section.projects.map((project: Project) => {
+                console.log(project);
+
+                return (
+                  <div class="grid">
+                    <section
+                      class="case-study subgrid"
+                      id={project.slug}
+                      data-nav-2={project.slug}
+                    >
+                      <fieldset>
+                        <legend>
+                          <h3>{project.clientName}</h3>
+                        </legend>
+                        {project.url && (
+                          <p>
+                            <a href={project.url} target="_blank">
+                              [↗] Link
+                            </a>
+                          </p>
+                        )}
+                        {project.publicationDate && (
+                          <p class="case-study--year">
+                            <span>Year</span>
+                            <span>
+                              {new Date(project.publicationDate).getFullYear()}
+                            </span>
+                          </p>
+                        )}
+                        <div
+                          class="description"
+                          dangerouslySetInnerHTML={{
+                            __html: project.projectDescription,
+                          }}
+                        />
+                      </fieldset>
+                      <ul class="content-grid" data-view="grid">
+                        {project.assets.map((asset: Asset) => {
+                          return (
+                            <CaseStudy
+                              id={asset.id}
+                              title={asset.projectType}
+                              category={asset.projectType}
+                              url={asset.asset.url}
+                              year={new Date(
+                                project.publicationDate
+                              ).getFullYear()}
+                            />
+                          );
+                        })}
+                      </ul>
+                    </section>
+                  </div>
+                );
+              })}
+            </>
+          );
+        })
+      }
     </section>
-    <div class="section">
-      <section class="case-study subgrid" id="ugc" data-nav-2="UGC">
-        <fieldset>
-          <legend><h3>Domino's</h3></legend>
-          <p>
-            <a href="#">[↗] Link</a>
-          </p>
-          <p class="case-study--year">
-            <span>Year</span><span>2023</span>
-          </p>
-          <p>
-            In eiusmod occaecat aute magna veniam elit minim consectetur
-            adipisicing exercitation par iatur exercitation veniam magna. Labore
-            nisi laboris tempor sint non. Deserunt eiusmod esse exercitation.
-            Pariatur consequat in excepteur quis voluptate aliquip aute deserunt
-            non. Sunt ipsum proident laboris sint occaecat ad exercitation
-            nostrud ullamco fugiat nisi ex ullamco dolor.
-          </p>
-        </fieldset>
-        <ul class="content-grid" data-view="grid">
-          <CaseStudy
-            id="s1"
-            title="Square"
-            category="strategy"
-            year="2025"
-            shape="s"
-          >
-            <IconStrategy
-              slot="icon"
-              fill="currentColor"
-              width="15"
-              height="15"
-              role="presentation"
-            />
-            <img slot="image" src="https://placehold.co/1080x1080" alt="" />
-          </CaseStudy>
-          <CaseStudy
-            id="s1"
-            title="Square"
-            category="strategy"
-            year="2025"
-            shape="v"
-          >
-            <IconStrategy
-              slot="icon"
-              fill="currentColor"
-              width="15"
-              height="15"
-              role="presentation"
-            />
-            <img slot="image" src="https://placehold.co/1080x1920" alt="" />
-          </CaseStudy>
-          <CaseStudy
-            id="s1"
-            title="Square"
-            category="strategy"
-            year="2025"
-            shape="h"
-          >
-            <IconStrategy
-              slot="icon"
-              fill="currentColor"
-              width="15"
-              height="15"
-              role="presentation"
-            />
-            <img slot="image" src="https://placehold.co/1920x1080" alt="" />
-          </CaseStudy>
-          <CaseStudy
-            id="s1"
-            title="Square"
-            category="strategy"
-            year="2025"
-            shape="s"
-          >
-            <IconStrategy
-              slot="icon"
-              fill="currentColor"
-              width="15"
-              height="15"
-              role="presentation"
-            />
-            <img slot="image" src="https://placehold.co/1080x1080" alt="" />
-          </CaseStudy>
-          <CaseStudy
-            id="s1"
-            title="Square"
-            category="strategy"
-            year="2025"
-            shape="h"
-          >
-            <IconStrategy
-              slot="icon"
-              fill="currentColor"
-              width="15"
-              height="15"
-              role="presentation"
-            />
-            <img slot="image" src="https://placehold.co/1920x1080" alt="" />
-          </CaseStudy>
-
-          <CaseStudy
-            id="s1"
-            title="Square"
-            category="strategy"
-            year="2025"
-            shape="v"
-          >
-            <IconStrategy
-              slot="icon"
-              fill="currentColor"
-              width="15"
-              height="15"
-              role="presentation"
-            />
-            <img slot="image" src="https://placehold.co/1080x1920" alt="" />
-          </CaseStudy>
-        </ul>
-      </section>
-      <section class="case-study subgrid">
-        <fieldset>
-          <legend><h3>Domino's</h3></legend>
-          <p>
-            <a href="#">[↗] Link</a>
-          </p>
-          <p class="case-study--year">
-            <span>Year</span><span>2023</span>
-          </p>
-          <p>
-            In eiusmod occaecat aute magna veniam elit minim consectetur
-            adipisicing exercitation par iatur exercitation veniam magna. Labore
-            nisi laboris tempor sint non. Deserunt eiusmod esse exercitation.
-            Pariatur consequat in excepteur quis voluptate aliquip aute deserunt
-            non. Sunt ipsum proident laboris sint occaecat ad exercitation
-            nostrud ullamco fugiat nisi ex ullamco dolor.
-          </p>
-        </fieldset>
-        <ul class="content-grid" data-view="grid">
-          <CaseStudy
-            id="s1"
-            title="Square"
-            category="strategy"
-            year="2025"
-            shape="s"
-          >
-            <IconStrategy
-              slot="icon"
-              fill="currentColor"
-              width="15"
-              height="15"
-              role="presentation"
-            />
-            <img slot="image" src="https://placehold.co/1080x1080" alt="" />
-          </CaseStudy>
-          <CaseStudy
-            id="s1"
-            title="Square"
-            category="strategy"
-            year="2025"
-            shape="v"
-          >
-            <IconStrategy
-              slot="icon"
-              fill="currentColor"
-              width="15"
-              height="15"
-              role="presentation"
-            />
-            <img slot="image" src="https://placehold.co/1080x1920" alt="" />
-          </CaseStudy>
-          <CaseStudy
-            id="s1"
-            title="Square"
-            category="strategy"
-            year="2025"
-            shape="h"
-          >
-            <IconStrategy
-              slot="icon"
-              fill="currentColor"
-              width="15"
-              height="15"
-              role="presentation"
-            />
-            <img slot="image" src="https://placehold.co/1920x1080" alt="" />
-          </CaseStudy>
-          <CaseStudy
-            id="s1"
-            title="Square"
-            category="strategy"
-            year="2025"
-            shape="s"
-          >
-            <IconStrategy
-              slot="icon"
-              fill="currentColor"
-              width="15"
-              height="15"
-              role="presentation"
-            />
-            <img slot="image" src="https://placehold.co/1080x1080" alt="" />
-          </CaseStudy>
-          <CaseStudy
-            id="s1"
-            title="Square"
-            category="strategy"
-            year="2025"
-            shape="h"
-          >
-            <IconStrategy
-              slot="icon"
-              fill="currentColor"
-              width="15"
-              height="15"
-              role="presentation"
-            />
-            <img slot="image" src="https://placehold.co/1920x1080" alt="" />
-          </CaseStudy>
-
-          <CaseStudy
-            id="s1"
-            title="Square"
-            category="strategy"
-            year="2025"
-            shape="v"
-          >
-            <IconStrategy
-              slot="icon"
-              fill="currentColor"
-              width="15"
-              height="15"
-              role="presentation"
-            />
-            <img slot="image" src="https://placehold.co/1080x1920" alt="" />
-          </CaseStudy>
-        </ul>
-      </section>
-      <footer class="intro-footer">
-        <TapeIcon />
-        <span id="intro-time">15:32:00</span>
-      </footer>
-    </div>
   </main>
 </div>
 <dialog id="lightbox">

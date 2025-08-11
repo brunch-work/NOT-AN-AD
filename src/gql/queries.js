@@ -38,6 +38,9 @@ query DeckPage {
       projects {
         id
         clientName
+        slug
+        publicationDate
+        url
         projectDescription
         assets {
           id
