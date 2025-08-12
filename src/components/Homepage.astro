@@ -69,7 +69,13 @@ const imageShape = (w: number, h: number) => {
 
   <section class="content" id="work">
     <figure class="first-content content-slot">
-      <video src={data.home.reel.url} class="placeholder"></video>
+      <video
+        src={data.home.reel.url}
+        autoplay
+        loop
+        muted
+        playsinline
+        class="placeholder"></video>
     </figure>
     <div class="filter-view-menu">
       <fieldset class="filter-menu">
