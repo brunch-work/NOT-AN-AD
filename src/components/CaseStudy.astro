@@ -1,4 +1,10 @@
 ---
+import IconAmplification from "../assets/images/svg/icon_amplification.svg";
+import IconContent from "../assets/images/svg/icon_content.svg";
+import IconEarnedMedia from "../assets/images/svg/icon_earned_media.svg";
+import IconPartnership from "../assets/images/svg/icon_partnerships.svg";
+import IconStrategy from "../assets/images/svg/icon_strategy.svg";
+
 const { id, title, category, year, url, alt, format } = Astro.props;
 ---
 
@@ -18,7 +24,31 @@ const { id, title, category, year, url, alt, format } = Astro.props;
         <span class="content-title">{title}</span>
         <span class="content-category">{category}</span>
         <span class="content-icon">
-          <slot name="icon" />
+          {
+            category === "strategy" && (
+              <IconStrategy width="1em" height="1em" fill="currentColor" />
+            )
+          }
+          {
+            category === "partnership" && (
+              <IconPartnership width="1em" height="1em" fill="currentColor" />
+            )
+          }
+          {
+            category === "amplification" && (
+              <IconAmplification width="1em" height="1em" fill="currentColor" />
+            )
+          }
+          {
+            category === "content-creation" && (
+              <IconContent width="1em" height="1em" fill="currentColor" />
+            )
+          }
+          {
+            category === "earned-media" && (
+              <IconEarnedMedia width="1em" height="1em" fill="currentColor" />
+            )
+          }
         </span>
         <span class="content-year">{year}</span>
       </figcaption>
