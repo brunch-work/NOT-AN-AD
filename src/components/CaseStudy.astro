@@ -1,12 +1,18 @@
 ---
-const { id, title, category, year, url, alt } = Astro.props;
+const { id, title, category, year, url, alt, format } = Astro.props;
 ---
 
 <li>
   <figure class="content-slot" data-type={category}>
     <button light-box>
       <div class="case-study__asset">
-        <img src={url} alt={alt} />
+        {
+          format === "mp4" || format === "webm" ? (
+            <video src={url} autoplay loop muted playsinline />
+          ) : (
+            <img src={url} alt={alt} />
+          )
+        }
       </div>
       <figcaption>
         <span class="content-title">{title}</span>

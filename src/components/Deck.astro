@@ -237,6 +237,7 @@ const sections = data?.deck?.sections ?? [];
                               title={asset.projectType}
                               category={asset.projectType}
                               url={asset.asset.url}
+                              format={asset.asset.format}
                               year={new Date(
                                 project.publicationDate
                               ).getFullYear()}

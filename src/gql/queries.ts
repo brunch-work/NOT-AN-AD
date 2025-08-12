@@ -115,6 +115,7 @@ query DeckPage {
           asset {
             alt
             url
+            format
             height
             width
           }
