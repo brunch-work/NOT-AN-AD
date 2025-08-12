@@ -9,39 +9,15 @@ import IconContent from "../assets/images/svg/icon_content.svg";
 import IconEarnedMedia from "../assets/images/svg/icon_earned_media.svg";
 import IconAmplification from "../assets/images/svg/icon_amplification.svg";
 
-import { deckPageQuery } from "../gql/queries.js";
+import {
+  deckPageQuery,
+  type DeckPageSections,
+  type Section,
+  type Project,
+  type Asset,
+} from "../gql/queries.ts";
 
 import CaseStudy from "./CaseStudy.astro";
-
-type DeckPageSections = {
-  deck: {
-    sections: Section[];
-  };
-};
-
-type Section = {
-  id: string;
-  sectionTitle: string;
-  projects: Project[];
-};
-
-type Project = {
-  id: string;
-  clientName: string;
-  projectDescription: string;
-  assets: Asset[];
-};
-
-type Asset = {
-  id: string;
-  projectType: string;
-  asset: {
-    alt: string;
-    url: string;
-    height: number;
-    width: number;
-  };
-};
 
 const response = await fetch("https://graphql.datocms.com/", {
   method: "POST",
@@ -98,13 +74,8 @@ const sections = data?.deck?.sections ?? [];
       <section class="intro container-i" id="not-an-ad" data-nav-1="Not an ad">
         <figure class="first-content">
           <div class="reel">
-            <video
-              src={data.deck.reel.url}
-              alt={data.deck.reel.alt}
-              autoplay
-              loop
-              muted
-              playsinline></video>
+            <video src={data.deck.reel.url} autoplay loop muted playsinline
+            ></video>
           </div>
         </figure>
         <h1>
@@ -227,8 +198,6 @@ const sections = data?.deck?.sections ?? [];
                 </div>
               </section>
               {section.projects.map((project: Project) => {
-                console.log(project);
-
                 return (
                   <div class="grid">
                     <section
@@ -257,9 +226,7 @@ const sections = data?.deck?.sections ?? [];
                         )}
                         <div
                           class="description"
-                          dangerouslySetInnerHTML={{
-                            __html: project.projectDescription,
-                          }}
+                          set:html={project.projectDescription}
                         />
                       </fieldset>
                       <ul class="content-grid" data-view="grid">
@@ -286,6 +253,10 @@ const sections = data?.deck?.sections ?? [];
         })
       }
     </section>
+    <footer class="intro-footer">
+      <TapeIcon />
+      <span id="intro-time">15:32:00</span>
+    </footer>
   </main>
 </div>
 <dialog id="lightbox">
@@ -348,4 +319,5 @@ const sections = data?.deck?.sections ?? [];
     });
   });
 </script>
+<script src="../scripts/autoplay.js"></script>
 <script src="../scripts/lightbox.js"></script>

@@ -135,11 +135,14 @@ button {
       outline: 1px solid -webkit-focus-ring-color;
     }
 
-    .placeholder {
+    .placeholder,
+    .case-study__asset {
       aspect-ratio: unset;
-      max-width: 100%;
       display: flex;
       justify-content: center;
+      img {
+        max-width: 100%;
+      }
     }
   }
   &[data-view="list"] {
@@ -187,7 +190,8 @@ button {
       }
     }
 
-    .placeholder {
+    .placeholder,
+    .case-study__asset {
       display: none;
     }
   }
