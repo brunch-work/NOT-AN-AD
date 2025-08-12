@@ -80,7 +80,6 @@
       outline: 1px solid -webkit-focus-ring-color;
     }
 
-    .placeholder,
     .case-study__asset {
       aspect-ratio: unset;
       display: flex;
@@ -135,7 +134,6 @@
       }
     }
 
-    .placeholder,
     .case-study__asset {
       display: none;
     }

@@ -2,7 +2,7 @@
   --header-margin-bottom: 1.2rem;
   --first-content-aside-display: block;
   --first-content-mid-display: none;
-  --placeholder-height: 90%;
+  --asset-height: 90%;
   --aside-height: calc(100dvh - 4.2rem);
   --aside-margin-bottom: 2.4rem;
   --aside-scroll-snap-align: start;
@@ -13,7 +13,7 @@
     --header-margin-bottom: 2.4rem;
     --first-content-aside-display: none;
     --first-content-mid-display: block;
-    --placeholder-height: 80%;
+    --asset-height: 80%;
     --aside-width: 35rem;
     --aside-height: calc(100dvh - 4.8rem);
     --aside-margin-bottom: 0;
@@ -81,7 +81,7 @@ aside {
     padding: 3rem;
   }
 
-  .placeholder {
+  .case-study__asset {
     max-height: calc(var(--aside-height) - 30lh);
     display: var(--first-content-aside-display);
   }
@@ -119,7 +119,7 @@ aside {
     margin: 0 auto;
   }
 
-  .placeholder {
+  .case-study__asset {
     max-width: 100%;
     max-height: 80vh;
   }
@@ -159,7 +159,7 @@ body:has(
 @media screen and (width > 600px) {
   :root {
     --header-margin-bottom: 2.4rem;
-    --placeholder-height: 80%;
+    --asset-height: 80%;
     --aside-width: auto;
     --aside-height: calc(100dvh - 4.8rem);
   }

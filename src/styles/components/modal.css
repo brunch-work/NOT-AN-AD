@@ -61,7 +61,7 @@ dialog#lightbox {
       }
     }
 
-    .placeholder {
+    .case-study__asset {
       max-height: 100%;
       max-width: 100%;
     }
@@ -99,14 +99,14 @@ dialog#lightbox {
     .modal-content {
       width: 100%;
       margin: 0 auto;
-      &:has(.placeholder) {
+      &:has(.case-study__asset) {
         max-height: calc(100% - var(--container-padding));
       }
-      &:has(.placeholder-v) {
+      &:has(.case-study__asset-v) {
         max-width: calc(100% * 9 / 16);
       }
-      &:has(.placeholder-h),
-      &:has(.placeholder-s) {
+      &:has(.case-study__asset-h),
+      &:has(.case-study__asset-s) {
         width: 80%;
       }
       display: flex;
