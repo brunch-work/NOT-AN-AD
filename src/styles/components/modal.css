@@ -61,7 +61,8 @@ dialog#lightbox {
       }
     }
 
-    .case-study__asset {
+    .case-study__asset,
+    .case-study__asset * {
       max-height: 100%;
       max-width: 100%;
     }
