@@ -415,7 +415,6 @@ section {
     flex: 3;
     grid-auto-rows: max-content;
     scroll-snap-align: unset;
-    margin: 0;
 
     .case-study__asset {
       img,
@@ -427,6 +426,7 @@ section {
     }
 
     @media (min-width: 900px) {
+      margin: 0;
       grid-column: 6 / -1;
     }
 
