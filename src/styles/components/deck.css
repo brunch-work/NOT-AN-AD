@@ -5,7 +5,7 @@
   --nav-min-width: 10.8rem;
   --intro-h1-font-size: clamp(1.95rem, 0.7696rem + 2.7174vw, 4.9rem);
   --intro-pb: 2.4rem;
-  --placeholder-height: 90%;
+  --asset-height: 90%;
   --footer-grid-row: 3;
   --footer-justify-content: space-between;
   --footer-tape-icon-display: flex;
@@ -27,7 +27,7 @@
     --nav-font-size: 1.6rem;
     --nav-min-width: 18.4rem;
     --intro-pb: 0;
-    --placeholder-height: 80%;
+    --asset-height: 80%;
     --footer-grid-row: 2 / 3;
     --footer-justify-content: end;
     --footer-tape-icon-display: none;
@@ -225,7 +225,7 @@ section {
   .reel {
     display: block;
     max-width: 80%;
-    max-height: var(--placeholder-height);
+    max-height: var(--asset-height);
     height: 100%;
 
     video {

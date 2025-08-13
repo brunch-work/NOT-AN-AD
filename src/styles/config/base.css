@@ -103,7 +103,7 @@ button {
   padding-inline: 2rem;
 }
 
-.placeholder {
+.case-study__asset {
   margin: 0 auto;
   box-sizing: content-box;
   position: relative;
@@ -115,16 +115,16 @@ button {
   }
 }
 
-.placeholder-h {
+.case-study__asset-h {
   aspect-ratio: 16 / 9;
 }
 
-.placeholder-v,
+.case-study__asset-v,
 .reel {
   aspect-ratio: 9 / 16;
 }
 
-.placeholder-s {
+.case-study__asset-s {
   aspect-ratio: 1;
   img {
     width: 100%;
