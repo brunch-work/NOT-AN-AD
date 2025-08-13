@@ -3,6 +3,9 @@
 // This also works for preprocessor files like .scss, .styl, etc.
 import "../styles/global.css";
 import Screensaver from "../components/Screensaver.astro";
+
+// Check if we're in development mode (which typically means localhost)
+const isDevelopment = import.meta.env.DEV;
 ---
 
 <!doctype html>
@@ -16,7 +19,7 @@ import Screensaver from "../components/Screensaver.astro";
     <title>NOT AN AD</title>
   </head>
   <body>
-    <Screensaver />
+    {!isDevelopment && <Screensaver />}
     <slot />
   </body>
 </html>

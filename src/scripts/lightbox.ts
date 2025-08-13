@@ -1,4 +1,4 @@
-const caseStudies = document.querySelectorAll(
+const lbBtn = document.querySelectorAll(
   "[light-box]"
 ) as NodeListOf<HTMLElement>;
 const lightbox = document.querySelector("#lightbox") as HTMLDialogElement;
@@ -17,21 +17,26 @@ const { matches: motionOK } = window.matchMedia(
 );
 
 if (motionOK) {
-  caseStudies.forEach((item, i) => {
-    const placeholder = item.querySelector(".placeholder img") as HTMLElement;
+  lbBtn.forEach((item, i) => {
+    const asset = item.querySelector(
+      ".case-study__asset img, .case-study__asset video"
+    ) as HTMLElement;
+
     const figcaption = item.querySelector("figcaption") as HTMLElement;
-    if (figcaption && placeholder)
-      placeholder.style.viewTransitionName = `--case-study-placeholder-${i}`;
+    if (figcaption && asset)
+      asset.style.viewTransitionName = `--case-study-asset-${i}`;
     figcaption.style.viewTransitionName = `--case-study-figcaption-${i}`;
   });
 
   // listen for clicks on each lightbox case study
-  caseStudies.forEach((caseStudy: HTMLElement) => {
+  lbBtn.forEach((caseStudy: HTMLElement) => {
     caseStudy.addEventListener("click", (event) => {
       function openLightbox(cs: HTMLElement) {
-        const plh = caseStudy.querySelector(".placeholder") as HTMLElement;
+        const plh = caseStudy.querySelector(
+          ".case-study__asset"
+        ) as HTMLElement;
         const plhImg = caseStudy.querySelector(
-          ".placeholder img"
+          ".case-study__asset img, .case-study__asset video"
         ) as HTMLElement;
         const figc = caseStudy.querySelector("figcaption") as HTMLElement;
 
