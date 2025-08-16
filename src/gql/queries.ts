@@ -84,6 +84,7 @@ export type Asset = {
   id: string;
   projectType: string;
   asset: {
+    format: "mp4" | "webm";
     alt: string;
     url: string;
     height: number;

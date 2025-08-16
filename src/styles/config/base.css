@@ -7,6 +7,9 @@ body {
   font-family: "IBM Plex Mono", monospace;
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
 }
 
 html {
@@ -16,8 +19,11 @@ html {
   box-sizing: border-box;
   background-color: var(--background);
   color: var(--text);
-  scroll-behavior: smooth;
   scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
 
   &:has(dialog[open]) {
     overflow: hidden;
@@ -100,7 +106,6 @@ button {
 .container-i {
   margin: 0 auto;
   width: 100%;
-  padding-inline: 2rem;
 }
 
 .case-study__asset {
