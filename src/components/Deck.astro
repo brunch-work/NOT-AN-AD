@@ -161,15 +161,15 @@ const sections = data?.deck?.sections ?? [];
         </div>
       </section>
     </div>
-    <section class="case-studies">
+    <section class="case-studies" id="case-studies" data-nav-1="Case studies">
       {
         sections.map((section: Section) => {
           return (
             <>
               <section
                 class="case-study section-header"
-                id="case-studies"
-                data-nav-1="Case studies"
+                id={section.slug}
+                data-nav-2={section.slug}
               >
                 <div class="container subgrid">
                   <div class="case-studies--grid">
@@ -203,7 +203,6 @@ const sections = data?.deck?.sections ?? [];
                     <section
                       class="case-study case-study-grid"
                       id={project.slug}
-                      data-nav-2={project.slug}
                     >
                       <fieldset>
                         <legend>
@@ -296,8 +295,8 @@ const sections = data?.deck?.sections ?? [];
     const sections = document.querySelectorAll(`[data-${attr}]`);
     const options: IntersectionObserverInit = {
       root: null,
-      rootMargin: "0px",
-      threshold: 0.5,
+      rootMargin: "-50px 0px",
+      threshold: 0.1,
     };
 
     const callback: IntersectionObserverCallback = (
