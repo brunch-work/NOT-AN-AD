@@ -17,7 +17,7 @@ import {
   type Asset,
 } from "../gql/queries.ts";
 
-import CaseStudy from "./CaseStudy.astro";
+import { CaseStudy } from "./CaseStudy.tsx";
 
 const response = await fetch("https://graphql.datocms.com/", {
   method: "POST",
@@ -233,6 +233,8 @@ const sections = data?.deck?.sections ?? [];
                         {project.assets.map((asset: Asset) => {
                           return (
                             <CaseStudy
+                              client:load
+                              key={asset.id}
                               id={asset.id}
                               title={asset.projectType}
                               category={asset.projectType}
