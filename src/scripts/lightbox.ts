@@ -56,6 +56,14 @@ if (motionOK) {
         plh.style.display = "none";
         figc.style.display = "none";
 
+        // if it's a video, play it
+        const lbVideo = lightboxContent.querySelector(
+          "video"
+        ) as HTMLVideoElement;
+        if (lbVideo) {
+          lbVideo.play();
+        }
+
         // now we call the API to put the popover lightbox into the :top-layer
         lightbox.showModal();
       }

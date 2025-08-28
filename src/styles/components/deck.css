@@ -46,12 +46,13 @@ div:has(#top) {
 }
 
 dialog#lightbox {
+  --mobile-dialog-width: 100%;
   /* reset the lightbox to the center of the page*/
   --dsk-dialog-width: 100%;
   --dsk-dialog-inset: 0;
 }
 
-header {
+.grid header {
   grid-column: 2/-2;
   width: 100%;
   height: var(--deck-header-logo-height);

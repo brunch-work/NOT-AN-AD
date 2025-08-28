@@ -5,6 +5,7 @@ dialog#lightbox {
   transition-duration: 0.3s;
   background-color: var(--background);
   padding: var(--gap);
+  width: var(--mobile-dialog-width, initial);
 
   view-transition-name: --lightbox;
 
@@ -43,6 +44,8 @@ dialog#lightbox {
   .modal-content {
     flex-grow: 1;
     align-content: center;
+    justify-items: center;
+    max-height: calc(100dvh - (3 * var(--gap)));
 
     figcaption {
       width: 100%;
@@ -63,7 +66,10 @@ dialog#lightbox {
 
     .case-study__asset,
     .case-study__asset * {
-      max-height: 100%;
+      max-height: calc(
+        100dvh - var(--deck-header-logo-height, 16px) - (2 * var(--gap)) -
+          (2 * 16px)
+      );
       max-width: 100%;
     }
   }
