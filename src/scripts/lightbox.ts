@@ -50,8 +50,14 @@ if (motionOK) {
         plh.classList.add("lightbox-originator");
         figc.classList.add("lightbox-originator");
 
-        // set up a placeholder instead of the caseStudy
+        // take the content from the button and put it in the lightbox
         lightboxContent.innerHTML = cs.innerHTML;
+
+        const contentPlaceholder = document.createElement("div");
+        contentPlaceholder.id = "contentplaceholder";
+        contentPlaceholder.style.width = `${plhImg.offsetWidth}px`;
+        contentPlaceholder.style.height = `${plhImg.offsetHeight + 17}px`;
+        caseStudy.appendChild(contentPlaceholder);
 
         plh.style.display = "none";
         figc.style.display = "none";
@@ -99,6 +105,10 @@ if (motionOK) {
 
       // empty the lightbox's content
       lightboxContent.innerHTML = "";
+      const contentPlaceholder = document.getElementById("contentplaceholder");
+      if (contentPlaceholder) {
+        contentPlaceholder.remove();
+      }
 
       lightbox.close();
       state.open = false;
