@@ -12,7 +12,6 @@ export default defineConfig({
   experimental: {
     svg: true,
   },
-  integrations: [react()],
   vite: {
     plugins: [
       svgr({
