@@ -9,20 +9,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^4.2.3",
-    "@sanity/astro": "^3.2.6",
     "@svgr/plugin-svgo": "^8.1.0",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.1",
-    "@vitejs/plugin-react": "^5.0.1",
     "astro": "^5.1.10",
     "datocms-structured-text-to-html-string": "^5.0.0",
     "dotenv": "^16.4.7",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-is": "^19.1.0",
-    "sanity": "^3.82.0",
-    "styled-components": "^6.1.17",
     "vite-plugin-svgr": "^4.3.0"
   }
 }
