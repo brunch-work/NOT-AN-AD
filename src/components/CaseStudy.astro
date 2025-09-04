@@ -14,7 +14,7 @@ const { id, title, category, year, url, alt, format } = Astro.props;
       <div class="case-study__asset">
         {
           format === "mp4" || format === "webm" ? (
-            <video src={url} autoplay loop muted playsinline />
+            <video src={url} loop muted playsinline />
           ) : (
             <img src={url} alt={alt} />
           )
