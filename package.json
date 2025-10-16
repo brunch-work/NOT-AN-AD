@@ -6,9 +6,11 @@
     "dev": "astro dev --host",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "start": "node ./dist/server/entry.mjs"
   },
   "dependencies": {
+    "@astrojs/node": "^9.5.0",
     "@svgr/plugin-svgo": "^8.1.0",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.1",

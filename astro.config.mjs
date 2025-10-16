@@ -6,11 +6,14 @@ dotenv.config(); // Load environment variables from .env
 
 import svgr from "vite-plugin-svgr";
 
+import node from "@astrojs/node";
+
 // https://astro.build/config
 export default defineConfig({
   experimental: {
     svg: true,
   },
+
   vite: {
     plugins: [
       svgr({
@@ -36,4 +39,8 @@ export default defineConfig({
       }),
     ],
   },
+
+  adapter: node({
+    mode: "standalone",
+  }),
 });
