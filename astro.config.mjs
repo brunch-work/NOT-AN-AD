@@ -1,6 +1,6 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import dotenv from 'dotenv';
+import { defineConfig } from "astro/config";
+import dotenv from "dotenv";
 
 dotenv.config(); // Load environment variables from .env
 
@@ -10,10 +10,9 @@ import node from "@astrojs/node";
 
 // https://astro.build/config
 export default defineConfig({
-  experimental: {
-    svg: true,
-  },
-
+  adapter: node({
+    mode: "standalone",
+  }),
   vite: {
     plugins: [
       svgr({
