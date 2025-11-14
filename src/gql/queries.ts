@@ -33,12 +33,7 @@ query Homepage {
     intro
     contact
     id
-    reel {
-      url
-      alt
-    }
-  }
-  allHomepageProjects {
+    projects {
     title
     media {
       url
@@ -51,6 +46,11 @@ query Homepage {
     id
     projectType
     publishedDate
+    }
+    reel {
+      url
+      alt
+    }
   }
 }`;
 
