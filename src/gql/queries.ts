@@ -46,6 +46,7 @@ query Homepage {
       title
       width
       height
+      format
     }
     id
     projectType

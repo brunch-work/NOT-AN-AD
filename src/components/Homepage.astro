@@ -201,6 +201,7 @@ const imageShape = (w: number, h: number) => {
     <ul class="content-grid" data-view="grid">
       {
         data.allHomepageProjects.map((project) => {
+          console.log(project);
           return (
             <CaseStudy
               id={project.id}
@@ -209,6 +210,7 @@ const imageShape = (w: number, h: number) => {
               url={project.media.url}
               alt={project.media.alt || project.title}
               year={project.publishedDate.split("-")[0]}
+              format={project.media.format}
               shape={imageShape(project.media.width, project.media.height)}
             >
               <IconStrategy
@@ -241,17 +243,17 @@ const imageShape = (w: number, h: number) => {
   const filterButton = document.getElementById("filter-button");
   const filterPopover = document.getElementById("filters-popover");
   const filterCheckboxes = document.querySelectorAll(
-    '#filters-popover input[type="checkbox"]'
+    '#filters-popover input[type="checkbox"]',
   );
   const viewRadios = document.querySelectorAll(
-    '.content-view input[type="radio"]'
+    '.content-view input[type="radio"]',
   );
   const contentGrid = document.querySelector(".content-grid") as HTMLElement;
   const contentGridListItems = contentGrid.querySelectorAll(
-    ".content-grid > li"
+    ".content-grid > li",
   ) as NodeListOf<HTMLElement>;
   const contentListButtons = contentGrid.querySelectorAll(
-    ".content-grid > li button"
+    ".content-grid > li button",
   ) as NodeListOf<HTMLButtonElement>;
 
   const follower = document.getElementById("hover-preview");
@@ -363,7 +365,7 @@ const imageShape = (w: number, h: number) => {
       ?.querySelector("img")
       ?.setAttribute(
         "src",
-        target.querySelector("img")?.getAttribute("src") || ""
+        target.querySelector("img")?.getAttribute("src") || "",
       );
   }
 </script>
