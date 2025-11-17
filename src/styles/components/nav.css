@@ -75,19 +75,17 @@
     text-align: end;
   }
 
-  @media (max-width: 768px) {
-    .nav {
-      .logo {
-        display: block;
-      }
+  @media (min-width: 768px) {
+    .logo {
+      display: block;
+    }
 
-      .menu {
-        grid-column: 3 / -3;
-      }
+    .menu {
+      grid-column: 3 / -3;
+    }
 
-      .datetime {
-        display: block;
-      }
+    .datetime {
+      display: block;
     }
   }
 }
