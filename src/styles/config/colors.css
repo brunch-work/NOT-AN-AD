@@ -5,10 +5,11 @@
   --palette-slate: #494949;
   --palette-w95-grey: #d5d5d5;
   --palette-white: #fff;
+  --palette-off-white: #f0f0e3;
   --palette-blue: #00f;
 
   --text: light-dark(var(--palette-black), var(--palette-white));
-  --background: light-dark(var(--palette-white), var(--palette-black));
+  --background: light-dark(var(--palette-off-white), var(--palette-black));
   --accent: light-dark(
     var(--palette-blue),
     hsl(from var(--palette-blue) h s 72)

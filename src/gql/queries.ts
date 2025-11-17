@@ -31,6 +31,7 @@ export const homepageQuery = `
 query Homepage {
   home {
     reel {
+    format
       video {
         alt
         mp4Url
@@ -76,6 +77,7 @@ export type Asset = {
   _modelApiKey: string;
   projectType: string;
   asset: {
+    id: string;
     alt: string;
     url: string;
     format: string;
@@ -84,6 +86,7 @@ export type Asset = {
   };
   preview: {
     video: {
+      id: string;
       mp4Url: string;
       height: number;
       width: number;
@@ -147,6 +150,7 @@ query Archive {
         _modelApiKey
         id
         asset {
+          id
           alt
           url
           format
@@ -167,7 +171,8 @@ query Archive {
           }
         }
         asset {
-        format
+          id
+          format
           video {
             height
             width
@@ -180,4 +185,23 @@ query Archive {
     }
   }
 }
+`;
+
+export const mediaQuery = `
+  query MyQuery($id: UploadId!) {
+    upload(filter: {id: {eq: $id}}) {
+      title
+      format
+      url
+      video {
+        height
+        width
+        alt
+        duration
+        mp4Url
+        streamingUrl
+        thumbnailUrl
+      }
+    }
+  }
 `;

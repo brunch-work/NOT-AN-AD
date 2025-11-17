@@ -1,5 +1,6 @@
 .archive {
   margin-top: 12rem;
+  grid-row-gap: 8px !important;
 
   .archive-item {
     grid-column: span 2;

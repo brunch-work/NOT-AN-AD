@@ -6,12 +6,13 @@ import IconBack from "../assets/images/svg/back.svg";
 import IconForward from "../assets/images/svg/forward.svg";
 import IconPlay from "../assets/images/svg/play.svg";
 
-const props = Astro.props;
-console.log(props);
+const { asset } = Astro.props;
+
+console.log(asset);
 ---
 
 <div class="lightbox">
-  <video id="lightbox-video" src={props.video.mp4Url} autoplay loop muted
+  <video id="lightbox-video" src={asset.video.mp4Url} autoplay loop muted
   ></video>
 
   <div class="video-controls">
@@ -26,7 +27,7 @@ console.log(props);
           <div class="volume-track"></div>
           <div class="volume-indicator">
             <svg width="8" height="12" viewBox="0 0 8 12">
-              <polygon points="0,6 8,0 8,12" fill="white"></polygon>
+              <polygon points="0,6 8,0 8,12" fill="currentColor"></polygon>
             </svg>
           </div>
         </div>

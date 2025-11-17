@@ -21,17 +21,23 @@ const { archive } = json.data;
   {
     archive.assets.map((asset: Asset) => {
       console.log(asset);
+
       if (asset._modelApiKey === "image_asset") {
         return (
           <div class="archive-item">
-            <img src={asset.asset.url} alt={asset.asset.alt} />
+            <a href={`/media/${asset.asset.id}`}>
+              <img src={asset.asset.url} alt={asset.asset.alt} />
+            </a>
           </div>
         );
       }
+
       if (asset._modelApiKey === "video_asset") {
         return (
           <div class="archive-item">
-            <video src={asset.preview.video.mp4Url} muted />
+            <a href={`/media/${asset.asset.id}`}>
+              <video src={asset.preview.video.mp4Url} muted />
+            </a>
           </div>
         );
       }
