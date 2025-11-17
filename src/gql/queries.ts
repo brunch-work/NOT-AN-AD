@@ -37,6 +37,8 @@ query Homepage {
         width
         title
         duration
+        muxPlaybackId
+        muxAssetId
       }
     }
   }
