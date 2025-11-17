@@ -1,0 +1,58 @@
+---
+import NotAnAdLogo from "../assets/images/svg/NOT_AN_AD_LOGO.svg";
+
+const time = new Date().toLocaleTimeString("en-US", {
+  hour: "numeric",
+  minute: "2-digit",
+  second: "2-digit",
+  hour12: false,
+  timeZone: "America/New_York", // Example IANA time zone name for UTC-5 during EST
+});
+---
+
+<nav class="nav subgrid">
+  <div class="logo">
+    <NotAnAdLogo fill="currentColor" />
+  </div>
+
+  <div class="menu">
+    <ul>
+      <li>
+        <span>NOT AN AD</span>
+      </li>
+      <li>
+        <span>ARCHIVE</span>
+      </li>
+      <li>
+        <span>ABOUT</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="datetime">
+    <span id="current-time">{time} (UTC-5)</span>
+  </div>
+</nav>
+
+<script>
+  function updateTime() {
+    const timeElement = document.getElementById("current-time");
+    if (timeElement) {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+        timeZone: "America/New_York",
+      });
+      timeElement.textContent = `${timeString} (UTC-5)`;
+    }
+  }
+
+  // Update immediately on load
+  updateTime();
+
+  // Update every second
+  setInterval(updateTime, 1000);
+</script>

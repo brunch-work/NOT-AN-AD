@@ -1,0 +1,24 @@
+.nav {
+  .menu {
+    grid-column: 2 / -2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    ul {
+      display: flex;
+      gap: 2px;
+
+      li {
+        background: rgba(49, 49, 49, 0.75);
+        backdrop-filter: blur(5px);
+        padding: 0.6rem 1.5rem;
+        span {
+          display: block;
+          width: 11ch;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
