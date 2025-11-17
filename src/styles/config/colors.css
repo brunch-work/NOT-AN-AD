@@ -1,10 +1,10 @@
 :root {
   color-scheme: light dark;
 
-  --palette-black: #131313;
+  --palette-black: #000;
   --palette-slate: #494949;
   --palette-w95-grey: #d5d5d5;
-  --palette-white: #f0f0e3;
+  --palette-white: #fff;
   --palette-blue: #00f;
 
   --text: light-dark(var(--palette-black), var(--palette-white));

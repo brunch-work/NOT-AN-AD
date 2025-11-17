@@ -46,6 +46,7 @@ html {
 
 body {
   font-size: var(--font-size);
+  text-transform: uppercase;
 }
 
 @media screen and (min-width: 720px) {
@@ -59,10 +60,6 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-}
-
-a {
-  color: var(--accent);
 }
 
 a:hover {

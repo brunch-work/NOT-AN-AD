@@ -24,7 +24,6 @@
     calc(var(--padding) - var(--gap));
   row-gap: 0;
   grid-auto-rows: min-content;
-  padding-block: var(--padding);
 
   .subgrid {
     grid-column: 2 / -2;
