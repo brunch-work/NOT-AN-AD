@@ -9,4 +9,113 @@
     width: 100%;
     object-fit: contain;
   }
+
+  .video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.2rem 0.8rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  .main-controls {
+    display: flex;
+    align-items: flex-end;
+    gap: 2rem;
+  }
+
+  .playback-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .time-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .separator {
+    opacity: 0.6;
+  }
+
+  .volume-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+  }
+
+  .control-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    height: 16px;
+  }
+
+  .control-btn svg {
+    width: auto;
+    height: 100%;
+    filter: brightness(0) invert(1);
+  }
+
+  .control-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .control-btn:active {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .custom-volume-slider {
+    position: relative;
+    width: 24px;
+    height: 100px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    user-select: none;
+  }
+
+  .volume-track {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: light-dark(black, white);
+    border-radius: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .volume-indicator {
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+    /*transform: translate(-50%, 50%);*/
+    transform: rotate(180deg) translate(100%, -50%);
+    pointer-events: none;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  }
+
+  .volume-indicator svg {
+    display: block;
+  }
 }

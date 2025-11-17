@@ -15,150 +15,35 @@ console.log(props);
   ></video>
 
   <div class="video-controls">
-    <div class="playback-controls">
-      <button id="play-pause-btn" class="control-btn" aria-label="Play/Pause">
-        <img src={IconPause.src} alt="Pause" class="icon-pause" />
-        <img
-          src={IconPlay.src}
-          alt="Play"
-          class="icon-play"
-          style="display: none;"
-        />
-      </button>
+    <div class="main-controls">
+      <div class="volume-controls">
+        <button id="mute-btn" class="control-btn" aria-label="Toggle mute">
+          <IconVolume class="icon-volume" />
+          <IconVolumeOff class="icon-volume-off" style="display: none;" />
+        </button>
+
+        <div class="custom-volume-slider">
+          <div class="volume-track"></div>
+          <div class="volume-indicator">
+            <svg width="8" height="12" viewBox="0 0 8 12">
+              <polygon points="0,6 8,0 8,12" fill="white"></polygon>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="playback-controls">
+        <button id="play-pause-btn" class="control-btn" aria-label="Play/Pause">
+          <IconPause class="icon-pause" />
+          <IconPlay class="icon-play" style="display: none;" />
+        </button>
+      </div>
     </div>
 
     <div class="time-display">
-      <span id="lightbox-current-time">0:00</span>
-      <span class="separator">/</span>
-      <span id="lightbox-duration">0:00</span>
-    </div>
-
-    <div class="volume-controls">
-      <button id="mute-btn" class="control-btn" aria-label="Toggle mute">
-        <img src={IconVolume.src} alt="Volume" class="icon-volume" />
-        <img
-          src={IconVolumeOff.src}
-          alt="Muted"
-          class="icon-volume-off"
-          style="display: none;"
-        />
-      </button>
-
-      <div class="custom-volume-slider">
-        <div class="volume-track"></div>
-        <div class="volume-indicator">
-          <svg width="12" height="8" viewBox="0 0 12 8">
-            <polygon points="6,0 12,8 0,8" fill="white"></polygon>
-          </svg>
-        </div>
-      </div>
+      <span id="lightbox-current-time">00:00:00</span>
     </div>
   </div>
 </div>
-
-<style>
-  .video-controls {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    transition: opacity 0.3s ease;
-  }
-
-  .playback-controls {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .time-display {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: white;
-    font-family: monospace;
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  .separator {
-    opacity: 0.6;
-  }
-
-  .volume-controls {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .control-btn {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    padding: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
-    width: 40px;
-    height: 40px;
-  }
-
-  .control-btn img {
-    width: 24px;
-    height: 24px;
-    filter: brightness(0) invert(1);
-  }
-
-  .control-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .control-btn:active {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-
-  .custom-volume-slider {
-    position: relative;
-    width: 100px;
-    height: 24px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    user-select: none;
-  }
-
-  .volume-track {
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 1px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .volume-indicator {
-    position: absolute;
-    top: 50%;
-    left: 0%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
-  }
-
-  .volume-indicator svg {
-    display: block;
-  }
-</style>
 
 <script>
   const video = document.getElementById("lightbox-video") as HTMLVideoElement;
@@ -195,9 +80,11 @@ console.log(props);
 
   // Format time in minutes:seconds
   function formatTime(seconds: number): string {
+    const frames = Math.floor((seconds % 1) * 100);
     const mins = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs.toString().padStart(2, "0")}`;
+    const hours = Math.floor(mins / 60);
+    return `${hours.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}:${frames.toString().padStart(2, "0")}`;
   }
 
   // Update play/pause icon
@@ -226,14 +113,14 @@ console.log(props);
   function updateVolumeIndicator() {
     const volume = video.muted ? 0 : video.volume;
     const percentage = volume * 100;
-    volumeIndicator.style.left = `${percentage}%`;
+    volumeIndicator.style.bottom = `${percentage}%`;
   }
 
   // Set volume from mouse position
   function setVolumeFromEvent(e: MouseEvent) {
     const rect = volumeSlider.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+    const y = rect.bottom - e.clientY; // Inverted: bottom is 0, top is max
+    const percentage = Math.max(0, Math.min(100, (y / rect.height) * 100));
     const volume = percentage / 100;
 
     video.volume = volume;
