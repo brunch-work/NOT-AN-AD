@@ -3,7 +3,7 @@
   grid-row-gap: 8px !important;
 
   .archive-item {
-    grid-column: span 2;
+    grid-column: span 3;
     width: 100%;
 
     img,
@@ -11,6 +11,12 @@
       width: 100%;
       height: auto;
       object-fit: cover;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .archive-item {
+      grid-column: span 2;
     }
   }
 }

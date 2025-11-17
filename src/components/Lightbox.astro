@@ -8,35 +8,54 @@ import IconPlay from "../assets/images/svg/play.svg";
 
 const { asset } = Astro.props;
 
-console.log(asset);
+const isVideo =
+  asset.format === "mp4" ||
+  asset.format === "webm" ||
+  (asset.format === "mov" && asset.video.mp4Url);
 ---
 
 <div class="lightbox">
-  <video id="lightbox-video" src={asset.video.mp4Url} autoplay loop muted
-  ></video>
+  {
+    isVideo && (
+      <video id="lightbox-video" src={asset.video.mp4Url} autoplay loop />
+    )
+  }
+  {!isVideo && <img id="lightbox-image" src={asset.url} alt={asset.alt} />}
 
   <div class="video-controls">
     <div class="main-controls">
-      <div class="volume-controls">
-        <button id="mute-btn" class="control-btn" aria-label="Toggle mute">
-          <IconVolume class="icon-volume" />
-          <IconVolumeOff class="icon-volume-off" style="display: none;" />
-        </button>
+      {
+        isVideo && (
+          <div class="volume-controls">
+            <button id="mute-btn" class="control-btn" aria-label="Toggle mute">
+              <IconVolume class="icon-volume" />
+              <IconVolumeOff class="icon-volume-off" style="display: none;" />
+            </button>
 
-        <div class="custom-volume-slider">
-          <div class="volume-track"></div>
-          <div class="volume-indicator">
-            <svg width="8" height="12" viewBox="0 0 8 12">
-              <polygon points="0,6 8,0 8,12" fill="currentColor"></polygon>
-            </svg>
+            <div class="custom-volume-slider">
+              <div class="volume-track" />
+              <div class="volume-indicator">
+                <svg width="8" height="12" viewBox="0 0 8 12">
+                  <polygon points="0,6 8,0 8,12" fill="currentColor" />
+                </svg>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        )
+      }
       <div class="playback-controls">
-        <button id="play-pause-btn" class="control-btn" aria-label="Play/Pause">
-          <IconPause class="icon-pause" />
-          <IconPlay class="icon-play" style="display: none;" />
-        </button>
+        {
+          isVideo && (
+            <button
+              id="play-pause-btn"
+              class="control-btn"
+              aria-label="Play/Pause"
+            >
+              <IconPause class="icon-pause" />
+              <IconPlay class="icon-play" style="display: none;" />
+            </button>
+          )
+        }
       </div>
     </div>
 
