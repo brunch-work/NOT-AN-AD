@@ -121,7 +121,7 @@ const currentPath = Astro.url.pathname;
 
   let aboutOpen = false;
 
-  if (aboutButton && aboutLink) {
+  if (aboutButton && aboutLink && about) {
     aboutButton.addEventListener("click", () => {
       aboutOpen = !aboutOpen;
       aboutLink.textContent = aboutOpen ? "CLOSE" : "ABOUT";
