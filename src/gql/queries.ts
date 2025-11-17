@@ -30,26 +30,14 @@ type HomeData = {
 export const homepageQuery = `
 query Homepage {
   home {
-    intro
-    contact
-    id
-    projects {
-    title
-    media {
-      url
-      alt
-      title
-      width
-      height
-      format
-    }
-    id
-    projectType
-    publishedDate
-    }
     reel {
-      url
-      alt
+      video {
+        alt
+        mp4Url
+        width
+        title
+        duration
+      }
     }
   }
 }`;

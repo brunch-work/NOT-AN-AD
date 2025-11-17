@@ -1,165 +1,26 @@
 ---
-import "../styles/components/homepage.css";
+import { homepageQuery } from "../gql/queries";
 
-import NotAnAdLogo from "../assets/images/svg/NOT_AN_AD_LOGO.svg";
-import IconStrategy from "../assets/images/svg/icon_strategy.svg";
-import IconPartnership from "../assets/images/svg/icon_partnerships.svg";
-import IconEarnedMedia from "../assets/images/svg/icon_earned_media.svg";
-import IconContent from "../assets/images/svg/icon_content.svg";
-import IconAmplification from "../assets/images/svg/icon_amplification.svg";
-import CaseStudy from "./CaseStudy.astro";
+const response = await fetch("https://graphql.datocms.com/", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    Authorization: `Bearer ${import.meta.env.DATOCMS_API_KEY}`,
+  },
+  body: JSON.stringify({
+    query: homepageQuery,
+  }),
+});
 
-import { homepageQuery, type HomepageData } from "../gql/queries.ts";
-
-// const response = await fetch("https://graphql.datocms.com/", {
-//   method: "POST",
-//   headers: {
-//     "Content-Type": "application/json",
-//     Accept: "application/json",
-//     Authorization: `Bearer ${import.meta.env.DATOCMS_API_KEY}`,
-//   },
-//   body: JSON.stringify({
-//     query: homepageQuery,
-//   }),
-// });
-
-// const json = await response.json();
-// const data: HomepageData = json.data;
+const json = await response.json();
+const { home } = json.data;
 ---
 
-<main class="grid"></main>
-
-<script>
-  //filtering and list display switching
-  const filterButton = document.getElementById("filter-button");
-  const filterPopover = document.getElementById("filters-popover");
-  const filterCheckboxes = document.querySelectorAll(
-    '#filters-popover input[type="checkbox"]',
-  );
-  const viewRadios = document.querySelectorAll(
-    '.content-view input[type="radio"]',
-  );
-  const contentGrid = document.querySelector(".content-grid") as HTMLElement;
-  const contentGridListItems = contentGrid.querySelectorAll(
-    ".content-grid > li",
-  ) as NodeListOf<HTMLElement>;
-  const contentListButtons = contentGrid.querySelectorAll(
-    ".content-grid > li button",
-  ) as NodeListOf<HTMLButtonElement>;
-
-  const follower = document.getElementById("hover-preview");
-
-  contentGridListItems.forEach((item) => {
-    item.addEventListener("mouseover", (event) => {
-      updateFollowerImage(event);
-    });
-  });
-
-  filterCheckboxes.forEach((chk) => {
-    chk.addEventListener("change", (event) => {
-      filterCheckboxes.forEach((checkbox) => {
-        if (checkbox !== event.target) {
-          (checkbox as HTMLInputElement).checked = false;
-        }
-      });
-      const target = event.target as HTMLInputElement;
-      const icon = target.parentElement
-        ?.querySelector("svg")
-        ?.cloneNode(true) as SVGElement;
-
-      if (filterButton) {
-        if (target.checked) {
-          filterButton.replaceChildren(icon);
-          filterButton.innerHTML += target.parentElement?.innerText;
-        } else {
-          filterButton.innerHTML = "Filter";
-        }
-      }
-
-      function filter() {
-        if (contentGrid) {
-          contentGrid.dataset.filter =
-            target.checked && target.value ? target.value : "";
-        }
-      }
-
-      document.startViewTransition
-        ? document.startViewTransition(() => filter())
-        : filter();
-
-      filterPopover && filterPopover.hidePopover();
-    });
-  });
-
-  let shouldTrackMouse = false;
-  let mouseX = 0,
-    mouseY = 0;
-  let rafId: number | null = null;
-  viewRadios.forEach((radio) => {
-    radio.addEventListener("change", (event) => {
-      const target = event.target as HTMLInputElement;
-      const view = target.id.split("--")[1];
-
-      function changeView() {
-        if (contentGrid) {
-          contentGrid.dataset.view = view;
-          if (view === "list") {
-            shouldTrackMouse = true;
-          } else {
-            shouldTrackMouse = false;
-          }
-        }
-      }
-
-      document.startViewTransition
-        ? document.startViewTransition(() => changeView())
-        : changeView();
-    });
-  });
-
-  document.addEventListener("mousemove", (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    if (!rafId && shouldTrackMouse) {
-      rafId = requestAnimationFrame(updateFollower);
-    }
-  });
-
-  contentListButtons.forEach((b) => {
-    b.addEventListener("focus", (event) => {
-      const target = event.currentTarget as HTMLButtonElement;
-      const figc = target.querySelector("figcaption") as HTMLElement;
-      const rect = figc.getBoundingClientRect();
-      mouseX = rect.left;
-      mouseY = rect.top;
-      if (!rafId && shouldTrackMouse) {
-        rafId = requestAnimationFrame(updateFollower);
-        updateFollowerImage(event);
-      }
-    });
-  });
-
-  function updateFollower() {
-    if (follower && shouldTrackMouse) {
-      let ty = 0;
-      if (window.innerHeight - mouseY < 350) {
-        ty = 100;
-      }
-      follower.style.transform = `translate(-50%, calc( ${mouseY}px - ${ty}% - (${ty} * 0.06px) )`;
-      rafId = null;
-    }
-  }
-
-  function updateFollowerImage(event: Event) {
-    const target = event.currentTarget as HTMLElement;
-    follower
-      ?.querySelector("img")
-      ?.setAttribute(
-        "src",
-        target.querySelector("img")?.getAttribute("src") || "",
-      );
-  }
-</script>
-
-<script src="../scripts/video-playback.js"></script>
-<script src="../scripts/lightbox.js"></script>
+<div class="home">
+  <div class="reel">
+    <video src={home.reel.video.mp4Url} width={home.reel.video.width} controls>
+      {home.reel.video.title}
+    </video>
+  </div>
+</div>
