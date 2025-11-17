@@ -1,5 +1,5 @@
 ---
-import { archiveQuery } from "../gql/queries";
+import { archiveQuery, Asset } from "../gql/queries";
 
 const response = await fetch("https://graphql.datocms.com/", {
   method: "POST",
@@ -19,8 +19,22 @@ const { archive } = json.data;
 
 <div class="subgrid archive">
   {
-    archive.assets.map((asset) => {
-      return <div class="archive-item">{asset.id}</div>;
+    archive.assets.map((asset: Asset) => {
+      console.log(asset);
+      if (asset._modelApiKey === "image_asset") {
+        return (
+          <div class="archive-item">
+            <img src={asset.asset.url} alt={asset.asset.alt} />
+          </div>
+        );
+      }
+      if (asset._modelApiKey === "video_asset") {
+        return (
+          <div class="archive-item">
+            <video src={asset.preview.video.mp4Url} muted />
+          </div>
+        );
+      }
     })
   }
 </div>

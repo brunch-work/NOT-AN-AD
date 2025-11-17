@@ -73,14 +73,23 @@ export type Project = {
 
 export type Asset = {
   id: string;
+  _modelApiKey: string;
   projectType: string;
   asset: {
-    format?: "mp4" | "webm" | "jpg" | "png" | "gif";
     alt: string;
     url: string;
+    format: string;
     height: number;
     width: number;
-    format: string;
+  };
+  preview: {
+    video: {
+      mp4Url: string;
+      height: number;
+      width: number;
+      alt: string;
+      duration: number;
+    };
   };
 };
 
@@ -135,6 +144,7 @@ query Archive {
   archive {
     assets {
       ... on ImageAssetRecord {
+        _modelApiKey
         id
         asset {
           alt
@@ -145,6 +155,7 @@ query Archive {
         }
       }
       ... on VideoAssetRecord {
+        _modelApiKey
         id
         preview {
           video {
@@ -152,7 +163,7 @@ query Archive {
             width
             alt
             duration
-            streamingUrl
+            mp4Url
           }
         }
         asset {
