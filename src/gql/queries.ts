@@ -139,3 +139,44 @@ export const aboutQuery = `
     }
   }
   `;
+
+export const archiveQuery = `
+query Archive {
+  archive {
+    assets {
+      ... on ImageAssetRecord {
+        id
+        asset {
+          alt
+          url
+          format
+          height
+          width
+        }
+      }
+      ... on VideoAssetRecord {
+        id
+        preview {
+          video {
+            height
+            width
+            alt
+            duration
+            streamingUrl
+          }
+        }
+        asset {
+        format
+          video {
+            height
+            width
+            alt
+            duration
+            streamingUrl
+          }
+        }
+      }
+    }
+  }
+}
+`;
