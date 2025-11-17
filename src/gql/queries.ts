@@ -128,3 +128,14 @@ query DeckPage {
   }
 }
 `;
+
+export const aboutQuery = `
+  query about {
+  about {
+      about
+      inquiries
+      manifesto
+      services
+    }
+  }
+  `;

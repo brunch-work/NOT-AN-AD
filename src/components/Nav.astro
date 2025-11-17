@@ -1,5 +1,21 @@
 ---
 import NotAnAdLogo from "../assets/images/svg/NOT_AN_AD_LOGO.svg";
+import { aboutQuery } from "../gql/queries";
+
+const response = await fetch("https://graphql.datocms.com/", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    Authorization: `Bearer ${import.meta.env.DATOCMS_API_KEY}`,
+  },
+  body: JSON.stringify({
+    query: aboutQuery,
+  }),
+});
+
+const json = await response.json();
+const { about } = json.data;
 
 const time = new Date().toLocaleTimeString("en-US", {
   hour: "numeric",
@@ -43,31 +59,25 @@ const currentPath = Astro.url.pathname;
           <li>
             <span>ABOUT</span>
             <p>
-              NOT AN AD is a social-media advertising agency based in New York
-              City.
+              {about.about}
             </p>
           </li>
           <li>
             <span>MANIFESTO</span>
             <p>
-              Traditional messaging strategies simply will not reach those born
-              into an ad-saturated world. With our extensive experience in
-              organic social content we will help create an online presence that
-              cultivates a dedicated following for your brand.
+              {about.manifesto}
             </p>
           </li>
           <li>
             <span>SERVICES</span>
             <p>
-              social strategy, content production, high impact internet
-              campaigns, media buy strategy, media production.
+              {about.services}
             </p>
           </li>
           <li>
             <span>INQUIRIES</span>
             <p>
-              to discuss a potential project, please email use with a brief
-              description, a timeline and a rough budget.
+              {about.inquiries}
             </p>
             <a class="link-accent" href="mailto:hello@notanad.us"
               >hello@notanad.us</a
