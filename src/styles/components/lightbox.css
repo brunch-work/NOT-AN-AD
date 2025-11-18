@@ -1,6 +1,7 @@
 .lightbox {
   height: 100%;
   width: auto;
+  max-width: 100%;
 
   img,
   video,
@@ -17,11 +18,29 @@
     right: 0;
     padding: 1.2rem 0.8rem;
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: stretch;
     justify-content: space-between;
-    gap: 20px;
+    gap: 1.2rem;
     opacity: 1;
     transition: opacity 0.3s ease;
+  }
+
+  .homepage-controls,
+  .top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+  }
+
+  .bottom-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    border: 1px solid var(--text);
+    padding: 4px;
   }
 
   .main-controls {
@@ -42,7 +61,7 @@
     gap: 8px;
     color: currentColor;
     font-family: monospace;
-    font-size: 14px;
+    font-size: var(--font-size);
     font-weight: 500;
   }
 
@@ -69,6 +88,10 @@
     border-radius: 4px;
     transition: background-color 0.2s ease;
     height: 16px;
+  }
+
+  #play-pause-btn {
+    width: 1.5rem;
   }
 
   .control-btn svg {
@@ -108,5 +131,27 @@
 
   .volume-indicator svg {
     display: block;
+  }
+}
+
+.lightbox-dialog {
+  position: fixed;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 9999;
+  padding: 0;
+  border: none;
+  display: block;
+
+  .lightbox-wrapper {
+    height: 100%;
+    padding: 5rem 0;
+    max-height: var(--100dvh);
+    max-width: 100%;
+    grid-column: 1 / -1;
   }
 }

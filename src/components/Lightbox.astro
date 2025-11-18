@@ -5,8 +5,12 @@ import IconPause from "../assets/images/svg/pause.svg";
 import IconBack from "../assets/images/svg/back.svg";
 import IconForward from "../assets/images/svg/forward.svg";
 import IconPlay from "../assets/images/svg/play.svg";
+import IconHome from "../assets/images/svg/home.svg";
+import IconDot from "../assets/images/svg/dot.svg";
 
-const { asset } = Astro.props;
+const { assets, index, isHomepage } = Astro.props;
+
+const asset = assets[index];
 
 const isVideo =
   asset.format === "mp4" ||
@@ -23,9 +27,55 @@ const isVideo =
   {!isVideo && <img id="lightbox-image" src={asset.url} alt={asset.alt} />}
 
   <div class="video-controls">
-    <div class="main-controls">
-      {
-        isVideo && (
+    {
+      isHomepage ? (
+        <div class="homepage-controls">
+          <div class="main-controls">
+            {isVideo && (
+              <div class="volume-controls">
+                <button
+                  id="mute-btn"
+                  class="control-btn"
+                  aria-label="Toggle mute"
+                >
+                  <IconVolume class="icon-volume" />
+                  <IconVolumeOff
+                    class="icon-volume-off"
+                    style="display: none;"
+                  />
+                </button>
+
+                <div class="custom-volume-slider">
+                  <div class="volume-track" />
+                  <div class="volume-indicator">
+                    <svg width="8" height="12" viewBox="0 0 8 12">
+                      <polygon points="0,6 8,0 8,12" fill="currentColor" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            )}
+            <div class="playback-controls">
+              {isVideo && (
+                <button
+                  id="play-pause-btn"
+                  class="control-btn"
+                  aria-label="Play/Pause"
+                >
+                  <IconPause class="icon-pause" />
+                  <IconPlay class="icon-play" style="display: none;" />
+                </button>
+              )}
+            </div>
+          </div>
+
+          <div class="time-display">
+            <span id="lightbox-current-time">00:00:00</span>
+          </div>
+        </div>
+      ) : (
+        <div class="top-controls">
+          {isVideo && (
           <div class="volume-controls">
             <button id="mute-btn" class="control-btn" aria-label="Toggle mute">
               <IconVolume class="icon-volume" />
@@ -41,27 +91,44 @@ const isVideo =
               </div>
             </div>
           </div>
-        )
-      }
-      <div class="playback-controls">
-        {
-          isVideo && (
-            <button
-              id="play-pause-btn"
-              class="control-btn"
-              aria-label="Play/Pause"
-            >
-              <IconPause class="icon-pause" />
-              <IconPlay class="icon-play" style="display: none;" />
-            </button>
-          )
-        }
-      </div>
-    </div>
+          )}
 
-    <div class="time-display">
-      <span id="lightbox-current-time">00:00:00</span>
-    </div>
+          <div class="home">
+            <button id="home-btn" class="control-btn" aria-label="Go to home">
+              <IconHome class="icon-home" />
+            </button>
+          </div>
+        </div>
+        <div class="bottom-controls">
+          <div class="playback-controls">
+            <button id="back" class="control-btn" aria-label="Previous Media">
+              <IconBack />
+            </button>
+            {isVideo && (
+              <button
+                id="play-pause-btn"
+                class="control-btn"
+                aria-label="Play/Pause"
+              >
+                <IconPause class="icon-pause" />
+                <IconPlay class="icon-play" style="display: none;" />
+              </button>
+            )}
+            <button id="forward" class="control-btn" aria-label="Next Media">
+              <IconForward />
+            </button>
+          </div>
+          <div class="time-display">
+            {isVideo && (
+              <button id="dot-btn" class="control-btn" aria-label="Dot">
+                <IconDot />
+              </button>
+            )}
+            <span id="lightbox-current-time">00:00:00</span>
+          </div>
+        </div>
+      )
+    }
   </div>
 </div>
 
