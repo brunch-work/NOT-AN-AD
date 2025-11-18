@@ -74,25 +74,18 @@ export type Project = {
 
 export type Asset = {
   id: string;
-  _modelApiKey: string;
-  projectType: string;
-  asset: {
+  alt: string;
+  url: string;
+  format: string;
+  height: number;
+  width: number;
+  video: {
     id: string;
-    alt: string;
-    url: string;
-    format: string;
+    mp4Url: string;
     height: number;
     width: number;
-  };
-  preview: {
-    video: {
-      id: string;
-      mp4Url: string;
-      height: number;
-      width: number;
-      alt: string;
-      duration: number;
-    };
+    alt: string;
+    duration: number;
   };
 };
 
@@ -143,48 +136,25 @@ export const aboutQuery = `
   `;
 
 export const archiveQuery = `
-query Archive {
-  archive {
-    assets {
-      ... on ImageAssetRecord {
-        _modelApiKey
+  query Archive {
+    archive {
+      assets {
         id
-        asset {
-          id
-          alt
-          url
-          format
+        alt
+        url
+        format
+        height
+        width
+        video {
           height
           width
-        }
-      }
-      ... on VideoAssetRecord {
-        _modelApiKey
-        id
-        preview {
-          video {
-            height
-            width
-            alt
-            duration
-            mp4Url
-          }
-        }
-        asset {
-          id
-          format
-          video {
-            height
-            width
-            alt
-            duration
-            streamingUrl
-          }
+          alt
+          duration
+          mp4Url
         }
       }
     }
   }
-}
 `;
 
 export const mediaQuery = `
