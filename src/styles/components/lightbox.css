@@ -134,6 +134,28 @@
   }
 }
 
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  49% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.icon-dot {
+  animation: pulse 1s infinite;
+}
+
 .lightbox-dialog {
   position: fixed;
   bottom: 50%;
@@ -142,15 +164,14 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: 9999;
+  z-index: 999;
   padding: 0;
   border: none;
   display: block;
 
   .lightbox-wrapper {
-    height: 100%;
+    height: var(--100dvh);
     padding: 5rem 0;
-    max-height: var(--100dvh);
     max-width: 100%;
     grid-column: 1 / -1;
   }
