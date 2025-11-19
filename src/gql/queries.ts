@@ -157,21 +157,13 @@ export const archiveQuery = `
   }
 `;
 
-export const mediaQuery = `
-  query MyQuery($id: UploadId!) {
-    upload(filter: {id: {eq: $id}}) {
-      title
-      format
-      url
-      video {
-        height
-        width
-        alt
-        duration
-        mp4Url
-        streamingUrl
-        thumbnailUrl
-      }
+export const lightboxQuery = `
+  query LightboxQuery($id: [UploadId!]) {
+    project(filter: {assets: {allIn: $id}}) {
+      id
+      clientName
+      projectType
+      publicationDate
     }
   }
 `;

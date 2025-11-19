@@ -8,9 +8,29 @@ import IconPlay from "../assets/images/svg/play.svg";
 import IconHome from "../assets/images/svg/home.svg";
 import IconDot from "../assets/images/svg/dot.svg";
 
+import { lightboxQuery } from "../gql/queries";
+
 const { assets, index, isHomepage } = Astro.props;
 
 const asset = assets[index];
+
+const response = await fetch("https://graphql.datocms.com/", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    Authorization: `Bearer ${import.meta.env.DATOCMS_API_KEY}`,
+  },
+  body: JSON.stringify({
+    query: lightboxQuery,
+    variables: {
+      id: asset.id,
+    },
+  }),
+});
+
+const json = await response.json();
+const {project} = json.data;
 
 const isVideo =
   asset.format === "mp4" ||
@@ -118,6 +138,21 @@ const isVideo =
               <IconForward />
             </button>
           </div>
+          {project && (
+            <div class="project-info">
+              <button id="info-btn">
+                Information
+                <svg width="9" height="7" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.5 -1.96701e-07L9 7L0 7L4.5 -1.96701e-07Z" fill="currentColor"/>
+                </svg>
+              </button>
+              <div class="popup">
+                <div class="project">{project.clientName}</div>
+                <div class="type">{project.projectType}</div>
+                <div class="year">{new Date(project.publicationDate).toLocaleDateString("en-US", { year: 'numeric' })}</div>
+              </div>
+            </div>
+          )}
           <div class="time-display">
             {isVideo && (
                 <IconDot class="icon-dot" />
@@ -125,6 +160,7 @@ const isVideo =
             <span id="lightbox-current-time">00:00:00</span>
           </div>
         </div>
+        <div class="margin"/>
       )
     }
   </div>
@@ -143,8 +179,12 @@ const isVideo =
     "lightbox-duration",
   ) as HTMLSpanElement;
 
+  // Handle popup toggle
+   const projectInfo = document.querySelector(".project-info") as HTMLElement;
+   const popup = document.querySelector(".popup") as HTMLElement;
+
   // Icon elements
-  const iconVolume = muteBtn.querySelector(".icon-volume") as HTMLImageElement;
+  const lig = muteBtn.querySelector(".icon-volume") as HTMLImageElement;
   const iconVolumeOff = muteBtn.querySelector(
     ".icon-volume-off",
   ) as HTMLImageElement;
@@ -162,6 +202,18 @@ const isVideo =
   ) as HTMLElement;
 
   let isDragging = false;
+
+  if (projectInfo && popup) {
+    const infoButton = projectInfo.querySelector("#info-btn") as HTMLButtonElement;
+
+    infoButton.addEventListener("click", () => {
+      popup.classList.toggle("visible");
+      // console.log("click")
+      // const isVisible = popup.style.bottom === "calc(100% + 1px)" && popup.style.height === "auto" && popup.style.transform === "translateY(0)";
+
+      infoButton.querySelector("svg").classList.toggle("visible");
+    });
+  }
 
   // Format time in minutes:seconds
   function formatTime(seconds: number): string {
@@ -288,6 +340,8 @@ const isVideo =
     updateVolumeIcon();
     updateVolumeIndicator();
   });
+
+
 
   // Initialize
   updatePlayPauseIcon();
