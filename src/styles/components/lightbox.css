@@ -217,16 +217,20 @@
 
 .lightbox-dialog {
   position: fixed;
-  bottom: 50%;
-  left: 50%;
-  transform: translate(-50%, 50%);
+  display: none;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
   z-index: 999;
   padding: 0;
   border: none;
-  display: block;
+  background-color: var(--background);
+
+  &.show {
+    display: block;
+  }
 
   .lightbox-wrapper {
     height: var(--100dvh);
