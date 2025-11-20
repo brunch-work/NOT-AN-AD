@@ -41,7 +41,7 @@ const isVideo =
 <div class="lightbox">
   {
     isVideo && (
-      <video id="lightbox-video" src={asset.video.mp4Url} autoplay loop />
+      <video id="lightbox-video" src={asset.video.mp4Url} autoplay loop muted />
     )
   }
   {!isVideo && <img id="lightbox-image" src={asset.url} alt={asset.alt} />}
