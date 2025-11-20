@@ -217,7 +217,7 @@
 
 .lightbox-dialog {
   position: fixed;
-  display: none;
+  display: block;
   bottom: 0;
   left: 0;
   width: 100%;
