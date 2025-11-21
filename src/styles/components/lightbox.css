@@ -198,6 +198,7 @@
     width: calc(100% + 2px);
     z-index: -1;
     transition: all 0.3s ease-in-out;
+    background-color: var(--background);
 
     &.visible {
       bottom: calc(100% + 1px);
@@ -211,13 +212,12 @@
       margin-bottom: -1px;
       padding: 4px;
     }
-    /*display: none;*/
   }
 }
 
 .lightbox-dialog {
   position: fixed;
-  display: block;
+  display: none;
   bottom: 0;
   left: 0;
   width: 100%;

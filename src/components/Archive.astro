@@ -1,6 +1,7 @@
 ---
-import { archiveQuery } from "../gql/queries";
+import { archiveQuery, lightboxQuery } from "../gql/queries";
 import Lightbox from "./Lightbox.astro";
+import { LightboxReact } from "./LightboxReact.jsx";
 
 const response = await fetch("https://graphql.datocms.com/", {
   method: "POST",
@@ -17,7 +18,35 @@ const response = await fetch("https://graphql.datocms.com/", {
 const json = await response.json();
 const data = json.data;
 const assets = data.archive.assets;
-const index = 4;
+const initialIndex = 0;
+
+// Fetch project data for each asset
+const projectDataMap = {};
+for (const asset of assets) {
+  try {
+    const projectResponse = await fetch("https://graphql.datocms.com/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${import.meta.env.DATOCMS_API_KEY}`,
+      },
+      body: JSON.stringify({
+        query: lightboxQuery,
+        variables: {
+          id: [asset.id],
+        },
+      }),
+    });
+
+    const projectJson = await projectResponse.json();
+    if (projectJson.data?.project) {
+      projectDataMap[asset.id] = projectJson.data.project;
+    }
+  } catch (error) {
+    console.error(`Error fetching project for asset ${asset.id}:`, error);
+  }
+}
 ---
 
 <div class="subgrid archive">
@@ -59,11 +88,53 @@ const index = 4;
 <dialog id="lightbox-dialog" class="lightbox-dialog">
   <div class="grid">
     <div class="subgrid">
-      <div class="lightbox-wrapper">
-        <Lightbox assets={assets} isHomepage={false} index={index} />
+      <div id="lightbox-wrapper" class="lightbox-wrapper">
+        <LightboxReact
+          client:load
+          assets={assets}
+          index={initialIndex}
+          projectDataMap={projectDataMap}
+        />
       </div>
     </div>
   </div>
 </dialog>
 
-<script define:vars={{ assets, index }}></script>
+<script>
+  const triggers = document.querySelectorAll("[data-lightbox-trigger]");
+  const dialog = document.getElementById("lightbox-dialog");
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener("click", (e) => {
+      const index = parseInt(
+        trigger.getAttribute("data-asset-index") || "0",
+        10,
+      );
+
+      // Dispatch custom event to update the lightbox index
+      window.dispatchEvent(
+        new CustomEvent("openLightbox", { detail: { index } }),
+      );
+
+      if (dialog) {
+        dialog.classList.toggle("show");
+      }
+    });
+  });
+
+  // Close dialog on outside click
+  if (dialog) {
+    dialog.addEventListener("click", (e) => {
+      const rect = dialog.getBoundingClientRect();
+      const isInDialog =
+        rect.top <= e.clientY &&
+        e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX &&
+        e.clientX <= rect.left + rect.width;
+
+      if (!isInDialog) {
+        dialog.close();
+      }
+    });
+  }
+</script>
