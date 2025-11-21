@@ -8,6 +8,7 @@ import { IconForward } from "./Icons/Forward";
 import { IconPlay } from "./Icons/Play";
 import { IconHome } from "./Icons/Home";
 import { IconDot } from "./Icons/Dot";
+import { ProjectType } from "./ProjectType";
 
 export const LightboxReact = ({
   assets,
@@ -350,6 +351,7 @@ export const LightboxReact = ({
               <button id="info-btn" onClick={toggleInfo}>
                 Information
                 <svg
+                  className={`btn-arrow ${infoOpen ? "visible" : ""}`}
                   width="9"
                   height="7"
                   viewBox="0 0 9 7"
@@ -364,7 +366,9 @@ export const LightboxReact = ({
               </button>
               <div className={`popup ${infoOpen ? "visible" : ""}`}>
                 <div className="project">{currentProject.clientName}</div>
-                <div className="type">{currentProject.projectType}</div>
+                <div className="type">
+                  <ProjectType type={currentProject.projectType} />
+                </div>
                 <div className="year">
                   {new Date(currentProject.publicationDate).toLocaleDateString(
                     "en-US",

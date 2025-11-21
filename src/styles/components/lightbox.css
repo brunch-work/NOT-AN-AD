@@ -174,14 +174,16 @@
   padding: 5px;
   height: 100%;
   position: relative;
-  width: 20ch;
+  width: 24ch;
   background-color: var(--background);
+  text-align: center;
 
   button {
     width: 100%;
     align-items: center;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 1ch;
     position: relative;
 
     svg.visible {
@@ -207,10 +209,22 @@
       transition: all 0.3s ease-in-out;
     }
 
-    * {
+    > * {
       border: 1px solid light-dark(black, white);
       margin-bottom: -1px;
       padding: 4px;
+    }
+
+    .project-type {
+      gap: 1ch;
+      display: flex;
+      justify-content: center;
+
+      svg {
+        height: var(--font-size);
+        fill: var(--text);
+        width: auto;
+      }
     }
   }
 }
