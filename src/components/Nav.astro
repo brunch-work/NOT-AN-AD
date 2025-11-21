@@ -25,7 +25,8 @@ const time = new Date().toLocaleTimeString("en-US", {
   timeZone: "America/New_York", // Example IANA time zone name for UTC-5 during EST
 });
 
-const currentPath = Astro.url.pathname;
+// account for trailing slash
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
 
 <nav class="nav grid">
