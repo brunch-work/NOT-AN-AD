@@ -18,10 +18,13 @@ export const LightboxReact = ({
   const [infoOpen, setInfoOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
-  const [volume, setVolume] = useState(1);
+  const [volume, setVolume] = useState(0); // Start at 0 since we start muted
+  const [previousVolume, setPreviousVolume] = useState(1);
   const [currentTime, setCurrentTime] = useState("00:00:00:00");
+  const [isDraggingVolume, setIsDraggingVolume] = useState(false);
 
   const videoRef = useRef(null);
+  const volumeSliderRef = useRef(null);
 
   const currentAsset = assets[currentIndex];
   const currentProject = projectDataMap?.[currentAsset.id];
@@ -38,6 +41,8 @@ export const LightboxReact = ({
       setCurrentTime("00:00:00:00");
       setIsPlaying(true);
       setIsMuted(true);
+      setVolume(0); // Muted, so volume at 0
+      setPreviousVolume(1);
       setInfoOpen(false);
     };
 
@@ -54,9 +59,11 @@ export const LightboxReact = ({
       const playVideo = async () => {
         try {
           videoRef.current.muted = true;
+          videoRef.current.volume = 0;
           await videoRef.current.play();
           setIsPlaying(true);
           setIsMuted(true);
+          setVolume(0); // Sync volume state with muted state
         } catch (err) {
           console.log("Autoplay prevented:", err);
           setIsPlaying(false);
@@ -96,6 +103,43 @@ export const LightboxReact = ({
     };
   }, [isVideo, currentIndex]);
 
+  // Handle volume dragging
+  useEffect(() => {
+    if (!isDraggingVolume) return;
+
+    const handleMouseMove = (e) => {
+      if (!volumeSliderRef.current || !videoRef.current) return;
+
+      const rect = volumeSliderRef.current.getBoundingClientRect();
+      const y = rect.bottom - e.clientY;
+      const newVolume = Math.max(0, Math.min(1, y / rect.height));
+
+      videoRef.current.volume = newVolume;
+      setVolume(newVolume);
+
+      // Unmute if volume is increased
+      if (newVolume > 0 && isMuted) {
+        videoRef.current.muted = false;
+        setIsMuted(false);
+      } else if (newVolume === 0 && !isMuted) {
+        videoRef.current.muted = true;
+        setIsMuted(true);
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsDraggingVolume(false);
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [isDraggingVolume, isMuted]);
+
   // Play/Pause toggle
   const togglePlayPause = (e) => {
     e.stopPropagation();
@@ -115,27 +159,53 @@ export const LightboxReact = ({
     e.stopPropagation();
     if (!videoRef.current) return;
 
-    const newMutedState = !isMuted;
-    videoRef.current.muted = newMutedState;
-    setIsMuted(newMutedState);
+    if (isMuted) {
+      // Unmute: restore previous volume
+      const restoreVolume = previousVolume > 0 ? previousVolume : 1;
+      videoRef.current.muted = false;
+      videoRef.current.volume = restoreVolume;
+      setVolume(restoreVolume);
+      setIsMuted(false);
+    } else {
+      // Mute: save current volume and set to 0
+      setPreviousVolume(volume);
+      videoRef.current.muted = true;
+      videoRef.current.volume = 0;
+      setVolume(0);
+      setIsMuted(true);
+    }
   };
 
-  // Volume control
-  const handleVolumeChange = (e) => {
+  // Volume slider click
+  const handleVolumeClick = (e) => {
     e.stopPropagation();
-    if (!videoRef.current) return;
+    if (!volumeSliderRef.current || !videoRef.current) return;
 
-    const rect = e.currentTarget.getBoundingClientRect();
-    const y = rect.bottom - e.clientY; // vertical slider
+    const rect = volumeSliderRef.current.getBoundingClientRect();
+    const y = rect.bottom - e.clientY;
     const newVolume = Math.max(0, Math.min(1, y / rect.height));
 
     videoRef.current.volume = newVolume;
     setVolume(newVolume);
 
+    // Update mute state based on volume
     if (newVolume > 0 && isMuted) {
       videoRef.current.muted = false;
       setIsMuted(false);
+    } else if (newVolume === 0 && !isMuted) {
+      videoRef.current.muted = true;
+      setIsMuted(true);
     }
+  };
+
+  // Start dragging volume slider
+  const handleVolumeMouseDown = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setIsDraggingVolume(true);
+
+    // Also update volume immediately on mousedown
+    handleVolumeClick(e);
   };
 
   // Navigation
@@ -146,6 +216,8 @@ export const LightboxReact = ({
     setCurrentTime("00:00:00:00");
     setIsPlaying(true);
     setIsMuted(true);
+    setVolume(0); // Muted, so volume at 0
+    setPreviousVolume(1);
     setInfoOpen(false);
   };
 
@@ -156,6 +228,8 @@ export const LightboxReact = ({
     setCurrentTime("00:00:00:00");
     setIsPlaying(true);
     setIsMuted(true);
+    setVolume(0); // Muted, so volume at 0
+    setPreviousVolume(1);
     setInfoOpen(false);
   };
 
@@ -212,8 +286,10 @@ export const LightboxReact = ({
               </button>
 
               <div
+                ref={volumeSliderRef}
                 className="custom-volume-slider"
-                onClick={handleVolumeChange}
+                onMouseDown={handleVolumeMouseDown}
+                style={{ cursor: isDraggingVolume ? "grabbing" : "pointer" }}
               >
                 <div className="volume-track" />
                 <div
