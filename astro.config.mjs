@@ -10,11 +10,11 @@ import node from "@astrojs/node";
 
 import react from "@astrojs/react";
 
+import netlify from "@astrojs/netlify";
+
 // https://astro.build/config
 export default defineConfig({
-  adapter: node({
-    mode: "standalone",
-  }),
+  adapter: netlify(),
 
   vite: {
     plugins: [
