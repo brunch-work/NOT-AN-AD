@@ -1,0 +1,52 @@
+---
+import IconAmplification from "../assets/images/svg/icon_amplification.svg";
+import IconContent from "../assets/images/svg/icon_content.svg";
+import IconEarnedMedia from "../assets/images/svg/icon_earned_media.svg";
+import IconPartnership from "../assets/images/svg/icon_partnerships.svg";
+import IconStrategy from "../assets/images/svg/icon_strategy.svg";
+
+const { type } = Astro.props;
+---
+
+<div class="project-type">
+  {
+    type === "content-creation" && (
+      <span>
+        <IconContent />
+        Content Creation
+      </span>
+    )
+  }
+  {
+    type === "amplification" && (
+      <span>
+        <IconAmplification />
+        Amplification
+      </span>
+    )
+  }
+  {
+    type === "earned-media" && (
+      <span>
+        <IconEarnedMedia />
+        Earned Media
+      </span>
+    )
+  }
+  {
+    type === "partnership" && (
+      <span>
+        <IconPartnership />
+        Partnership
+      </span>
+    )
+  }
+  {
+    type === "strategy" && (
+      <span>
+        <IconStrategy />
+        Strategy
+      </span>
+    )
+  }
+</div>

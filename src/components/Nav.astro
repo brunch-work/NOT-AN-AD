@@ -1,0 +1,134 @@
+---
+import NotAnAdLogo from "../assets/images/svg/NOT_AN_AD_LOGO.svg";
+import { aboutQuery } from "../gql/queries";
+
+const response = await fetch("https://graphql.datocms.com/", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    Authorization: `Bearer ${import.meta.env.DATOCMS_API_KEY}`,
+  },
+  body: JSON.stringify({
+    query: aboutQuery,
+  }),
+});
+
+const json = await response.json();
+const { about } = json.data;
+
+const time = new Date().toLocaleTimeString("en-US", {
+  hour: "numeric",
+  minute: "2-digit",
+  second: "2-digit",
+  hour12: false,
+  timeZone: "America/New_York", // Example IANA time zone name for UTC-5 during EST
+});
+
+// account for trailing slash
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+---
+
+<nav class="nav grid">
+  <div class="subgrid">
+    <div class="logo">
+      <a href="/">
+        <NotAnAdLogo fill="currentColor" />
+      </a>
+    </div>
+
+    <div class="menu">
+      <div class="menu__inner">
+        <ul>
+          <a href="/">
+            <li>
+              <span>
+                {currentPath === "/" ? "[NOT AN AD]" : "NOT AN AD"}
+              </span>
+            </li>
+          </a>
+          <a href="/archive">
+            <li>
+              <span>
+                {currentPath === "/archive" ? "[ARCHIVE]" : "ARCHIVE"}
+              </span>
+            </li>
+          </a>
+          <li id="about-button" class="link">
+            <span id="about-link">ABOUT</span>
+          </li>
+        </ul>
+        <ul id="about">
+          <li>
+            <span>ABOUT</span>
+            <p>
+              {about.about}
+            </p>
+          </li>
+          <li>
+            <span>MANIFESTO</span>
+            <p>
+              {about.manifesto}
+            </p>
+          </li>
+          <li>
+            <span>SERVICES</span>
+            <p>
+              {about.services}
+            </p>
+          </li>
+          <li>
+            <span>INQUIRIES</span>
+            <p>
+              {about.inquiries}
+            </p>
+            <a class="link-accent" href="mailto:hello@notanad.us"
+              >hello@notanad.us</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="datetime">
+      <span id="current-time">{time} (UTC-5)</span>
+    </div>
+  </div>
+</nav>
+
+<script>
+  function updateTime() {
+    const timeElement = document.getElementById("current-time");
+    if (timeElement) {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+        timeZone: "America/New_York",
+      });
+      timeElement.textContent = `${timeString} (UTC-5)`;
+    }
+  }
+
+  // Update immediately on load
+  updateTime();
+
+  // Update every second
+  setInterval(updateTime, 1000);
+
+  const aboutButton = document.getElementById("about-button");
+  const aboutLink = document.getElementById("about-link");
+  const about = document.getElementById("about");
+
+  let aboutOpen = false;
+
+  if (aboutButton && aboutLink && about) {
+    aboutButton.addEventListener("click", () => {
+      aboutOpen = !aboutOpen;
+      aboutLink.textContent = aboutOpen ? "CLOSE" : "ABOUT";
+      about.style.display = aboutOpen ? "flex" : "none";
+    });
+  }
+</script>

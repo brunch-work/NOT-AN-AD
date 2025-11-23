@@ -1,0 +1,255 @@
+.lightbox {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+
+  img,
+  video,
+  .video {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    z-index: -1;
+  }
+
+  .video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.2rem 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 1.2rem;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+
+    /*hide info meu overflow*/
+    .margin {
+      height: 1.2rem;
+      width: 100%;
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      background: var(--background);
+    }
+  }
+
+  .homepage-controls,
+  .top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+  }
+
+  .bottom-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    border: 1px solid var(--text);
+    padding: 4px;
+  }
+
+  .main-controls {
+    display: flex;
+    align-items: flex-end;
+    gap: 2rem;
+  }
+
+  .playback-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .time-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: currentColor;
+    font-family: monospace;
+    font-size: var(--font-size);
+    font-weight: 500;
+  }
+
+  .separator {
+    opacity: 0.6;
+  }
+
+  .volume-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+  }
+
+  .control-btn {
+    background: none;
+    border: none;
+    color: currentColor;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    height: 16px;
+  }
+
+  #play-pause-btn {
+    width: 1.5rem;
+  }
+
+  .control-btn svg {
+    width: auto;
+    height: 100%;
+    filter: brightness(0) invert(1);
+  }
+
+  .custom-volume-slider {
+    position: relative;
+    width: 24px;
+    height: 100px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    user-select: none;
+  }
+
+  .volume-track {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: light-dark(black, white);
+    border-radius: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .volume-indicator {
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+    transform: rotate(180deg) translate(100%, -50%);
+    pointer-events: none;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  }
+
+  .volume-indicator svg {
+    display: block;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  49% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.icon-dot {
+  animation: pulse 1s infinite;
+}
+
+.project-info {
+  border: 1px solid light-dark(black, white);
+  margin: -5px;
+  padding: 5px;
+  height: 100%;
+  position: relative;
+  width: 24ch;
+  background-color: var(--background);
+  text-align: center;
+
+  button {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    gap: 1ch;
+    position: relative;
+
+    svg.visible {
+      transform: rotate(180deg);
+    }
+  }
+
+  .popup {
+    position: absolute;
+    overflow: hidden;
+    bottom: 100%;
+    transform: translateY(100%);
+    left: -1px;
+    width: calc(100% + 2px);
+    z-index: -1;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--background);
+
+    &.visible {
+      bottom: calc(100% + 1px);
+      transform: translateY(0);
+      height: auto;
+      transition: all 0.3s ease-in-out;
+    }
+
+    > * {
+      border: 1px solid light-dark(black, white);
+      margin-bottom: -1px;
+      padding: 4px;
+    }
+
+    .project-type {
+      gap: 1ch;
+      display: flex;
+      justify-content: center;
+
+      svg {
+        height: var(--font-size);
+        fill: var(--text);
+        width: auto;
+      }
+    }
+  }
+}
+
+.lightbox-dialog {
+  position: fixed;
+  display: none;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 999;
+  padding: 0;
+  border: none;
+  background-color: var(--background);
+
+  &.show {
+    display: block;
+  }
+
+  .lightbox-wrapper {
+    height: var(--100dvh);
+    padding: 5rem 0;
+    max-width: 100%;
+    grid-column: 1 / -1;
+  }
+}

@@ -22,3 +22,20 @@ figcaption {
   font-family: "IBM Plex Mono", monospace;
   text-transform: uppercase;
 }
+
+a,
+.link {
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link-accent {
+  display: block;
+  background-color: var(--palette-blue);
+  color: var(--palette-white);
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}

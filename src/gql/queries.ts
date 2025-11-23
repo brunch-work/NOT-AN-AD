@@ -30,26 +30,17 @@ type HomeData = {
 export const homepageQuery = `
 query Homepage {
   home {
-    intro
-    contact
-    id
-    projects {
-    title
-    media {
-      url
-      alt
-      title
-      width
-      height
-      format
-    }
-    id
-    projectType
-    publishedDate
-    }
     reel {
-      url
-      alt
+    format
+      video {
+        alt
+        mp4Url
+        width
+        title
+        duration
+        muxPlaybackId
+        muxAssetId
+      }
     }
   }
 }`;
@@ -83,14 +74,18 @@ export type Project = {
 
 export type Asset = {
   id: string;
-  projectType: string;
-  asset: {
-    format?: "mp4" | "webm" | "jpg" | "png" | "gif";
-    alt: string;
-    url: string;
+  alt: string;
+  url: string;
+  format: string;
+  height: number;
+  width: number;
+  video: {
+    id: string;
+    mp4Url: string;
     height: number;
     width: number;
-    format: string;
+    alt: string;
+    duration: number;
   };
 };
 
@@ -127,4 +122,48 @@ query DeckPage {
     }
   }
 }
+`;
+
+export const aboutQuery = `
+  query about {
+  about {
+      about
+      inquiries
+      manifesto
+      services
+    }
+  }
+  `;
+
+export const archiveQuery = `
+  query Archive {
+    archive {
+      assets {
+        id
+        alt
+        url
+        format
+        height
+        width
+        video {
+          height
+          width
+          alt
+          duration
+          mp4Url
+        }
+      }
+    }
+  }
+`;
+
+export const lightboxQuery = `
+  query LightboxQuery($id: [UploadId!]) {
+    project(filter: {assets: {allIn: $id}}) {
+      id
+      clientName
+      projectType
+      publicationDate
+    }
+  }
 `;

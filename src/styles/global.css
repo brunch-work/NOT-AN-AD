@@ -6,3 +6,8 @@
 @import "./config/base.css";
 @import "./components/filter-menu.css";
 @import "./components/modal.css";
+@import "./components/nav.css";
+@import "./components/archive.css";
+@import "./components/homepage.css";
+@import "./components/lightbox.css";
+@import "./components/media.css";

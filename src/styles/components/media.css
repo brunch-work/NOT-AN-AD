@@ -1,7 +1,5 @@
-.home {
-  overscroll-behavior: none;
-
-  .reel {
+.media-page {
+  .media {
     grid-column: 1 / -1;
     display: flex;
     justify-content: center;

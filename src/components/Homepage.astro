@@ -1,15 +1,14 @@
 ---
-import "../styles/components/homepage.css";
-
-import NotAnAdLogo from "../assets/images/svg/NOT_AN_AD_LOGO.svg";
-import IconStrategy from "../assets/images/svg/icon_strategy.svg";
-import IconPartnership from "../assets/images/svg/icon_partnerships.svg";
-import IconEarnedMedia from "../assets/images/svg/icon_earned_media.svg";
-import IconContent from "../assets/images/svg/icon_content.svg";
-import IconAmplification from "../assets/images/svg/icon_amplification.svg";
-import CaseStudy from "./CaseStudy.astro";
-
-import { homepageQuery, type HomepageData } from "../gql/queries.ts";
+import { homepageQuery } from "../gql/queries";
+import Lightbox from "../components/Lightbox.astro";
+import IconVolume from "../assets/images/svg/volume.svg";
+import IconVolumeOff from "../assets/images/svg/volumeoff.svg";
+import IconPause from "../assets/images/svg/pause.svg";
+import IconBack from "../assets/images/svg/back.svg";
+import IconForward from "../assets/images/svg/forward.svg";
+import IconPlay from "../assets/images/svg/play.svg";
+import IconHome from "../assets/images/svg/home.svg";
+import IconDot from "../assets/images/svg/dot.svg";
 
 const response = await fetch("https://graphql.datocms.com/", {
   method: "POST",
@@ -24,350 +23,240 @@ const response = await fetch("https://graphql.datocms.com/", {
 });
 
 const json = await response.json();
-const data: HomepageData = json.data;
-
-const imageShape = (w: number, h: number) => {
-  let shape: "h" | "v" | "s";
-  if (w > h) {
-    shape = "h"; // landscape
-  } else if (w < h) {
-    shape = "v"; // portrait
-  } else {
-    shape = "s"; // square
-  }
-  return shape;
-};
+const { home } = json.data;
 ---
 
-<main class="grid">
-  <span id="top"></span>
-
-  <a class="button work-link" href="#work">Work</a>
-  <aside>
-    <div class="inner">
-      <a href="#top" class="logo" aria-label="Home"
-        ><NotAnAdLogo width={24} fill="currentColor" /></a
-      >
-      <header set:html={data.home.intro} />
-      <figure class="first-content">
-        <video
-          src={data.home.reel.url}
-          class="case-study__asset"
-          autoplay
-          loop
-          muted
-          playsinline></video>
-      </figure>
-      <footer class="footer">
-        <p set:html={data.home.contact} />
-        <br />
-        <p>→ <a href="mailto:hello@notanad.us">hello@notanad.us</a></p>
-      </footer>
-    </div>
-  </aside>
-
-  <section class="content" id="work">
-    <figure class="first-content content-slot">
+<div class="home subgrid">
+  <div class="reel">
+    <div class="lightbox">
       <video
-        src={data.home.reel.url}
+        id="lightbox-video"
+        src={home.reel.video.mp4Url}
         autoplay
         loop
-        muted
         playsinline
-        class="case-study__asset"></video>
-    </figure>
-    <div class="filter-view-menu">
-      <fieldset class="filter-menu">
-        <legend class="visually-hidden">Filter</legend>
-        <button
-          id="filter-button"
-          popovertarget="filters-popover"
-          class="button">Filter</button
-        >
-        <ul class="content-filter" id="filters-popover" popover>
-          <li>
-            <label for="strategy">
-              <input
-                type="checkbox"
-                name="content-filter"
-                id="strategy"
-                value="strategy"
-              />
-              <IconStrategy
-                fill="currentColor"
-                width="15"
-                height="15"
-                role="presentation"
-              />
-              Strategy
-            </label>
-          </li>
-          <li>
-            <label for="partnership">
-              <input
-                type="checkbox"
-                name="content-filter"
-                id="partnership"
-                value="partnership"
-              />
-              <IconPartnership
-                fill="currentColor"
-                width="15"
-                height="15"
-                role="presentation"
-              />
-              Partnership
-            </label>
-          </li>
-          <li>
-            <label for="amplification">
-              <input
-                type="checkbox"
-                name="content-filter"
-                id="amplification"
-                value="amplification"
-              />
-              <IconAmplification
-                fill="currentColor"
-                width="15"
-                height="15"
-                role="presentation"
-              />
-              Amplification
-            </label>
-          </li>
-          <li>
-            <label for="content">
-              <input
-                type="checkbox"
-                name="content-filter"
-                id="content"
-                value="content"
-              />
-              <IconContent
-                fill="currentColor"
-                width="15"
-                height="15"
-                role="presentation"
-              />
-              Content creation
-            </label>
-          </li>
-          <li>
-            <label for="earned-media">
-              <input
-                type="checkbox"
-                name="content-filter"
-                id="earned-media"
-                value="earned media"
-              />
-              <IconEarnedMedia
-                fill="currentColor"
-                width="15"
-                height="15"
-                role="presentation"
-              />
-              Earned media
-            </label>
-          </li>
-        </ul>
-      </fieldset>
-      <fieldset class="view-menu">
-        <ul class="content-view" id="view-menu--controls">
-          <li>
-            <label for="view-menu--grid">
-              <input
-                type="radio"
-                name="content-view-type"
-                id="view-menu--grid"
-                checked
-              />
-              Grid
-            </label>
-          </li>
-          <li>
-            <label for="view-menu--list">
-              <input
-                type="radio"
-                name="content-view-type"
-                id="view-menu--list"
-              />
-              List
-            </label>
-          </li>
-        </ul>
-      </fieldset>
+        muted></video>
+      <div class="video-controls">
+        <div class="homepage-controls">
+          <div class="main-controls">
+            <div class="volume-controls">
+              <button
+                id="mute-btn"
+                class="control-btn"
+                aria-label="Toggle mute"
+              >
+                <IconVolume class="icon-volume" />
+                <IconVolumeOff class="icon-volume-off" style="display: none;" />
+              </button>
+
+              <div class="custom-volume-slider">
+                <div class="volume-track"></div>
+                <div class="volume-indicator">
+                  <svg width="8" height="12" viewBox="0 0 8 12">
+                    <polygon points="0,6 8,0 8,12" fill="currentColor"
+                    ></polygon>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="playback-controls">
+              <button
+                id="play-pause-btn"
+                class="control-btn"
+                aria-label="Play/Pause"
+              >
+                <IconPause class="icon-pause" />
+                <IconPlay class="icon-play" style="display: none;" />
+              </button>
+            </div>
+          </div>
+
+          <div class="time-display">
+            <span id="lightbox-current-time">00:00:00:00</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <ul class="content-grid" data-view="grid">
-      {
-        data.home.projects.map((project) => {
-          return (
-            <CaseStudy
-              id={project.id}
-              title={project.title}
-              category={project.projectType}
-              url={project.media.url}
-              alt={project.media.alt || project.title}
-              year={project.publishedDate.split("-")[0]}
-              format={project.media.format}
-              shape={imageShape(project.media.width, project.media.height)}
-            >
-              <IconStrategy
-                slot="icon"
-                fill="currentColor"
-                width="15"
-                height="15"
-                role="presentation"
-              />
-            </CaseStudy>
-          );
-        })
-      }
-    </ul>
-  </section>
-</main>
+  </div>
+</div>
 
-<dialog id="lightbox">
-  <header>
-    <NotAnAdLogo width={24} fill="currentColor" />
-    <button class="button">[ X ]</button>
-  </header>
-  <figure class="modal-content"></figure>
-</dialog>
-<picture id="hover-preview">
-  <img src="https://placehold.co/500x500" alt="" />
-</picture>
 <script>
-  //filtering and list display switching
-  const filterButton = document.getElementById("filter-button");
-  const filterPopover = document.getElementById("filters-popover");
-  const filterCheckboxes = document.querySelectorAll(
-    '#filters-popover input[type="checkbox"]',
-  );
-  const viewRadios = document.querySelectorAll(
-    '.content-view input[type="radio"]',
-  );
-  const contentGrid = document.querySelector(".content-grid") as HTMLElement;
-  const contentGridListItems = contentGrid.querySelectorAll(
-    ".content-grid > li",
-  ) as NodeListOf<HTMLElement>;
-  const contentListButtons = contentGrid.querySelectorAll(
-    ".content-grid > li button",
-  ) as NodeListOf<HTMLButtonElement>;
+  const video = document.getElementById("lightbox-video") as HTMLVideoElement;
+  const muteBtn = document.getElementById("mute-btn") as HTMLButtonElement;
+  const playPauseBtn = document.getElementById(
+    "play-pause-btn",
+  ) as HTMLButtonElement;
+  const currentTimeDisplay = document.getElementById(
+    "lightbox-current-time",
+  ) as HTMLSpanElement;
+  const durationDisplay = document.getElementById(
+    "lightbox-duration",
+  ) as HTMLSpanElement;
 
-  const follower = document.getElementById("hover-preview");
+  // Handle popup toggle
+  const projectInfo = document.querySelector(".project-info") as HTMLElement;
+  const popup = document.querySelector(".popup") as HTMLElement;
 
-  contentGridListItems.forEach((item) => {
-    item.addEventListener("mouseover", (event) => {
-      updateFollowerImage(event);
+  // Icon elements
+  const iconVolume = muteBtn.querySelector(".icon-volume") as HTMLImageElement;
+  const iconVolumeOff = muteBtn.querySelector(
+    ".icon-volume-off",
+  ) as HTMLImageElement;
+  const iconPlay = playPauseBtn.querySelector(".icon-play") as HTMLImageElement;
+  const iconPause = playPauseBtn.querySelector(
+    ".icon-pause",
+  ) as HTMLImageElement;
+
+  // Custom volume slider elements
+  const volumeSlider = document.querySelector(
+    ".custom-volume-slider",
+  ) as HTMLElement;
+  const volumeIndicator = document.querySelector(
+    ".volume-indicator",
+  ) as HTMLElement;
+
+  let isDragging = false;
+
+  if (projectInfo && popup) {
+    const infoButton = projectInfo.querySelector(
+      "#info-btn",
+    ) as HTMLButtonElement;
+
+    infoButton.addEventListener("click", () => {
+      popup.classList.toggle("visible");
+
+      infoButton.querySelector("svg").classList.toggle("visible");
     });
-  });
+  }
 
-  filterCheckboxes.forEach((chk) => {
-    chk.addEventListener("change", (event) => {
-      filterCheckboxes.forEach((checkbox) => {
-        if (checkbox !== event.target) {
-          (checkbox as HTMLInputElement).checked = false;
-        }
-      });
-      const target = event.target as HTMLInputElement;
-      const icon = target.parentElement
-        ?.querySelector("svg")
-        ?.cloneNode(true) as SVGElement;
+  // Format time in minutes:seconds
+  function formatTime(seconds: number): string {
+    const frames = Math.floor((seconds % 1) * 100);
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    const hours = Math.floor(mins / 60);
+    return `${hours.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}:${frames.toString().padStart(2, "0")}`;
+  }
 
-      if (filterButton) {
-        if (target.checked) {
-          filterButton.replaceChildren(icon);
-          filterButton.innerHTML += target.parentElement?.innerText;
-        } else {
-          filterButton.innerHTML = "Filter";
-        }
-      }
-
-      function filter() {
-        if (contentGrid) {
-          contentGrid.dataset.filter =
-            target.checked && target.value ? target.value : "";
-        }
-      }
-
-      document.startViewTransition
-        ? document.startViewTransition(() => filter())
-        : filter();
-
-      filterPopover && filterPopover.hidePopover();
-    });
-  });
-
-  let shouldTrackMouse = false;
-  let mouseX = 0,
-    mouseY = 0;
-  let rafId: number | null = null;
-  viewRadios.forEach((radio) => {
-    radio.addEventListener("change", (event) => {
-      const target = event.target as HTMLInputElement;
-      const view = target.id.split("--")[1];
-
-      function changeView() {
-        if (contentGrid) {
-          contentGrid.dataset.view = view;
-          if (view === "list") {
-            shouldTrackMouse = true;
-          } else {
-            shouldTrackMouse = false;
-          }
-        }
-      }
-
-      document.startViewTransition
-        ? document.startViewTransition(() => changeView())
-        : changeView();
-    });
-  });
-
-  document.addEventListener("mousemove", (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    if (!rafId && shouldTrackMouse) {
-      rafId = requestAnimationFrame(updateFollower);
-    }
-  });
-
-  contentListButtons.forEach((b) => {
-    b.addEventListener("focus", (event) => {
-      const target = event.currentTarget as HTMLButtonElement;
-      const figc = target.querySelector("figcaption") as HTMLElement;
-      const rect = figc.getBoundingClientRect();
-      mouseX = rect.left;
-      mouseY = rect.top;
-      if (!rafId && shouldTrackMouse) {
-        rafId = requestAnimationFrame(updateFollower);
-        updateFollowerImage(event);
-      }
-    });
-  });
-
-  function updateFollower() {
-    if (follower && shouldTrackMouse) {
-      let ty = 0;
-      if (window.innerHeight - mouseY < 350) {
-        ty = 100;
-      }
-      follower.style.transform = `translate(-50%, calc( ${mouseY}px - ${ty}% - (${ty} * 0.06px) )`;
-      rafId = null;
+  // Update play/pause icon
+  function updatePlayPauseIcon() {
+    if (video.paused) {
+      iconPlay.style.display = "block";
+      iconPause.style.display = "none";
+    } else {
+      iconPlay.style.display = "none";
+      iconPause.style.display = "block";
     }
   }
 
-  function updateFollowerImage(event: Event) {
-    const target = event.currentTarget as HTMLElement;
-    follower
-      ?.querySelector("img")
-      ?.setAttribute(
-        "src",
-        target.querySelector("img")?.getAttribute("src") || "",
-      );
+  // Update volume icon based on volume level
+  function updateVolumeIcon() {
+    if (video.muted || video.volume === 0) {
+      iconVolume.style.display = "none";
+      iconVolumeOff.style.display = "block";
+    } else {
+      iconVolume.style.display = "block";
+      iconVolumeOff.style.display = "none";
+    }
   }
+
+  // Update volume indicator position
+  function updateVolumeIndicator() {
+    const volume = video.muted ? 0 : video.volume;
+    const percentage = volume * 100;
+    volumeIndicator.style.bottom = `${percentage}%`;
+  }
+
+  // Set volume from mouse position
+  function setVolumeFromEvent(e: MouseEvent) {
+    const rect = volumeSlider.getBoundingClientRect();
+    const y = rect.bottom - e.clientY; // Inverted: bottom is 0, top is max
+    const percentage = Math.max(0, Math.min(100, (y / rect.height) * 100));
+    const volume = percentage / 100;
+
+    video.volume = volume;
+
+    // Unmute if user adjusts volume above 0
+    if (volume > 0 && video.muted) {
+      video.muted = false;
+    } else if (volume === 0) {
+      video.muted = true;
+    }
+
+    updateVolumeIcon();
+    updateVolumeIndicator();
+  }
+
+  // Play/Pause button
+  playPauseBtn.addEventListener("click", () => {
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+    updatePlayPauseIcon();
+  });
+
+  // Update icon when video plays/pauses (from other sources)
+  video.addEventListener("play", updatePlayPauseIcon);
+  video.addEventListener("pause", updatePlayPauseIcon);
+
+  // Mouse down on slider
+  volumeSlider.addEventListener("mousedown", (e) => {
+    e.preventDefault();
+    isDragging = true;
+    setVolumeFromEvent(e);
+  });
+
+  // Mouse move anywhere (for dragging)
+  window.addEventListener("mousemove", (e) => {
+    if (isDragging) {
+      e.preventDefault();
+      setVolumeFromEvent(e);
+    }
+  });
+
+  // Mouse up anywhere (stop dragging)
+  window.addEventListener("mouseup", () => {
+    if (isDragging) {
+      isDragging = false;
+    }
+  });
+
+  // Initialize video
+  video.addEventListener("loadedmetadata", () => {
+    durationDisplay.textContent = formatTime(video.duration);
+    updateVolumeIndicator();
+  });
+
+  // Update time display on every frame
+  video.addEventListener("timeupdate", () => {
+    currentTimeDisplay.textContent = formatTime(video.currentTime);
+  });
+
+  // Mute/unmute toggle
+  muteBtn.addEventListener("click", () => {
+    if (video.muted) {
+      video.muted = false;
+      // Set volume to 50% if still at 0
+      if (video.volume === 0) {
+        video.volume = 0.5;
+      }
+    } else {
+      video.muted = true;
+    }
+    updateVolumeIcon();
+    updateVolumeIndicator();
+  });
+
+  // Update volume slider when video volume changes
+  video.addEventListener("volumechange", () => {
+    updateVolumeIcon();
+    updateVolumeIndicator();
+  });
+
+  // Initialize
+  updatePlayPauseIcon();
+  updateVolumeIcon();
+  updateVolumeIndicator();
 </script>
-
-<script src="../scripts/video-playback.js"></script>
-<script src="../scripts/lightbox.js"></script>
