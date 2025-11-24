@@ -28,6 +28,12 @@ html {
   &:has(dialog[open]) {
     overflow: hidden;
   }
+
+  &:has(.homepage),
+  &:has(.404),
+  &:has(.lightbox-dialog.show) {
+    overscroll-behavior: contain;
+  }
 }
 
 html:has(.lightbox-dialog.show) {

@@ -1,92 +1,63 @@
-<fzf>
-  <f>
-    <o style="--w:11ch"></o><x style="--w:9ch"></x><o style="--w:3ch"></o>
-    <o style="--w:11ch"></o><x style="--w:9ch"></x><o style="--w:3ch"></o>
-    <o style="--w:9ch"></o><x style="--w:11ch"></x><o style="--w:3ch"></o>
-    <o style="--w:6ch"></o><x style="--w:6ch"></x><o style="--w:1ch"></o><x
-      style="--w:7ch"></x><o style="--w:3ch"></o>
-    <o style="--w:5ch"></o><x style="--w:6ch"></x><o style="--w:2ch"></o><x
-      style="--w:7ch"></x><o style="--w:3ch"></o>
-    <o style="--w:3ch"></o><x style="--w:7ch"></x><o style="--w:3ch"></o><x
-      style="--w:7ch"></x><o style="--w:3ch"></o>
-    <o style="--w:2ch"></o><x style="--w:6ch"></x><o style="--w:5ch"></o><x
-      style="--w:7ch"></x><o style="--w:3ch"></o>
-    <o style="--w:1ch"></o><x style="--w:6ch"></x><o style="--w:6ch"></o><x
-      style="--w:7ch"></x><o style="--w:3ch"></o>
-    <x style="--w:7ch"></x><o style="--w:6ch"></o><x style="--w:7ch"></x><o
-      style="--w:3ch"></o>
-    <x style="--w:23ch"></x>
-    <x style="--w:23ch"></x>
-    <o style="--w:13ch"></o><x style="--w:7ch"></x><o style="--w:3ch"></o>
-    <o style="--w:13ch"></o><x style="--w:7ch"></x><o style="--w:3ch"></o>
-    <o style="--w:13ch"></o><x style="--w:7ch"></x><o style="--w:3ch"></o>
-  </f>
-  <z>
-    <o style="--w:3ch"></o><x style="--w:15ch"></x><o style="--w:3ch"></o>
-    <o style="--w:2ch"></o><x style="--w:17ch"></x><o style="--w:2ch"></o>
-    <x style="--w:9ch"></x><o style="--w:3ch"></o><x style="--w:9ch"></x>
-    <x style="--w:8ch"></x><o style="--w:5ch"></o><x style="--w:8ch"></x>
-    <x style="--w:8ch"></x><o style="--w:5ch"></o><x style="--w:8ch"></x>
-    <x style="--w:8ch"></x><o style="--w:5ch"></o><x style="--w:8ch"></x>
-    <x style="--w:8ch"></x><o style="--w:5ch"></o><x style="--w:8ch"></x>
-    <x style="--w:8ch"></x><o style="--w:5ch"></o><x style="--w:8ch"></x>
-    <x style="--w:8ch"></x><o style="--w:5ch"></o><x style="--w:8ch"></x>
-    <x style="--w:8ch"></x><o style="--w:5ch"></o><x style="--w:8ch"></x>
-    <x style="--w:8ch"></x><o style="--w:5ch"></o><x style="--w:8ch"></x>
-    <x style="--w:9ch"></x><o style="--w:3ch"></o><x style="--w:9ch"></x>
-    <o style="--w:2ch"></o><x style="--w:17ch"></x><o style="--w:2ch"></o>
-    <o style="--w:3ch"></o><x style="--w:15ch"></x><o style="--w:3ch"></o>
-  </z>
-  <f>
-    <o style="--w:11ch"></o><x style="--w:9ch"></x><o style="--w:3ch"></o>
-    <o style="--w:11ch"></o><x style="--w:9ch"></x><o style="--w:3ch"></o>
-    <o style="--w:9ch"></o><x style="--w:11ch"></x><o style="--w:3ch"></o>
-    <o style="--w:6ch"></o><x style="--w:6ch"></x><o style="--w:1ch"></o><x
-      style="--w:7ch"></x><o style="--w:3ch"></o>
-    <o style="--w:5ch"></o><x style="--w:6ch"></x><o style="--w:2ch"></o><x
-      style="--w:7ch"></x><o style="--w:3ch"></o>
-    <o style="--w:3ch"></o><x style="--w:7ch"></x><o style="--w:3ch"></o><x
-      style="--w:7ch"></x><o style="--w:3ch"></o>
-    <o style="--w:2ch"></o><x style="--w:6ch"></x><o style="--w:5ch"></o><x
-      style="--w:7ch"></x><o style="--w:3ch"></o>
-    <o style="--w:1ch"></o><x style="--w:6ch"></x><o style="--w:6ch"></o><x
-      style="--w:7ch"></x><o style="--w:3ch"></o>
-    <x style="--w:7ch"></x><o style="--w:6ch"></o><x style="--w:7ch"></x><o
-      style="--w:3ch"></o>
-    <x style="--w:23ch"></x>
-    <x style="--w:23ch"></x>
-    <o style="--w:13ch"></o><x style="--w:7ch"></x><o style="--w:3ch"></o>
-    <o style="--w:13ch"></o><x style="--w:7ch"></x><o style="--w:3ch"></o>
-    <o style="--w:13ch"></o><x style="--w:7ch"></x><o style="--w:3ch"></o>
-  </f>
-</fzf>
-<script>
-  const element = document.querySelector("fzf") as HTMLElement;
+---
+import IconVolume from "../assets/images/svg/volume.svg";
+import IconVolumeOff from "../assets/images/svg/volumeoff.svg";
+import IconPause from "../assets/images/svg/pause.svg";
+import IconPlay from "../assets/images/svg/play.svg";
+import IconNoSignal from "../assets/images/svg/no_signal.svg";
+---
 
-  function updatePosition() {
-    const windowCenter = window.innerWidth / 2;
-    const elementHalfWidth = element.offsetWidth / 2;
-    const leftPosition = windowCenter - elementHalfWidth;
+<div class="page404 subgrid">
+  <div class="reel">
+    <div class="lightbox">
+      <div class="no-signal">
+        <div class="layer1">
+          <div class="tv-static animation1"></div>
+        </div>
+        <div class="layer2">
+          <div class="tv-static animation2"></div>
+        </div>
+        <img class="icon-no-signal" src="./no-signal-wide 1.jpg" alt="" />
+      </div>
+      <div class="video-controls">
+        <div class="homepage-controls">
+          <div class="main-controls">
+            <div class="volume-controls">
+              <button
+                id="mute-btn"
+                class="control-btn"
+                aria-label="Toggle mute"
+              >
+                <IconVolume class="icon-volume" />
+                <IconVolumeOff class="icon-volume-off" style="display: none;" />
+              </button>
 
-    const windowMiddle = window.innerHeight / 2;
-    const elementHalfHeight = element.offsetHeight / 2;
-    const topPosition = windowMiddle - elementHalfHeight;
+              <div class="custom-volume-slider">
+                <div class="volume-track"></div>
+                <div class="volume-indicator">
+                  <svg width="8" height="12" viewBox="0 0 8 12">
+                    <polygon points="0,6 8,0 8,12" fill="currentColor"
+                    ></polygon>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="playback-controls">
+              <button
+                id="play-pause-btn"
+                class="control-btn"
+                aria-label="Play/Pause"
+              >
+                <IconPause class="icon-pause" />
+                <IconPlay class="icon-play" style="display: none;" />
+              </button>
+            </div>
+          </div>
 
-    // Round to the nearest ch and lh
-    const factorW =
-      1 / parseFloat(getComputedStyle(element).getPropertyValue("--chw")); // 1ch
-    const factorH =
-      1 / parseFloat(getComputedStyle(element).getPropertyValue("--lhh")); // 1lh
-    const roundedLeft = Math.round(leftPosition * factorW) / factorW;
-    const roundedTop = Math.round(topPosition * factorH) / factorH;
-
-    element.style.setProperty("--wi", `${roundedLeft}px`);
-    element.style.setProperty("--he", `${roundedTop}px`);
-  }
-
-  // Initial position calculation
-  updatePosition();
-
-  // Recalculate on resize
-  window.addEventListener("resize", updatePosition);
-</script>
+          <div class="time-display">
+            <span id="lightbox-current-time">00:00:00:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
