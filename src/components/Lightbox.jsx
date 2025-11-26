@@ -10,11 +10,7 @@ import { IconHome } from "./Icons/Home";
 import { IconDot } from "./Icons/Dot";
 import { ProjectType } from "./ProjectType";
 
-export const LightboxReact = ({
-  assets,
-  index: initialIndex,
-  projectDataMap,
-}) => {
+export const Lightbox = ({ assets, index: initialIndex, projectDataMap }) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [infoOpen, setInfoOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -53,6 +49,34 @@ export const LightboxReact = ({
       window.removeEventListener("openLightbox", handleOpenLightbox);
     };
   }, []);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      switch (e.key) {
+        case "ArrowLeft":
+          e.preventDefault();
+          goToPrevious(e);
+          break;
+        case "ArrowRight":
+          e.preventDefault();
+          goToNext(e);
+          break;
+        case "Escape":
+          e.preventDefault();
+          goHome(e);
+          break;
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [currentIndex, assets.length]); // Include dependencies for navigation functions
 
   // Ensure video plays on mount and when asset changes
   useEffect(() => {

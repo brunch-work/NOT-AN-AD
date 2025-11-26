@@ -1,7 +1,6 @@
 ---
 import { archiveQuery, lightboxQuery } from "../gql/queries";
-import Lightbox from "./Lightbox.astro";
-import { LightboxReact } from "./LightboxReact.jsx";
+import { Lightbox } from "./Lightbox.jsx";
 
 const response = await fetch("https://graphql.datocms.com/", {
   method: "POST",
@@ -75,9 +74,10 @@ for (const asset of assets) {
             <button
               data-lightbox-trigger
               data-asset-index={index}
+              data-video-preview
               aria-label={`View ${asset.alt || "video"}`}
             >
-              <video src={asset.video.mp4Url} muted />
+              <video src={asset.video.mp4Url} muted preload="metadata" />
             </button>
           </div>
         );
@@ -89,7 +89,7 @@ for (const asset of assets) {
   <div class="grid">
     <div class="subgrid">
       <div id="lightbox-wrapper" class="lightbox-wrapper">
-        <LightboxReact
+        <Lightbox
           client:load
           assets={assets}
           index={initialIndex}
@@ -137,4 +137,39 @@ for (const asset of assets) {
       }
     });
   }
+
+  // Video preview on hover
+  const videoTriggers = document.querySelectorAll("[data-video-preview]");
+
+  videoTriggers.forEach((trigger) => {
+    const video = trigger.querySelector("video");
+    if (!video) return;
+
+    let isHovering = false;
+
+    const handleTimeUpdate = () => {
+      if (isHovering && video.currentTime >= 2) {
+        video.currentTime = 0;
+      }
+    };
+
+    trigger.addEventListener("mouseenter", async () => {
+      isHovering = true;
+      video.currentTime = 0;
+      video.addEventListener("timeupdate", handleTimeUpdate);
+
+      try {
+        await video.play();
+      } catch (error) {
+        console.error("Error playing video preview:", error);
+      }
+    });
+
+    trigger.addEventListener("mouseleave", () => {
+      isHovering = false;
+      video.pause();
+      video.currentTime = 0;
+      video.removeEventListener("timeupdate", handleTimeUpdate);
+    });
+  });
 </script>
