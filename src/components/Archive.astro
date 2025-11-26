@@ -1,6 +1,13 @@
 ---
-import { archiveQuery, lightboxQuery } from "../gql/queries";
+import { archiveQuery, lightboxQuery, type Asset } from "../gql/queries";
 import { Lightbox } from "./Lightbox.jsx";
+
+type ProjectData = {
+  id: string;
+  clientName: string;
+  projectType: string;
+  publicationDate: string;
+};
 
 const response = await fetch("https://graphql.datocms.com/", {
   method: "POST",
@@ -16,11 +23,11 @@ const response = await fetch("https://graphql.datocms.com/", {
 
 const json = await response.json();
 const data = json.data;
-const assets = data.archive.assets;
+const assets: Asset[] = data.archive.assets;
 const initialIndex = 0;
 
 // Fetch project data for each asset
-const projectDataMap = {};
+const projectDataMap: Record<string, ProjectData> = {};
 for (const asset of assets) {
   try {
     const projectResponse = await fetch("https://graphql.datocms.com/", {
@@ -50,7 +57,7 @@ for (const asset of assets) {
 
 <div class="subgrid archive">
   {
-    assets.map((asset, index) => {
+    assets.map((asset: Asset, index: number) => {
       if (asset.format === "jpg" || asset.format === "png") {
         return (
           <div class="archive-item">
@@ -102,7 +109,9 @@ for (const asset of assets) {
 
 <script>
   const triggers = document.querySelectorAll("[data-lightbox-trigger]");
-  const dialog = document.getElementById("lightbox-dialog");
+  const dialog = document.getElementById(
+    "lightbox-dialog",
+  ) as HTMLDialogElement | null;
 
   triggers.forEach((trigger) => {
     trigger.addEventListener("click", (e) => {
