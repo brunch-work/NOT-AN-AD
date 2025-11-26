@@ -11,11 +11,11 @@ export const IconPause = ({ isPlaying }) => {
     >
       <path
         d="M9.79688 0.599609H0.796875V26.1996H9.79688V0.599609Z"
-        fill="light-dark(var(--palette-white), var(--palette-black))"
+        fill="light-dark(var(--palette-black), var(--palette-white)"
       />
       <path
         d="M24.5 0.599609H15.5V26.1996H24.5V0.599609Z"
-        fill="light-dark(var(--palette-white), var(--palette-black))"
+        fill="light-dark(var(--palette-black), var(--palette-white)"
       />
     </svg>
   );

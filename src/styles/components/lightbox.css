@@ -107,7 +107,6 @@
   .control-btn svg {
     width: auto;
     height: 100%;
-    filter: brightness(0) invert(1);
   }
 
   .custom-volume-slider {

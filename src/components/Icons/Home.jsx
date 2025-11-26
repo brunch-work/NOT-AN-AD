@@ -8,7 +8,7 @@ export const IconHome = () => {
     >
       <path
         d="M10.1016 17.7996H19.9014V27.5996H10.1016V17.7996ZM19.1016 0.599609L0.101562 19.5996H5.10156V32.1996H33.2014V19.5996H38.2014L19.2014 0.599609H19.1016Z"
-        fill="currentColor"
+        fill="light-dark(var(--palette-black), var(--palette-white)"
       ></path>
     </svg>
   );

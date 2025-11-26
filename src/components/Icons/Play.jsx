@@ -11,7 +11,7 @@ export const IconPlay = ({ isPlaying }) => {
     >
       <path
         d="M9.29846 9.50078L0.898438 0.800781V18.2008L9.29846 9.50078Z"
-        fill="light-dark(var(--palette-white), var(--palette-black))"
+        fill="light-dark(var(--palette-black), var(--palette-white)"
       />
     </svg>
   );
