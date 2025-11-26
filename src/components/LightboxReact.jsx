@@ -349,35 +349,30 @@ export const LightboxReact = ({
           {currentProject && (
             <div className="project-info">
               <button id="info-btn" onClick={toggleInfo}>
-                Information
-                <svg
-                  className={`btn-arrow ${infoOpen ? "visible" : ""}`}
-                  width="9"
-                  height="7"
-                  viewBox="0 0 9 7"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M4.5 -1.96701e-07L9 7L0 7L4.5 -1.96701e-07Z"
-                    fill="currentColor"
-                  />
-                </svg>
+                {infoOpen ? "Close" : "Information"}
               </button>
-              <div className={`popup ${infoOpen ? "visible" : ""}`}>
-                <div className="project">{currentProject.clientName}</div>
-                <div className="type">
-                  <ProjectType type={currentProject.projectType} />
-                </div>
-                <div className="year">
-                  {new Date(currentProject.publicationDate).toLocaleDateString(
-                    "en-US",
-                    {
+              <ul className={`popup ${infoOpen ? "visible" : ""}`}>
+                <li className="info project">
+                  <span>Client</span>
+                  <p>{currentProject.clientName}</p>
+                </li>
+                <li className="info type">
+                  <span>Project Type</span>
+                  <div>
+                    <ProjectType type={currentProject.projectType} />
+                  </div>
+                </li>
+                <li className="info year">
+                  <span>Year</span>
+                  <p>
+                    {new Date(
+                      currentProject.publicationDate,
+                    ).toLocaleDateString("en-US", {
                       year: "numeric",
-                    },
-                  )}
-                </div>
-              </div>
+                    })}
+                  </p>
+                </li>
+              </ul>
             </div>
           )}
           <div className="time-display">
