@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-
+import { Logo } from "../icons/Logo";
+import { Projects } from "./Projects";
 import {
   motion,
   useScroll,
@@ -9,13 +10,11 @@ import {
 
 export const Deck = ({ deck }) => {
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isDraggingVolume, setIsDraggingVolume] = useState(false);
 
   const videoRef = useRef(null);
-  const volumeSliderRef = useRef(null);
   const containerRef = useRef(null);
 
-  const currentAsset = deck.reel;
+  console.log(deck);
 
   // Ensure video plays on mount and when asset changes
   useEffect(() => {
@@ -43,32 +42,38 @@ export const Deck = ({ deck }) => {
   });
 
   const scale4 = useTransform(scrollYProgress, [0, 1], [1, 4]);
-  const blur = useTransform(scrollYProgress, [0, 1], [0, 5]);
-  const blurFilter = useMotionTemplate`blur(${blur}px)`;
+  const blur = useTransform(scrollYProgress, [0, 1], [0, 10]);
+  const brightness = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  const videoFilter = useMotionTemplate`blur(${blur}px) brightness(${brightness})`;
 
   return (
     <div className="deck subgrid">
-      <div className="container" ref={containerRef}>
+      <div className="intro container" ref={containerRef}>
         <div className="reel sticky">
           <div className="lightbox">
             <div className="img-wrapper">
               <motion.video
                 ref={videoRef}
-                src={currentAsset.video?.mp4Url}
+                src={deck.reel.video?.mp4Url}
                 loop
                 muted
                 autoPlay
                 playsInline
-                style={{ scale: scale4, filter: blurFilter }}
+                style={{ scale: scale4, filter: videoFilter }}
               />
             </div>
           </div>
         </div>
       </div>
-      {/* <div class="text">
-        <h1>{deck.intro}</h1>
-        <p>{deck.introParagraph}</p>
-      </div>*/}
+      <div className="bottom">
+        <div className="info">
+          <Logo />
+          <h1>{deck.intro}</h1>
+          <p>{deck.introParagraph}</p>
+        </div>
+
+        <Projects deck={deck} />
+      </div>
     </div>
   );
 };
