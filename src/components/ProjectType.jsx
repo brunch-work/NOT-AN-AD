@@ -5,8 +5,6 @@ import { IconAmplification } from "./Icons/Amplification";
 import { IconEarnedMedia } from "./Icons/EarnedMedia";
 
 export const ProjectType = ({ type }) => {
-  console.info(type);
-
   if (!type) return null;
 
   if (type === "partnership") {

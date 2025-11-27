@@ -90,38 +90,35 @@ export type Asset = {
 };
 
 export const deckPageQuery = `
-query DeckPage {
-  deck {
-    reel {
-      url
-      alt
-    }
-    sections {
-      id
-      slug
-      sectionTitle
+  query DeckPage {
+    deck {
+      intro
+      introParagraph
+      reel {
+        format
+        video {
+          alt
+          mp4Url
+          title
+          width
+          duration
+          muxPlaybackId
+        }
+      }
       projects {
         id
-        clientName
-        slug
-        publicationDate
-        url
+        projectTitle
         projectDescription
-        assets {
+        projectType
+        slug
+        project {
           id
           projectType
-          asset {
-            alt
-            url
-            format
-            height
-            width
-          }
+          publicationDate
         }
       }
     }
   }
-}
 `;
 
 export const aboutQuery = `

@@ -298,6 +298,17 @@ export const Lightbox = ({ assets, index: initialIndex, projectDataMap }) => {
 
       <div className="video-controls">
         <div className="top-controls">
+          <div className="home">
+            <button
+              id="home-btn"
+              className="control-btn"
+              aria-label="Close Lightbox"
+              onClick={goHome}
+            >
+              <IconHome className="icon-home" />
+            </button>
+          </div>
+
           {isVideo && (
             <div className="volume-controls">
               <button
@@ -328,17 +339,6 @@ export const Lightbox = ({ assets, index: initialIndex, projectDataMap }) => {
               </div>
             </div>
           )}
-
-          <div className="home">
-            <button
-              id="home-btn"
-              className="control-btn"
-              aria-label="Close Lightbox"
-              onClick={goHome}
-            >
-              <IconHome className="icon-home" />
-            </button>
-          </div>
         </div>
         <div className="bottom-controls">
           <div className="playback-controls">

@@ -45,6 +45,10 @@
     gap: 20px;
   }
 
+  .top-controls {
+    flex-direction: row-reverse;
+  }
+
   .bottom-controls {
     display: flex;
     justify-content: space-between;
