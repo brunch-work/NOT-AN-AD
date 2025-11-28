@@ -195,7 +195,6 @@
     overflow: hidden;
     bottom: calc(100% + 2px);
     width: 100%;
-    /*z-index: -1;*/
     height: 0;
     transition: all 0.3s ease-in-out;
     display: flex;
@@ -219,18 +218,18 @@
         opacity: 0.5;
       }
     }
+  }
+}
 
-    .project-type {
-      gap: 1ch;
-      display: flex;
-      justify-content: center;
+.project-type {
+  gap: 1ch;
+  display: flex;
+  justify-content: center;
 
-      svg {
-        height: var(--font-size);
-        fill: var(--text);
-        width: auto;
-      }
-    }
+  svg {
+    height: var(--font-size);
+    fill: var(--text);
+    width: auto;
   }
 }
 

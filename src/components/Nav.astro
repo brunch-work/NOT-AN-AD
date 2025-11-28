@@ -91,7 +91,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
     </div>
 
     <div class="datetime">
-      <span id="current-time">{time} (UTC-5)</span>
+      <span id="current-time">{time} [UTC-5]</span>
     </div>
   </div>
 </nav>
@@ -108,7 +108,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
         hour12: false,
         timeZone: "America/New_York",
       });
-      timeElement.textContent = `${timeString} (UTC-5)`;
+      timeElement.textContent = `${timeString} [UTC-5]`;
     }
   }
 

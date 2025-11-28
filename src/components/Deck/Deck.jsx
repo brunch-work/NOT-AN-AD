@@ -14,8 +14,6 @@ export const Deck = ({ deck }) => {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
 
-  console.log(deck);
-
   // Ensure video plays on mount and when asset changes
   useEffect(() => {
     if (videoRef.current) {

@@ -115,6 +115,21 @@ export const deckPageQuery = `
           id
           projectType
           publicationDate
+          assets {
+            id
+            alt
+            url
+            format
+            height
+            width
+            video {
+              height
+              width
+              alt
+              duration
+              mp4Url
+            }
+          }
         }
       }
     }
