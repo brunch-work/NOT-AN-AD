@@ -39,22 +39,22 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 
     <div class="menu">
       <div class="menu__inner">
-        <ul>
+        <ul class="top-nav">
           <a href="/">
-            <li>
+            <li class="button">
               <span>
                 {currentPath === "/" ? "[NOT AN AD]" : "NOT AN AD"}
               </span>
             </li>
           </a>
           <a href="/archive">
-            <li>
+            <li class="button">
               <span>
                 {currentPath === "/archive" ? "[ARCHIVE]" : "ARCHIVE"}
               </span>
             </li>
           </a>
-          <li id="about-button" class="link">
+          <li id="about-button" class="link button">
             <span id="about-link">ABOUT</span>
           </li>
         </ul>

@@ -31,3 +31,21 @@ a,
 a:hover {
   color: var(--color-primary-dark);
 }
+
+.button {
+  background: light-dark(rgba(217, 217, 217, 0.75), rgba(49, 49, 49, 0.75));
+  backdrop-filter: blur(5px);
+  padding: 0.6rem 1.5rem;
+  cursor: pointer;
+
+  span {
+    display: block;
+    width: 12ch;
+    text-align: center;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 255, 0.75);
+    color: white;
+  }
+}

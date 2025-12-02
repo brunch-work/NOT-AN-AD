@@ -29,11 +29,6 @@
         );
         backdrop-filter: blur(5px);
         padding: 0.6rem 1.5rem;
-        span {
-          display: block;
-          width: 12ch;
-          text-align: center;
-        }
       }
     }
 
