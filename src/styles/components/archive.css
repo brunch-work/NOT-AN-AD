@@ -1,6 +1,6 @@
 .archive {
   margin-top: 5rem;
-  grid-row-gap: 2rem !important;
+  grid-row-gap: 0.8rem;
 
   .archive-item {
     grid-column: span 3;
@@ -16,6 +16,7 @@
 
   @media (min-width: 768px) {
     margin-top: 12rem;
+    grid-row-gap: 2rem;
 
     .archive-item {
       grid-column: span 2;

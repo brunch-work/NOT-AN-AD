@@ -36,16 +36,25 @@ a:hover {
   background: light-dark(rgba(217, 217, 217, 0.75), rgba(49, 49, 49, 0.75));
   backdrop-filter: blur(5px);
   padding: 0.6rem 1.5rem;
+  width: 100%;
   cursor: pointer;
 
   span {
     display: block;
-    width: 12ch;
+    width: 100%;
     text-align: center;
   }
 
   &:hover {
     background-color: rgba(0, 0, 255, 0.75);
     color: white;
+  }
+
+  @media (min-width: 768px) {
+    width: fit-content;
+
+    span {
+      width: 14ch;
+    }
   }
 }
