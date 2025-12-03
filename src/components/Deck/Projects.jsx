@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 
 import { ProjectCard } from "./ProjectCard";
+import { useMobile } from "../../hooks/useMobile";
 
 export const Projects = ({ deck }) => {
   const [activeFilter, setActiveFilter] = useState("all");
+  const isMobile = useMobile();
 
   // Filter projects based on the active filter
   const filteredProjects =
