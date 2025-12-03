@@ -106,8 +106,12 @@ html:has(.deck) {
         justify-content: center;
         height: fit-content;
         position: sticky;
-        top: calc(12px + 26.5px + 2px);
+        top: 36.5px;
         z-index: 10;
+
+        .active-filter {
+          width: 100%;
+        }
       }
 
       .bottom {
@@ -115,11 +119,31 @@ html:has(.deck) {
       }
 
       .filters {
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
         gap: 2px;
+        position: relative;
+
+        .filter-list {
+          position: absolute;
+          top: 2px;
+          width: 100%;
+          display: flex;
+          gap: 2px;
+          flex-wrap: wrap;
+          transform: translateY(50%);
+
+          > * {
+            width: calc(50% - 1px);
+
+            label {
+              display: block;
+            }
+          }
+        }
       }
 
       .list {
@@ -215,6 +239,18 @@ html:has(.deck) {
         &:hover .type,
         &:hover .year {
           opacity: 0;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .deck {
+    .bottom {
+      .projects {
+        .top {
+          top: calc(12px + 26.5px + 2px);
         }
       }
     }

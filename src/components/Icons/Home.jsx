@@ -3,7 +3,7 @@ export const IconHome = () => {
     <svg
       viewBox="0 0 39 33"
       fill="none"
-      class="w-5 lg:w-4 -mt-[2px]"
+      className="w-5 lg:w-4 -mt-[2px]"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
