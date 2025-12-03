@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Logo } from "../icons/Logo";
+import { Logo } from "../Icons/Logo";
 import { Projects } from "./Projects";
 import {
   motion,
