@@ -108,13 +108,14 @@ export const deckPageQuery = `
       projects {
         id
         projectTitle
-        projectDescription
         projectType
         slug
         project {
           id
           projectType
           publicationDate
+          projectDescription
+          clientName
           assets {
             id
             alt
@@ -176,6 +177,7 @@ export const lightboxQuery = `
       clientName
       projectType
       publicationDate
+      projectDescription
     }
   }
 `;

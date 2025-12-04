@@ -58,3 +58,12 @@ a:hover {
     }
   }
 }
+
+button:focus {
+  outline: none;
+}
+
+/* Reapply a custom outline only when the element is focused via keyboard */
+button:focus-visible {
+  outline: 1px solid blue; /* Or any other desired style */
+}

@@ -248,20 +248,22 @@
 }
 
 @media (min-width: 768px) {
-  .project-info {
-    position: relative;
-    height: 100%;
-    top: auto;
-    left: auto;
-    right: auto;
+  .lightbox {
+    .project-info {
+      position: relative;
+      height: 100%;
+      top: auto;
+      left: auto;
+      right: auto;
 
-    button {
-      width: calc(33ch + 9rem + 4px);
-    }
+      button {
+        width: calc(33ch + 9rem + 4px);
+      }
 
-    .popup {
-      bottom: calc(100% + 2px);
-      transform: none;
+      .popup {
+        bottom: calc(100% + 2px);
+        transform: none;
+      }
     }
   }
 }
