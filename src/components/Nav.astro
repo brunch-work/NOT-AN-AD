@@ -39,26 +39,26 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 
     <div class="menu">
       <div class="menu__inner">
-        <ul>
+        <ul class="top-nav">
           <a href="/">
-            <li>
+            <li class="button">
               <span>
                 {currentPath === "/" ? "[NOT AN AD]" : "NOT AN AD"}
               </span>
             </li>
           </a>
           <a href="/archive">
-            <li>
+            <li class="button">
               <span>
                 {currentPath === "/archive" ? "[ARCHIVE]" : "ARCHIVE"}
               </span>
             </li>
           </a>
-          <li id="about-button" class="link">
+          <li id="about-button" class="link button">
             <span id="about-link">ABOUT</span>
           </li>
         </ul>
-        <ul id="about">
+        <ul id="about" class="about-list">
           <li>
             <span>ABOUT</span>
             <p>
@@ -91,7 +91,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
     </div>
 
     <div class="datetime">
-      <span id="current-time">{time} (UTC-5)</span>
+      <span id="current-time">{time} [UTC-5]</span>
     </div>
   </div>
 </nav>
@@ -108,7 +108,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
         hour12: false,
         timeZone: "America/New_York",
       });
-      timeElement.textContent = `${timeString} (UTC-5)`;
+      timeElement.textContent = `${timeString} [UTC-5]`;
     }
   }
 

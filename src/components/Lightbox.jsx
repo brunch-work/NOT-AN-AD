@@ -10,7 +10,12 @@ import { IconHome } from "./Icons/Home";
 import { IconDot } from "./Icons/Dot";
 import { ProjectType } from "./ProjectType";
 
-export const Lightbox = ({ assets, index: initialIndex, projectDataMap }) => {
+export const Lightbox = ({
+  assets,
+  index: initialIndex,
+  projectDataMap,
+  isDeck,
+}) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [infoOpen, setInfoOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -24,7 +29,9 @@ export const Lightbox = ({ assets, index: initialIndex, projectDataMap }) => {
   const volumeSliderRef = useRef(null);
 
   const currentAsset = assets[currentIndex];
-  const currentProject = projectDataMap?.[currentAsset.id];
+  const currentProject = isDeck
+    ? projectDataMap
+    : projectDataMap?.[currentAsset.id];
 
   const isVideo =
     currentAsset.format === "mp4" ||
@@ -298,6 +305,17 @@ export const Lightbox = ({ assets, index: initialIndex, projectDataMap }) => {
 
       <div className="video-controls">
         <div className="top-controls">
+          <div className="home">
+            <button
+              id="home-btn"
+              className="control-btn"
+              aria-label="Close Lightbox"
+              onClick={goHome}
+            >
+              <IconHome className="icon-home" />
+            </button>
+          </div>
+
           {isVideo && (
             <div className="volume-controls">
               <button
@@ -328,17 +346,6 @@ export const Lightbox = ({ assets, index: initialIndex, projectDataMap }) => {
               </div>
             </div>
           )}
-
-          <div className="home">
-            <button
-              id="home-btn"
-              className="control-btn"
-              aria-label="Close Lightbox"
-              onClick={goHome}
-            >
-              <IconHome className="icon-home" />
-            </button>
-          </div>
         </div>
         <div className="bottom-controls">
           <div className="playback-controls">
@@ -396,6 +403,12 @@ export const Lightbox = ({ assets, index: initialIndex, projectDataMap }) => {
                     })}
                   </p>
                 </li>
+                {isDeck && (
+                  <li className="info description">
+                    <span>Description</span>
+                    <p>{currentProject.projectDescription}</p>
+                  </li>
+                )}
               </ul>
             </div>
           )}

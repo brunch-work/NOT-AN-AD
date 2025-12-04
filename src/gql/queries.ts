@@ -90,38 +90,51 @@ export type Asset = {
 };
 
 export const deckPageQuery = `
-query DeckPage {
-  deck {
-    reel {
-      url
-      alt
-    }
-    sections {
-      id
-      slug
-      sectionTitle
+  query DeckPage {
+    deck {
+      intro
+      introParagraph
+      reel {
+        format
+        video {
+          alt
+          mp4Url
+          title
+          width
+          duration
+          muxPlaybackId
+        }
+      }
       projects {
         id
-        clientName
+        projectTitle
+        projectType
         slug
-        publicationDate
-        url
-        projectDescription
-        assets {
+        project {
           id
           projectType
-          asset {
+          publicationDate
+          projectDescription
+          clientName
+          assets {
+            id
             alt
             url
             format
             height
             width
+            video {
+              height
+              width
+              alt
+              duration
+              mp4Url
+            }
           }
         }
       }
     }
   }
-}
 `;
 
 export const aboutQuery = `
@@ -164,6 +177,7 @@ export const lightboxQuery = `
       clientName
       projectType
       publicationDate
+      projectDescription
     }
   }
 `;

@@ -1,14 +1,9 @@
 ---
 import { homepageQuery } from "../gql/queries";
-import Lightbox from "../components/Lightbox.astro";
 import IconVolume from "../assets/images/svg/volume.svg";
 import IconVolumeOff from "../assets/images/svg/volumeoff.svg";
 import IconPause from "../assets/images/svg/pause.svg";
-import IconBack from "../assets/images/svg/back.svg";
-import IconForward from "../assets/images/svg/forward.svg";
 import IconPlay from "../assets/images/svg/play.svg";
-import IconHome from "../assets/images/svg/home.svg";
-import IconDot from "../assets/images/svg/dot.svg";
 
 const response = await fetch("https://graphql.datocms.com/", {
   method: "POST",

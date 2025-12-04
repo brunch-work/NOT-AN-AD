@@ -1,6 +1,6 @@
 .nav {
   position: fixed;
-  padding-block: 1.2rem;
+  padding-block: 0.8rem;
   z-index: 9999;
 
   .logo {
@@ -14,13 +14,17 @@
     align-items: center;
 
     .menu__inner {
-      width: fit-content;
+      width: 100%;
       position: relative;
     }
 
     ul {
       display: flex;
       gap: 2px;
+
+      > * {
+        width: calc(100% / 3);
+      }
 
       li {
         background: light-dark(
@@ -29,29 +33,22 @@
         );
         backdrop-filter: blur(5px);
         padding: 0.6rem 1.5rem;
-        span {
-          display: block;
-          width: 11ch;
-          text-align: center;
-        }
       }
     }
 
-    #about {
+    .about-list {
       position: absolute;
       top: calc(100% + 2px);
       flex-direction: column;
       width: 100%;
       display: none;
 
-      * {
-        text-align: center;
-      }
-
       li {
         display: flex;
         flex-direction: column;
         align-items: center;
+        text-align: center;
+        width: 100%;
       }
 
       span {
@@ -76,12 +73,18 @@
   }
 
   @media (min-width: 768px) {
+    padding-block: 1.2rem;
+
     .logo {
       display: block;
     }
 
     .menu {
       grid-column: 3 / -3;
+
+      .menu__inner {
+        width: fit-content;
+      }
     }
 
     .datetime {

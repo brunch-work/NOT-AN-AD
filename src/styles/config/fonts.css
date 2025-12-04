@@ -1,23 +1,16 @@
 @font-face {
-  font-family: "IBM Plex Sans Condensed", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-  src: url("/fonts/IBMPlexSansCondensed-Regular.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "IBM Plex Mono", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-  src: url("/fonts/IBMPlexMono-Regular.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Fragment Mono", monospace;
+  font-family: "Fragment Mono";
   font-weight: 400;
   font-style: normal;
   font-display: swap;
   src: url("/fonts/Fragment Mono/FragmentMono-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "DM Sans";
+  font-weight: 100 1000;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/DM Sans/DMSans-VariableFont_opsz,wght.ttf")
+    format("truetype");
 }
