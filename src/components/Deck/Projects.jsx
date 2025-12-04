@@ -27,9 +27,9 @@ export const Projects = ({ deck }) => {
       new CustomEvent("openLightbox", { detail: { index: 0 } }),
     );
 
-    // Toggle dialog visibility
+    // Open dialog
     if (dialogRef.current) {
-      dialogRef.current.classList.toggle("show");
+      dialogRef.current.classList.add("show");
     }
   };
 
@@ -77,27 +77,23 @@ export const Projects = ({ deck }) => {
         ))}
       </div>
 
-      {/* Single shared dialog for all projects */}
-      {activeProject && (
-        <dialog
-          ref={dialogRef}
-          id="lightbox-dialog"
-          className="lightbox-dialog"
-        >
-          <div className="grid">
-            <div className="subgrid">
-              <div id="lightbox-wrapper" className="lightbox-wrapper">
+      {/* Single shared dialog for all projects - always rendered */}
+      <dialog ref={dialogRef} id="lightbox-dialog" className="lightbox-dialog">
+        <div className="grid">
+          <div className="subgrid">
+            <div id="lightbox-wrapper" className="lightbox-wrapper">
+              {activeProject && (
                 <Lightbox
                   assets={activeProject.project.assets}
                   index={0}
                   isDeck={true}
                   projectDataMap={activeProject.project}
                 />
-              </div>
+              )}
             </div>
           </div>
-        </dialog>
-      )}
+        </div>
+      </dialog>
     </div>
   );
 };
