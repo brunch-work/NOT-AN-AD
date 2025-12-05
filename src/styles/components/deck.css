@@ -22,6 +22,18 @@ html:has(.deck) {
 }
 
 .deck {
+  --text: #fff;
+
+  .button {
+    background: rgba(49, 49, 49, 0.75);
+    color: var(--palette-white);
+
+    &:hover {
+      background-color: rgba(0, 0, 255, 0.75);
+      color: white;
+    }
+  }
+
   .container {
     height: 200vh;
     position: relative;
@@ -135,6 +147,32 @@ html:has(.deck) {
           gap: 2px;
           flex-wrap: wrap;
           transform: translateY(50%);
+          opacity: 0;
+          pointer-events: none;
+
+          button {
+            opacity: 0;
+            transform: translateY(1rem);
+          }
+
+          &.open {
+            opacity: 1;
+            pointer-events: auto;
+
+            button {
+              opacity: 1;
+              transform: translateY(0);
+            }
+
+            button:nth-child(1),
+            button:nth-child(2) {
+              transition: all 0.3s ease-in-out 0.1s;
+            }
+            button:nth-child(3),
+            button:nth-child(4) {
+              transition: all 0.3s ease-in-out 0.2s;
+            }
+          }
 
           > * {
             width: calc(50% - 1px);

@@ -27,11 +27,6 @@
       }
 
       li {
-        background: light-dark(
-          rgba(217, 217, 217, 0.75),
-          rgba(49, 49, 49, 0.75)
-        );
-        backdrop-filter: blur(5px);
         padding: 0.6rem 1.5rem;
       }
     }
@@ -42,7 +37,6 @@
       flex-direction: column;
       width: 100%;
       pointer-events: none;
-      /*display: none;*/
 
       &.open {
         pointer-events: auto;
@@ -78,6 +72,11 @@
         width: 100%;
         transform: translateY(1rem);
         transition: opacity 0.2s ease-in-out;
+        background: light-dark(
+          rgba(217, 217, 217, 0.75),
+          rgba(49, 49, 49, 0.75)
+        );
+        backdrop-filter: blur(5px);
       }
 
       span {

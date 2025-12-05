@@ -115,25 +115,25 @@ export const Filters = ({ activeFilter, setActiveFilter }) => {
         </button>
       </div>
 
-      {listOpen && (
-        <div className="filter-list">
-          {filterConfig.map((filter) => {
-            if (filter.value !== activeFilter) {
-              return (
-                <button
-                  key={filter.value}
-                  type="button"
-                  className="button"
-                  onClick={() => handleFilterChange(filter.value)}
-                >
-                  <span>{filter.label}</span>
-                </button>
-              );
-            }
-            return null;
-          })}
-        </div>
-      )}
+      {/* {listOpen && (*/}
+      <div className={`filter-list ${listOpen ? "open" : ""}`}>
+        {filterConfig.map((filter) => {
+          if (filter.value !== activeFilter) {
+            return (
+              <button
+                key={filter.value}
+                type="button"
+                className="button"
+                onClick={() => handleFilterChange(filter.value)}
+              >
+                <span>{filter.label}</span>
+              </button>
+            );
+          }
+          return null;
+        })}
+      </div>
+      {/* )}*/}
     </fieldset>
   );
 };
