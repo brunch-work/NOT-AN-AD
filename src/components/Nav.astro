@@ -128,7 +128,8 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
     aboutButton.addEventListener("click", () => {
       aboutOpen = !aboutOpen;
       aboutLink.textContent = aboutOpen ? "CLOSE" : "ABOUT";
-      about.style.display = aboutOpen ? "flex" : "none";
+      about.classList.toggle("open");
+      about.style.opacity = aboutOpen ? "1" : "0";
     });
   }
 </script>
