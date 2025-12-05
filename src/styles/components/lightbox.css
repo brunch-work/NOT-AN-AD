@@ -157,6 +157,10 @@
     position: fixed;
     text-align: center;
 
+    .project {
+      border-top: 0;
+    }
+
     button {
       width: 100%;
       text-align: center;
@@ -186,9 +190,33 @@
       flex-direction: column;
       gap: 2px;
 
+      li {
+        opacity: 0;
+        transform: translateY(1rem);
+      }
+
       &.visible {
         height: auto;
         transition: all 0.3s ease-in-out;
+        overflow: visible;
+
+        li {
+          opacity: 1;
+          transform: translate(0);
+        }
+
+        li:nth-child(1) {
+          transition: all 0.3s ease-in-out 0.1s;
+        }
+        li:nth-child(2) {
+          transition: all 0.3s ease-in-out 0.2s;
+        }
+        li:nth-child(3) {
+          transition: all 0.3s ease-in-out 0.3s;
+        }
+        li:nth-child(4) {
+          transition: all 0.3s ease-in-out 0.4s;
+        }
       }
 
       .info {
@@ -263,6 +291,29 @@
       .popup {
         bottom: calc(100% + 2px);
         transform: none;
+
+        li {
+          transform: translateY(-1rem);
+        }
+
+        &.visible {
+          li {
+            transform: translateY(0);
+          }
+
+          li:nth-child(1) {
+            transition: all 0.3s ease-in-out 0.4s;
+          }
+          li:nth-child(2) {
+            transition: all 0.3s ease-in-out 0.3s;
+          }
+          li:nth-child(3) {
+            transition: all 0.3s ease-in-out 0.2s;
+          }
+          li:nth-child(4) {
+            transition: all 0.3s ease-in-out 0.1s;
+          }
+        }
       }
     }
   }
