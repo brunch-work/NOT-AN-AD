@@ -303,6 +303,11 @@ html:has(.deck) {
     display: grid;
     padding: 0.8rem 0;
 
+    .asset:not(.featured) {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+
     &:hover .overlay {
       opacity: 1;
       transition: opacity 0.3s ease-in-out;
@@ -315,6 +320,7 @@ html:has(.deck) {
 
     &:hover .asset {
       opacity: 1;
+      transform: translateY(0);
     }
 
     &:hover :nth-child(2 of .asset) {
