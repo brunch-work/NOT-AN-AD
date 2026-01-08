@@ -1,6 +1,9 @@
 ---
+import { calcGeneratorDuration } from "motion/react";
 import { archiveQuery, lightboxQuery, type Asset } from "../gql/queries";
 import { Lightbox } from "./Lightbox.jsx";
+import { Image } from "astro:assets";
+import { Logo } from "./Icons/Logo";
 
 type ProjectData = {
   id: string;
@@ -53,6 +56,8 @@ for (const asset of assets) {
     console.error(`Error fetching project for asset ${asset.id}:`, error);
   }
 }
+
+console.log(assets);
 ---
 
 <div class="subgrid archive">
@@ -66,7 +71,14 @@ for (const asset of assets) {
               data-asset-index={index}
               aria-label={`View ${asset.alt || "image"}`}
             >
-              <img src={asset.url} alt={asset.alt} />
+              <img
+                src={asset.responsiveImage.src}
+                alt={asset.responsiveImage.alt}
+                srcset={asset.responsiveImage.webpSrcSet}
+                sizes={asset.responsiveImage.sizes}
+                width={asset.responsiveImage.width}
+                height={asset.responsiveImage.height}
+              />
             </button>
           </div>
         );

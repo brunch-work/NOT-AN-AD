@@ -158,6 +158,15 @@ export const archiveQuery = `
         format
         height
         width
+        responsiveImage {
+          src
+          alt
+          width
+          height
+          aspectRatio
+          sizes
+          webpSrcSet
+        }
         video {
           height
           width

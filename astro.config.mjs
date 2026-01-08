@@ -14,6 +14,9 @@ import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
+  image: {
+    domains: ["www.datocms-assets.com"],
+  },
   devToolbar: {
     enabled: false,
   },
@@ -44,6 +47,5 @@ export default defineConfig({
   },
 
   adapter: netlify(),
-
   integrations: [react()],
 });
