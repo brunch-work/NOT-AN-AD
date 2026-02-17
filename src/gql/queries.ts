@@ -79,9 +79,20 @@ export type Asset = {
   format: string;
   height: number;
   width: number;
+  responsiveImage: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    aspectRatio: number;
+    sizes: string;
+    webpSrcSet: string;
+    base64: string;
+  };
   video: {
     id: string;
     mp4Url: string;
+    thumbnailUrl: string;
     height: number;
     width: number;
     alt: string;
@@ -166,6 +177,7 @@ export const archiveQuery = `
           aspectRatio
           sizes
           webpSrcSet
+          base64
         }
         video {
           height
@@ -173,6 +185,7 @@ export const archiveQuery = `
           alt
           duration
           mp4Url
+          thumbnailUrl
         }
       }
     }
