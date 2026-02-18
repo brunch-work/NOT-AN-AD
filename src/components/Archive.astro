@@ -69,14 +69,21 @@ for (const asset of assets) {
               data-asset-index={index}
               aria-label={`View ${asset.alt || "image"}`}
             >
-              <img
-                src={asset.responsiveImage.src}
-                alt={asset.responsiveImage.alt}
-                srcset={asset.responsiveImage.webpSrcSet}
-                sizes={asset.responsiveImage.sizes}
-                width={asset.responsiveImage.width}
-                height={asset.responsiveImage.height}
-              />
+              <div
+                class="archive-item-media"
+                style={`background-image: url('${asset.responsiveImage.base64}'); aspect-ratio: ${asset.responsiveImage.aspectRatio}`}
+              >
+                <img
+                  src={asset.responsiveImage.src}
+                  alt={asset.responsiveImage.alt}
+                  srcset={asset.responsiveImage.webpSrcSet}
+                  sizes={asset.responsiveImage.sizes}
+                  width={asset.responsiveImage.width}
+                  height={asset.responsiveImage.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
             </button>
           </div>
         );
@@ -94,7 +101,17 @@ for (const asset of assets) {
               data-video-preview
               aria-label={`View ${asset.alt || "video"}`}
             >
-              <video src={asset.video.mp4Url} muted preload="metadata" />
+              <div
+                class="archive-item-media"
+                style={`aspect-ratio: ${asset.video.width / asset.video.height}`}
+              >
+                <video
+                  data-src={asset.video.mp4Url}
+                  poster={asset.video.thumbnailUrl}
+                  muted
+                  preload="none"
+                />
+              </div>
             </button>
           </div>
         );
@@ -158,11 +175,57 @@ for (const asset of assets) {
     });
   }
 
+  // Blur-up: reveal images once fully loaded
+  const archiveImages = document.querySelectorAll(".archive-item-media img");
+  archiveImages.forEach((img) => {
+    const container = img.closest(".archive-item-media");
+    if ((img as HTMLImageElement).complete) {
+      container?.classList.add("is-loaded");
+    } else {
+      img.addEventListener("load", () => {
+        container?.classList.add("is-loaded");
+      });
+    }
+  });
+
+  // Lazy load videos via IntersectionObserver
+  const loadVideo = (video: HTMLVideoElement) => {
+    const src = video.getAttribute("data-src");
+    if (src && !video.src) {
+      video.src = src;
+      video.preload = "metadata";
+      video.load();
+      video.addEventListener(
+        "loadeddata",
+        () => {
+          video.closest(".archive-item-media")?.classList.add("is-loaded");
+        },
+        { once: true },
+      );
+    }
+  };
+
+  const videoObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          loadVideo(entry.target as HTMLVideoElement);
+          videoObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "200px 0px" },
+  );
+
+  document.querySelectorAll("video[data-src]").forEach((video) => {
+    videoObserver.observe(video);
+  });
+
   // Video preview on hover
   const videoTriggers = document.querySelectorAll("[data-video-preview]");
 
   videoTriggers.forEach((trigger) => {
-    const video = trigger.querySelector("video");
+    const video = trigger.querySelector("video") as HTMLVideoElement | null;
     if (!video) return;
 
     let isHovering = false;
@@ -175,6 +238,10 @@ for (const asset of assets) {
 
     trigger.addEventListener("mouseenter", async () => {
       isHovering = true;
+      // Ensure the video src is loaded before attempting playback
+      if (!video.src) {
+        loadVideo(video);
+      }
       video.currentTime = 0;
       video.addEventListener("timeupdate", handleTimeUpdate);
 

@@ -1,13 +1,13 @@
 .screensaver {
-  --speedX: 0.2;
-  --speedY: 1.5;
+  --speedX: 1;
+  --speedY: 1;
   --width: 218px;
   --dx: 16;
   --dy: 22;
 
   @media screen and (min-width: 720px) {
-    --speedX: 3;
-    --speedY: 3;
+    --speedX: 1.5;
+    --speedY: 1.5;
     --width: 439px;
     --dx: 24;
     --dy: 34;
