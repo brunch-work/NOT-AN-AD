@@ -134,12 +134,23 @@ export const deckPageQuery = `
             format
             height
             width
+            responsiveImage {
+              src
+              alt
+              width
+              height
+              aspectRatio
+              sizes
+              webpSrcSet
+              base64
+            }
             video {
               height
               width
               alt
               duration
               mp4Url
+              thumbnailUrl
             }
           }
         }
