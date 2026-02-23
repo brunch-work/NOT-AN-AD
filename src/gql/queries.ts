@@ -1,3 +1,9 @@
+export type SeoTag = {
+  tag: string;
+  attributes: Record<string, string> | null;
+  content: string | null;
+};
+
 export type HomepageData = {
   home: HomeData;
   allHomepageProjects: HomepageProject[];
@@ -211,6 +217,23 @@ export const lightboxQuery = `
       projectType
       publicationDate
       projectDescription
+    }
+  }
+`;
+
+export const seoQuery = `
+  query SeoSettings {
+    home {
+    seo {
+          description
+          image {
+            url
+            alt
+            size
+          }
+          title
+          twitterCard
+        }
     }
   }
 `;
