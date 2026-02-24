@@ -104,3 +104,13 @@ button {
   --container-padding-inline: 2rem;
   --100dvh: calc(var(--vh, 1dvh) * 100);
 }
+
+body:has(.signature),
+html:has(.signature) {
+  background: var(--palette-white);
+  color: var(--palette-black);
+}
+
+.signature {
+  width: 100%;
+}
