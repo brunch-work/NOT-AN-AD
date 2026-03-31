@@ -47,6 +47,10 @@ const seo = seoJson.data?.home?.seo;
       <slot />
     </div>
     {!isDevelopment && <Screensaver />}
+    <script>
+      import { inject } from "@vercel/analytics";
+      inject();
+    </script>
   </body>
 </html>
 
